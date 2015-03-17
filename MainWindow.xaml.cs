@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 
 namespace DevelopmentProject
 {
@@ -23,6 +24,23 @@ namespace DevelopmentProject
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        private void AddSupporter(object sender, RoutedEventArgs e)
+        {
+            using (var supctx = new SupporterContext())
+            {
+                Supporter supporter = new Supporter
+                {
+                    SupporterName = txtBoxName.Text,
+                    SupporterInitials = txtBoxInitials.Text
+                };
+
+                supctx.Supporters.Add(supporter);
+                supctx.SaveChanges();
+            }
+
         }
     }
 }
