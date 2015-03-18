@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,16 @@ namespace Control
             Documentation documentation = new Documentation(type, headline, description, dateCreated, timeSpent, supporter);
             return _dbHandler.AddDocumentation(documentation);
         }
+
+        public DataTable GetTypesTable()
+        {
+            return _dbHandler.GetTypesTable();
+        }
         #endregion
+
+        public DataTable GetSupportersTable()
+        {
+            return _dbHandler.GetSupportersTable();
+        }
     }
 }

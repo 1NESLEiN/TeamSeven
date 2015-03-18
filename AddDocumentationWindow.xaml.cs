@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,15 +22,19 @@ namespace DevelopmentProject
     public partial class AddDocumentationWindow : Window
     {
         private Handler _handler;
+        private DataTable _typesTable;
+        private DataTable _supportersTable;
         public AddDocumentationWindow()
         {
             InitializeComponent();
             _handler = Handler.GetInstance();
+            
+            PrepareDropBoxes();
         }
 
         private void AddDocumentation_OnClick(object sender, RoutedEventArgs e)
         {
-            bool success = _handler.AddDocumentation(Convert.ToInt32(TextBoxType.Text), TextBoxHeadline.Text, TextBoxDescription.Text, DateTime.Now, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(TextBoxSupporter.Text));
+            bool success = _handler.AddDocumentation(Convert.ToInt32(ComboBoxType.SelectedValue), TextBoxHeadline.Text, TextBoxDescription.Text, DateTime.Now, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSupporter.SelectedValue));
             if (success)
             {
                 MessageBox.Show("Documentation added succesfully");
@@ -39,11 +44,24 @@ namespace DevelopmentProject
 
         private void ClearTextboxes()
         {
-            TextBoxType.Clear();
             TextBoxHeadline.Clear();
             TextBoxDescription.Clear();
             TextBoxTimeSpent.Clear();
-            TextBoxSupporter.Clear();
+        }
+
+        private void PrepareDropBoxes()
+        {
+            //Get data and populate ComboBoxType
+            _typesTable = _handler.GetTypesTable();
+            ComboBoxType.ItemsSource = _typesTable.DefaultView;
+            ComboBoxType.DisplayMemberPath = "Name";
+            ComboBoxType.SelectedValuePath = "ID";
+
+            //Get data Populate ComboBoxSupporter
+            _supportersTable = _handler.GetSupportersTable();
+            ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
+            ComboBoxSupporter.DisplayMemberPath = "Name";
+            ComboBoxSupporter.SelectedValuePath = "ID";
         }
     }
 }
