@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using Control;
+﻿using System.Windows;
 
 namespace DevelopmentProject
 {
