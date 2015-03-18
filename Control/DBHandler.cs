@@ -82,9 +82,39 @@ namespace Control
         #endregion
 
         #region Documentation methods
-        public void AddDocumentation(Documentation documentation)
+        public bool AddDocumentation(Documentation documentation)
         {
-            throw new NotImplementedException();
+            String query = @"
+            INSERT INTO JobDocumentations (Type, Headline, Description, DateCreated, TimeSpent, Supporter)
+            VALUES (@Type, @Headline, @Description, @DateCreated, @TimeSpent, @Supporter)
+            ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+
+                    cmd.Parameters.Add(new SqlParameter("@Type", documentation.Type));
+                    cmd.Parameters.Add(new SqlParameter("@Headline", documentation.Headline));
+                    cmd.Parameters.Add(new SqlParameter("@Description", documentation.Description));
+                    cmd.Parameters.Add(new SqlParameter("@DateCreated", documentation.DateCreated));
+                    cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
+                    cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                _con.Close();
+            }
         }
         #endregion
     }

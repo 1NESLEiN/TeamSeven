@@ -48,10 +48,10 @@ namespace Control
         #endregion
 
         #region Documentation methods
-        public void AddDocumentation(int type, String headline, String description, DateTime dateCreated, int timeSpent, int supporter)
+        public bool AddDocumentation(int type, String headline, String description, DateTime dateCreated, int timeSpent, int supporter)
         {
             Documentation documentation = new Documentation(type, headline, description, dateCreated, timeSpent, supporter);
-            _dbHandler.AddDocumentation(documentation);
+            return _dbHandler.AddDocumentation(documentation);
         }
         #endregion
     }
