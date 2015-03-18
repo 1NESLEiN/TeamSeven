@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 
 namespace Control
 {
@@ -33,13 +34,25 @@ namespace Control
 
         private Handler()
         {
-            _dbHandler = _dbHandler.GetInstance();
+            _dbHandler = DBHandler.GetInstance();
         }
 
         #endregion
 
         #region Supporter methods
+        public void AddSupporter(String name, String initials)
+        {
+            Supporter supporter = new Supporter(initials, name);
+            _dbHandler.AddSupporter(supporter);
+        }
+        #endregion
 
+        #region Documentation methods
+        public void AddDocumentation(int type, String headline, String description, DateTime dateCreated, int timeSpent, int supporter)
+        {
+            Documentation documentation = new Documentation(type, headline, description, dateCreated, timeSpent, supporter);
+            _dbHandler.AddDocumentation(documentation);
+        }
         #endregion
     }
 }
