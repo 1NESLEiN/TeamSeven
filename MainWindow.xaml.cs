@@ -26,7 +26,13 @@ namespace DevelopmentProject
                 }
                 else
                 {
-                    _handler.AddSupporter(txtBoxName.Text, txtBoxInitials.Text);
+                    bool success = _handler.AddSupporter(txtBoxName.Text, txtBoxInitials.Text);
+                    if (success)
+                    {
+                        MessageBox.Show("Supporter added succesfully");
+                        txtBoxName.Clear();
+                        txtBoxInitials.Clear();
+                    }
                 }
             }
             catch (Exception exception)

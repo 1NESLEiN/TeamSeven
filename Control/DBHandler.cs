@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Model;
 
 namespace Control
@@ -48,7 +49,7 @@ namespace Control
         /// Method to add a supporter to the database
         /// </summary>
         /// <param name="supporter">Used so we can get the name of the supporter and initials and add these to the query</param>
-        public void AddSupporter(Supporter supporter)
+        public bool AddSupporter(Supporter supporter)
         {
             String query = @"
             INSERT INTO dbo.Supporters (Name, Initials)
@@ -66,6 +67,12 @@ namespace Control
 
                     cmd.ExecuteNonQuery();
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {

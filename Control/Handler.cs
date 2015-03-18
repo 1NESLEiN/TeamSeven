@@ -40,10 +40,10 @@ namespace Control
         #endregion
 
         #region Supporter methods
-        public void AddSupporter(String name, String initials)
+        public bool AddSupporter(String name, String initials)
         {
             Supporter supporter = new Supporter(initials, name);
-            _dbHandler.AddSupporter(supporter);
+            return _dbHandler.AddSupporter(supporter);
         }
         #endregion
 
