@@ -14,6 +14,8 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition />
+            <RowDefinition Height="25" />
+
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Type:" />
@@ -31,6 +33,6 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Supporter:" />
         <TextBox Grid.Row="4" Grid.Column="1"/>
 
-        <Button Grid.Row="5" Grid.Column="1" Height="25" Width="100" Content="Add" Margin="561,10,10,144"/>
+        <Button Grid.Row="5" Grid.Column="1" Height="25" Width="100" Content="Add"/>
     </Grid>
 </Window>
