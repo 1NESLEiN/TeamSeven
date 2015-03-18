@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="Add Supporter" x:Name="btnAddSupporter" Click="BtnAddSupporter_OnClick"/>
-
+        <StackPanel>
+            <Button Content="Add Supporter" x:Name="btnAddSupporter" Click="BtnAddSupporter_OnClick" />
+            <Button Content="Add Documentation" x:Name="btnAddDocumentation" Click="BtnAddDocumentation_OnClick"/>
+        </StackPanel>
     </Grid>
 </Window>

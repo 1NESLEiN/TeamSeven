@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddDocumentationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddSupporterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -64,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddDocumentationWindow.xaml.cs">
+      <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddSupporterWindow.xaml.cs">
       <DependentUpon>AddSupporterWindow.xaml</DependentUpon>
     </Compile>

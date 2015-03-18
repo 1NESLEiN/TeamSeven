@@ -14,5 +14,11 @@ namespace DevelopmentProject
             AddSupporterWindow addSupporterWindow = new AddSupporterWindow();
             addSupporterWindow.Show();
         }
+
+        private void BtnAddDocumentation_OnClick(object sender, RoutedEventArgs e)
+        {
+            AddDocumentationWindow addDocumentationWindow = new AddDocumentationWindow();
+            addDocumentationWindow.Show();
+        }
     }
 }
