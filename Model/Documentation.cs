@@ -62,14 +62,14 @@ namespace Model
 
         #endregion
 
-        public Documentation(int type, String headline, String description, DateTime dateCreated, int timeSpent, int supporter)
+        public Documentation(String headline, String description, int type, int supporter, DateTime dateCreated, int timeSpent)
         {
-            Type = type;
             Headline = headline;
             Description = description;
+            Type = type;
+            Supporter = supporter;
             DateCreated = dateCreated;
             TimeSpent = timeSpent;
-            Supporter = supporter;
         }
     }
 }

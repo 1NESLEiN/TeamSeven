@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Control
 {
     public class Handler
     {
-        private DBHandler _dbHandler;
+        private DbHandler _dbHandler;
 
         #region Singleton-methods
         
@@ -34,7 +35,7 @@ namespace Control
 
         private Handler()
         {
-            _dbHandler = DBHandler.GetInstance();
+            _dbHandler = DbHandler.GetInstance();
         }
 
         #endregion
@@ -48,11 +49,21 @@ namespace Control
         #endregion
 
         #region Documentation methods
-        public void AddDocumentation(int type, String headline, String description, DateTime dateCreated, int timeSpent, int supporter)
+        public void AddDocumentation(String headline, String description, int type, int supporter, DateTime dateCreated, int timeSpent)
         {
-            Documentation documentation = new Documentation(type, headline, description, dateCreated, timeSpent, supporter);
+            Documentation documentation = new Documentation(headline, description, type, supporter, dateCreated, timeSpent);
             _dbHandler.AddDocumentation(documentation);
         }
         #endregion
+
+        public DataTable ViewAllSupporters()
+        {
+            return _dbHandler.ViewAllSupporters();
+        }
+
+        public DataTable ViewAllTypes()
+        {
+            return _dbHandler.ViewAllTypes();
+        }
     }
 }

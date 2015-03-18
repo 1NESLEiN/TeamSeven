@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using Model;
 
 namespace Control
 {
-    public class DBHandler
+    public class DbHandler
     {
         private const string ConnectionString = @"Data Source=tcp:home.happyjazz.eu,1435;Initial Catalog=supportTool;
                    Integrated Security=False;User ID=sa;Password=GoSCRUM2015;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
@@ -20,22 +21,22 @@ namespace Control
         /// <summary>
         /// Used to check whether the DBHandler class has been instantiated or to instantiate it and return the dbhandler instance.
         /// </summary>
-        private static DBHandler _dbhandler;
+        private static DbHandler _dbhandler;
 
         /// <summary>
         /// Method to get the single instance of the dbhandler class
         /// </summary>
         /// <returns>The instance of the single dbhandler class</returns>
-        public static DBHandler GetInstance()
+        public static DbHandler GetInstance()
         {
             if (_dbhandler == null)
             {
-                _dbhandler = new DBHandler();
+                _dbhandler = new DbHandler();
             }
             return _dbhandler;
         }
 
-        private DBHandler()
+        private DbHandler()
         {
             _con = new SqlConnection(ConnectionString);
         }
@@ -77,8 +78,71 @@ namespace Control
         #region Documentation methods
         public void AddDocumentation(Documentation documentation)
         {
-            throw new NotImplementedException();
+            String query = @"
+            INSERT INTO dbo.JobDocumentations (Headline, Description, Type, Supporter, DateCreated, TimeSpent)
+            VALUES (@Headline, @Description, @Type, @Supporter, @DateCreated, @TimeSpent)
+            ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+
+                    cmd.Parameters.Add(new SqlParameter("@Headline", documentation.Headline));
+                    cmd.Parameters.Add(new SqlParameter("@Description", documentation.Description));
+                    cmd.Parameters.Add(new SqlParameter("@Type", documentation.Type));
+                    cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
+                    cmd.Parameters.Add(new SqlParameter("@DateCreated", documentation.DateCreated));
+                    cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
+                }
+            }
+            finally
+            {
+                _con.Close();
+            }
         }
         #endregion
+
+        public DataTable ViewAllSupporters()
+        {
+            String query = @"
+            SELECT ID AS SupporterID, Name AS Navn, Initials AS Initialer FROM dbo.Supporters ORDER BY Initialer ASC
+            ";
+            DataTable result = QueryGetDataTable(query);
+            return result;
+        }
+
+        private DataTable QueryGetDataTable(String query)
+        {
+            DataSet dataSet = new DataSet();
+            DataTable result = null;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dataSet);
+                }
+                result = dataSet.Tables[0];
+            }
+            finally
+            {
+                _con.Close();
+            }
+            return result;
+        }
+
+        public DataTable ViewAllTypes()
+        {
+            String query = @"
+            SELECT ID AS TypeID, Name AS Navn FROM dbo.Types ORDER BY Navn ASC
+            ";
+            DataTable result = QueryGetDataTable(query);
+            return result;
+        }
     }
 }

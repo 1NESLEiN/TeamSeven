@@ -19,16 +19,16 @@ namespace Model
         /// <summary>
         /// Backing field for the SupporterID property
         /// </summary>
-        private int _supporterID;
+        private int _supporterId;
 
         #region Properties
         /// <summary>
         /// Property to get and set the Supporters ID
         /// </summary>
-        public int SupporterID
+        public int SupporterId
         {
-            get { return _supporterID; }
-            set { _supporterID = value; }
+            get { return _supporterId; }
+            set { _supporterId = value; }
         }
 
         /// <summary>
