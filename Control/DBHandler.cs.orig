@@ -115,15 +115,6 @@ namespace Control
             return result;
         }
 
-        public DataTable ViewAllTypes()
-        {
-            String query = @"
-            SELECT ID AS TypeID, Name AS Navn FROM dbo.Types ORDER BY Navn ASC
-            ";
-            DataTable result = QueryGetDataTable(query);
-            return result;
-        }
-
         private DataTable QueryGetDataTable(String query)
         {
             DataSet dataSet = new DataSet();
@@ -144,6 +135,15 @@ namespace Control
             {
                 _con.Close();
             }
+            return result;
+        }
+
+        public DataTable ViewAllTypes()
+        {
+            String query = @"
+            SELECT ID AS TypeID, Name AS Navn FROM dbo.Types ORDER BY Navn ASC
+            ";
+            DataTable result = QueryGetDataTable(query);
             return result;
         }
     }
