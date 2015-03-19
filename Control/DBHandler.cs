@@ -95,6 +95,8 @@ namespace Control
                     cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
                     cmd.Parameters.Add(new SqlParameter("@DateCreated", documentation.DateCreated));
                     cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             finally
