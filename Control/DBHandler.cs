@@ -95,8 +95,6 @@ namespace Control
                     cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
                     cmd.Parameters.Add(new SqlParameter("@DateCreated", documentation.DateCreated));
                     cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
-
-                    cmd.ExecuteNonQuery();
                 }
             }
             finally
@@ -110,15 +108,6 @@ namespace Control
         {
             String query = @"
             SELECT ID AS SupporterID, Name AS Navn, Initials AS Initialer FROM dbo.Supporters ORDER BY Initialer ASC
-            ";
-            DataTable result = QueryGetDataTable(query);
-            return result;
-        }
-
-        public DataTable ViewAllTypes()
-        {
-            String query = @"
-            SELECT ID AS TypeID, Name AS Navn FROM dbo.Types ORDER BY Navn ASC
             ";
             DataTable result = QueryGetDataTable(query);
             return result;
@@ -144,6 +133,15 @@ namespace Control
             {
                 _con.Close();
             }
+            return result;
+        }
+
+        public DataTable ViewAllTypes()
+        {
+            String query = @"
+            SELECT ID AS TypeID, Name AS Navn FROM dbo.Types ORDER BY Navn ASC
+            ";
+            DataTable result = QueryGetDataTable(query);
             return result;
         }
     }

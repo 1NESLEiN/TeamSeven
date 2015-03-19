@@ -66,29 +66,13 @@ namespace DevelopmentProject
 
         private void AddDocumentation(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (TxtBoxDocumentationHeadline.Text == String.Empty || TxtBoxDocumentationDescription.Text == String.Empty ||
-                    CmbBoxDocumentationSupporter.SelectedValue == null || cmbBoxTypes.SelectedValue == null || datePickerDateCreated.SelectedDate == null ||
-                    TxtBoxDocumentationTimeSpent.Text == null)
-                {
-                    MessageBox.Show("Udfyld felter!", "Fejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-                else
-                {
-                    _handler.AddDocumentation(TxtBoxDocumentationHeadline.Text,
-                        TxtBoxDocumentationDescription.Text,
-                        Convert.ToInt32(cmbBoxTypes.SelectedValue),
-                        Convert.ToInt32(CmbBoxDocumentationSupporter.SelectedValue),
-                        Convert.ToDateTime(datePickerDateCreated.SelectedDate),
-                        Convert.ToInt32(TxtBoxDocumentationTimeSpent.Text)
-                        );
-                }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show("Der opstod en fejl: " + exception.Message, "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _handler.AddDocumentation(TxtBoxDocumentationHeadline.Text,
+                TxtBoxDocumentationDescription.Text,
+                Convert.ToInt32(cmbBoxTypes.SelectedValue),
+                Convert.ToInt32(CmbBoxDocumentationSupporter.SelectedValue),
+                Convert.ToDateTime(datePickerDateCreated.SelectedDate),
+                Convert.ToInt32(TxtBoxDocumentationTimeSpent.Text)
+                );
             FillSupporterComboBox();
             FillTypeComboBox();
         }
