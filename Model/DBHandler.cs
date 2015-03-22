@@ -8,8 +8,10 @@ namespace Control
 {
     public class DBHandler
     {
-        private const string ConnectionString = @"Data Source=tcp:home.happyjazz.eu,1435;Initial Catalog=supportTool;
-                   Integrated Security=False;User ID=sa;Password=GoSCRUM2015;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+//        private const string ConnectionString = @"Data Source=tcp:home.happyjazz.eu,1435;Initial Catalog=supportTool;
+//                   Integrated Security=False;User ID=sa;Password=GoSCRUM2015;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+
+        private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
 
         private readonly SqlConnection _con;
 
