@@ -81,10 +81,7 @@ namespace Control
         #region Documentation methods
         public bool AddDocumentation(Documentation documentation)
         {
-            String query = @"
-            INSERT INTO JobDocumentations (Type, Headline, Description, DateCreated, TimeSpent, Supporter)
-            VALUES (@Type, @Headline, @Description, @DateCreated, @TimeSpent, @Supporter)
-            ";
+            String query = @"INSERT INTO JobDocumentations (Headline, Description, Type, Supporter,DateCompleted,TimeSpent) VALUES (@Headline, @Description, @Type, @Supporter, @DateCompleted, @TimeSpent)";
 
             try
             {
@@ -95,7 +92,7 @@ namespace Control
                     cmd.Parameters.Add(new SqlParameter("@Type", documentation.Type));
                     cmd.Parameters.Add(new SqlParameter("@Headline", documentation.Headline));
                     cmd.Parameters.Add(new SqlParameter("@Description", documentation.Description));
-                    cmd.Parameters.Add(new SqlParameter("@DateCreated", documentation.DateCreated));
+                    cmd.Parameters.Add(new SqlParameter("@DateCompleted", documentation.DateCompleted));
                     cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
                     cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
 

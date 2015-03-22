@@ -25,7 +25,7 @@ namespace DevelopmentProject
         {
             try
             {
-                bool success = _handler.AddDocumentation(Convert.ToInt32(ComboBoxType.SelectedValue), TextBoxHeadline.Text, TextBoxDescription.Text, DateTime.Now, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSupporter.SelectedValue));
+                bool success = _handler.AddDocumentation(Convert.ToInt32(ComboBoxType.SelectedValue), TextBoxHeadline.Text, TextBoxDescription.Text, DatePickerDateCompleted.DisplayDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSupporter.SelectedValue));
                 if (success)
                 {
                     MessageBox.Show("Documentation added succesfully");
@@ -43,6 +43,9 @@ namespace DevelopmentProject
             TextBoxHeadline.Clear();
             TextBoxDescription.Clear();
             TextBoxTimeSpent.Clear();
+            DatePickerDateCompleted.SelectedDate = null;
+            ComboBoxSupporter.SelectedValue = null;
+            ComboBoxType.SelectedValue = null;
         }
 
         private void PrepareDropBoxes()

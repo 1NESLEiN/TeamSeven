@@ -44,9 +44,9 @@ namespace Control
         #endregion
 
         #region Documentation methods
-        public bool AddDocumentation(int type, String headline, String description, DateTime dateCreated, int timeSpent, int supporter)
+        public bool AddDocumentation(int type, String headline, String description, DateTime dateCompleted, int timeSpent, int supporter)
         {
-            Documentation documentation = new Documentation(type, headline, description, dateCreated, timeSpent, supporter);
+            Documentation documentation = new Documentation(type, headline, description, dateCompleted, timeSpent, supporter);
             return _dbHandler.AddDocumentation(documentation);
         }
 

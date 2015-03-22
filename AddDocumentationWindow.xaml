@@ -13,6 +13,7 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
             <RowDefinition />
             <RowDefinition Height="25" />
 
@@ -27,12 +28,15 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Description:" />
         <TextBox Grid.Row="2" Grid.Column="1" AcceptsReturn="True"  x:Name="TextBoxDescription"/>
 
-        <Label Grid.Row="3" Grid.Column="0" Content="Time Spent:" />
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxTimeSpent"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Date completed:" />
+        <DatePicker Grid.Row="3" Grid.Column="1" x:Name="DatePickerDateCompleted" />
+        
+        <Label Grid.Row="4" Grid.Column="0" Content="Time Spent:" />
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="TextBoxTimeSpent"/>
 
-        <Label Grid.Row="4" Grid.Column="0" Content="Supporter:" />
-        <ComboBox Grid.Row="4" Grid.Column="1" x:Name="ComboBoxSupporter"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Supporter:" />
+        <ComboBox Grid.Row="5" Grid.Column="1" x:Name="ComboBoxSupporter"/>
 
-        <Button Grid.Row="5" Grid.Column="1" Height="25" Width="100" Content="Add" Click="AddDocumentation_OnClick"/>
+        <Button Grid.Row="6" Grid.Column="1" Height="25" Width="100" Content="Add" Click="AddDocumentation_OnClick"/>
     </Grid>
 </Window>
