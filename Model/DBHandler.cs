@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using Model;
 
@@ -8,8 +10,8 @@ namespace Control
 {
     public class DBHandler
     {
-//        private const string ConnectionString = @"Data Source=tcp:home.happyjazz.eu,1435;Initial Catalog=supportTool;
-//                   Integrated Security=False;User ID=sa;Password=GoSCRUM2015;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+        //Change this bool to change whether the create database is run or not on instantiation.
+        private bool _CreateDatabaseFromScript = false;
 
         private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -38,9 +40,42 @@ namespace Control
         private DBHandler()
         {
             _con = new SqlConnection(ConnectionString);
+            if (_CreateDatabaseFromScript)
+            {
+                BuildDatabase();
+            }
         }
 
         #endregion
+
+        private void BuildDatabase()
+        {
+            FileInfo fileInfo = new FileInfo(@".\createDatabase.sql");
+            string scriptText = fileInfo.OpenText().ReadToEnd();
+
+            //split the script on "GO" commands
+            string[] splitter = { "\r\nGO\r\n" };
+            string[] commandTexts = scriptText.Split(splitter,
+              StringSplitOptions.RemoveEmptyEntries);
+            foreach (string commandText in commandTexts)
+            {
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand(commandText, _con))
+                    {
+                        _con.Open();
+
+                        cmd.ExecuteNonQuery();
+
+                        _con.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
         #region Supporter methods
 
