@@ -1,11 +1,27 @@
 ﻿<Window x:Class="DevelopmentProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
     <Grid>
-        <StackPanel>
-            <Button Content="Add Supporter" x:Name="btnAddSupporter" Click="BtnAddSupporter_OnClick" />
-            <Button Content="Add Documentation" x:Name="btnAddDocumentation" Click="BtnAddDocumentation_OnClick"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Height="25" VerticalAlignment="Top">
+            <Menu Grid.Row="0" DockPanel.Dock="Top">
+                <MenuItem Header="Documentation">
+                    <MenuItem Header="_New" Click="DocumentationNew_OnClick"/>
+                    <MenuItem Header="_Search" Click="DocumentationSearch_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="Supporter">
+                    <MenuItem Header="_New" Click="SupporterNew_OnClick"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <StackPanel Name="UserControlPanel" Grid.Row="1" Orientation="Vertical">
+
         </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="DevelopmentProject.AddSupporterUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid>
+            <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <Label Content="Initials:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtBoxName" HorizontalAlignment="Left" Height="23" Margin="85,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+            <TextBox x:Name="TxtBoxInitials" HorizontalAlignment="Left" Height="23" Margin="85,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+            <Button x:Name="BtnAddSupporter" Content="Add Supporter" HorizontalAlignment="Left" Margin="200,72,0,0" VerticalAlignment="Top" Click="AddSupporter"/>
+
+        </Grid>
+    </Grid>
+</UserControl>
