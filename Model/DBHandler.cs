@@ -11,7 +11,7 @@ namespace Control
     public class DBHandler
     {
         //Change this bool to change whether the create database is run or not on instantiation.
-        private bool _CreateDatabaseFromScript = true;
+        private bool _CreateDatabaseFromScript = false;
 
         private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
 
