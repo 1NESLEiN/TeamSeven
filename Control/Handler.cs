@@ -60,5 +60,10 @@ namespace Control
         {
             return _dbHandler.GetSupportersTable();
         }
+
+        public DataTable GetAllDocumentationsTable()
+        {
+            return _dbHandler.GetAllDocumentationsTable();
+        }
     }
 }

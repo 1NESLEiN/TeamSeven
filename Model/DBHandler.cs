@@ -11,7 +11,7 @@ namespace Control
     public class DBHandler
     {
         //Change this bool to change whether the create database is run or not on instantiation.
-        private bool _CreateDatabaseFromScript = true;
+        private bool _CreateDatabaseFromScript = false;
 
         private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -166,6 +166,21 @@ namespace Control
         public DataTable GetSupportersTable()
         {
             string query = "SELECT * FROM dbo.Supporters";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
+
+        public DataTable GetAllDocumentationsTable()
+        {
+            string query = "SELECT * FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
+
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))

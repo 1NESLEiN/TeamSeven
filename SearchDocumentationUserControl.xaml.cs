@@ -29,34 +29,40 @@ namespace DevelopmentProject
       public SearchDocumentationUserControl()
       {
          InitializeComponent();
+          _handler = Handler.GetInstance();
+         PrepareDropBoxes();
       }
 
       private void Button_Click(object sender, RoutedEventArgs e)
       {
-
+          //GridViewSearch.DataContext = _handler.GetAllDocumentationsTable();
+          GridViewSearch.AutoGenerateColumns = true;
+          GridViewSearch.ItemsSource = new DataView(_handler.GetAllDocumentationsTable());
       }
+
       private void PrepareDropBoxes()
       {
-         ////Get data and populate ComboBoxType
-         //_typesTable = _handler.GetTypesTable();
-         //ComboBoxType.ItemsSource = _typesTable.DefaultView;
-         //ComboBoxType.DisplayMemberPath = "Name";
-         //ComboBoxType.SelectedValuePath = "ID";
+          //Get data and populate ComboBoxType
+          _typesTable = _handler.GetTypesTable();
+          ComboBoxType.ItemsSource = _typesTable.DefaultView;
+          ComboBoxType.DisplayMemberPath = "Name";
+          ComboBoxType.SelectedValuePath = "ID";
 
-         ////Get data Populate ComboBoxSupporter
-         //_supportersTable = _handler.GetSupportersTable();
-         //ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
-         //ComboBoxSupporter.DisplayMemberPath = "Name";
-         //ComboBoxSupporter.SelectedValuePath = "ID";
+          //Get data Populate ComboBoxSupporter
+          _supportersTable = _handler.GetSupportersTable();
+          ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
+          ComboBoxSupporter.DisplayMemberPath = "Name";
+          ComboBoxSupporter.SelectedValuePath = "ID";
       }
+
       private void ClearTextboxes()
       {
-         //TextBoxHeadline.Clear();
-         //TextBoxDescription.Clear();
-         //TextBoxTimeSpent.Clear();
-         //DatePickerDateCompleted.SelectedDate = null;
-         //ComboBoxSupporter.SelectedValue = null;
-         //ComboBoxType.SelectedValue = null;
+          KeywordTextBox.Clear();
+
+          StartDatePicker.SelectedDate = null;
+          EndDatePicker.SelectedDate = null;
+          ComboBoxSupporter.SelectedValue = null;
+          ComboBoxType.SelectedValue = null;
       }
    }
 }
