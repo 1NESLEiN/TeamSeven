@@ -21,13 +21,11 @@ namespace DevelopmentProject
 
        private void SupporterNew_OnClick(object sender, RoutedEventArgs e)
        {
-          //AddSupporterWindow addSupporterWindow = new AddSupporterWindow();
-          //addSupporterWindow.Show();
 
           UserControlPanel.Children.Clear();
 
-          AddSupporterUserControl AddSupporter = new AddSupporterUserControl();
-          UserControlPanel.Children.Add(AddSupporter);
+          AddSupporterUserControl addSupporter = new AddSupporterUserControl();
+          UserControlPanel.Children.Add(addSupporter);
        }
        private void DocumentationNew_OnClick(object sender, RoutedEventArgs e)
        {
@@ -38,7 +36,8 @@ namespace DevelopmentProject
        }
        private void DocumentationSearch_OnClick(object sender, RoutedEventArgs e)
        {
-          MessageBox.Show("Documentation Search user Control here");
+          SearchDocumentationUserControl SearchDocumentation = new SearchDocumentationUserControl();
+          UserControlPanel.Children.Add(SearchDocumentation);
        }
     }
 }
