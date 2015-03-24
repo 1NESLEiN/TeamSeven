@@ -26,10 +26,10 @@
         <Label Content="Search keyword(s):"></Label>
         <TextBox x:Name="KeywordTextBox" Grid.Column="1"></TextBox>
 
-        <Label Grid.Row="1" Content="StartDate:"></Label>
-        <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.MinValue}" ></DatePicker>
-        <Label Grid.Row="2" Content="EndDate:"></Label>
-        <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="1"></DatePicker>
+        <Label Grid.Row="1" Content="From Date:"></Label>
+        <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Today}" ></DatePicker>
+        <Label Grid.Row="2" Content="To Date:"></Label>
+        <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Today}" ></DatePicker>
 
         <Label Grid.Row="3" Content="Supporter:"></Label>
         <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="1"></ComboBox>

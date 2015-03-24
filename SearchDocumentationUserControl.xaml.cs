@@ -43,21 +43,23 @@ namespace DevelopmentProject
       {
           //GridViewSearch.DataContext = _handler.GetAllDocumentationsTable();
           GridViewSearch.AutoGenerateColumns = true;
-          GridViewSearch.ItemsSource = new DataView(_handler.GetAllDocumentationsTable());
           GetFilterOptions();
-          _handler.GetFilteredDocumentationsTable(keyword,startDate,endDate,supporter,type);
+          GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
+         
+          
       }
 
        public void GetFilterOptions()
        {
+           
            keyword = KeywordTextBox.Text;
-           startDate = StartDatePicker.DisplayDate;
-           endDate = EndDatePicker.DisplayDate;
+           if (StartDatePicker.SelectedDate != null) startDate = StartDatePicker.SelectedDate.Value.Date;
+           if (EndDatePicker.SelectedDate != null) endDate = EndDatePicker.SelectedDate.Value.Date;
            if (ComboBoxSupporter.SelectedValue != null) supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
            if (ComboBoxType.SelectedValue != null) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
-          
-           
-           
+
+
+           ClearTextboxes();
            
        }
 

@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Runtime.Remoting.Channels;
+using System.Text;
 using System.Windows.Forms;
 using Model;
 
@@ -11,7 +12,7 @@ namespace Control
     public class DBHandler
     {
         //Change this bool to change whether the create database is run or not on instantiation.
-        private bool _CreateDatabaseFromScript = true;
+        private bool _CreateDatabaseFromScript = false;
 
         private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -194,10 +195,50 @@ namespace Control
 
         public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID)
         {
-            DataTable dt = new DataTable();
-
+            
+           // StringBuilder 
+            string query =  "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
             MessageBox.Show(String.Format("{0}, {1}, {2}, {3}, {4}", keyword, startDate, endDate, supporterID, typeID));
-            return dt;
+            if (keyword != "" || !startDate.Equals(DateTime.Today.Date) || !endDate.Equals(DateTime.Today.Date) || supporterID != 0 || typeID != 0 )
+            {
+                int counter = 0;
+                query += " WHERE ";
+                if (keyword != "")
+                {
+                    counter++;
+                    query += "Headline LIKE '%" + keyword + "%'";
+                }
+                if (!startDate.Date.Equals(DateTime.Today.Date) && !endDate.Date.Equals(DateTime.Today.Date))
+                {
+                    if (counter > 0) query += " AND ";
+                    counter++;
+                    if (startDate > endDate) MessageBox.Show("fra dato må ikke være senere end slutdato");
+                    query += "DateCreated BETWEEN " + startDate.Date + " AND " + endDate.Date;
+                }
+                if (supporterID != 0)
+                {
+                    if (counter > 0) query += " AND ";
+                    counter++;
+                    query += "Supporters.ID = " + supporterID;
+                }
+                if (typeID != 0)
+                {
+                    if (counter > 0) query += " AND ";
+                    counter++;
+                    query += "Types.ID = " + typeID;
+                }
+                MessageBox.Show(query);
+            }
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            
+            
         }
     }
 }
