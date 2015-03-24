@@ -195,11 +195,8 @@ namespace Control
 
         public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID)
         {
-            
-           // StringBuilder 
             string query =  "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
-            MessageBox.Show(String.Format("{0}, {1}, {2}, {3}, {4}", keyword, startDate, endDate, supporterID, typeID));
-            if (keyword != "" || !startDate.Equals(DateTime.Today.Date) || !endDate.Equals(DateTime.Today.Date) || supporterID != 0 || typeID != 0 )
+            if (keyword != "" || !startDate.Equals(DateTime.Now.Date) || !endDate.Equals(DateTime.Now.Date) || supporterID != 0 || typeID != 0)
             {
                 int counter = 0;
                 query += " WHERE ";
@@ -208,12 +205,12 @@ namespace Control
                     counter++;
                     query += "Headline LIKE '%" + keyword + "%'";
                 }
-                if (!startDate.Date.Equals(DateTime.Today.Date) && !endDate.Date.Equals(DateTime.Today.Date))
+               if(!startDate.Equals(DateTime.Now.Date) || !endDate.Equals(DateTime.Now.Date))
                 {
                     if (counter > 0) query += " AND ";
                     counter++;
-                    if (startDate > endDate) MessageBox.Show("fra dato må ikke være senere end slutdato");
-                    query += "DateCreated BETWEEN " + startDate.Date + " AND " + endDate.Date;
+
+                    query += "DateCreated BETWEEN '" + startDate.ToString("MM/dd/yyyy") + "' AND '" + endDate.ToString("MM/dd/yyyy") + " '";
                 }
                 if (supporterID != 0)
                 {
@@ -227,7 +224,6 @@ namespace Control
                     counter++;
                     query += "Types.ID = " + typeID;
                 }
-                MessageBox.Show(query);
             }
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))

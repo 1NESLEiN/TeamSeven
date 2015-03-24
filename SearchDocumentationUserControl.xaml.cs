@@ -56,11 +56,7 @@ namespace DevelopmentProject
            if (StartDatePicker.SelectedDate != null) startDate = StartDatePicker.SelectedDate.Value.Date;
            if (EndDatePicker.SelectedDate != null) endDate = EndDatePicker.SelectedDate.Value.Date;
            if (ComboBoxSupporter.SelectedValue != null) supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
-           if (ComboBoxType.SelectedValue != null) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
-
-
-           ClearTextboxes();
-           
+           if (ComboBoxType.SelectedValue != null) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());          
        }
 
       private void PrepareDropBoxes()
@@ -76,6 +72,7 @@ namespace DevelopmentProject
           ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
           ComboBoxSupporter.DisplayMemberPath = "Name";
           ComboBoxSupporter.SelectedValuePath = "ID";
+
       }
 
       private void ClearTextboxes()

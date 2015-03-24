@@ -19,6 +19,7 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="125" />
 
         </Grid.RowDefinitions>
@@ -27,9 +28,9 @@
         <TextBox x:Name="KeywordTextBox" Grid.Column="1"></TextBox>
 
         <Label Grid.Row="1" Content="From Date:"></Label>
-        <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Today}" ></DatePicker>
+        <DatePicker x:Name="StartDatePicker" Grid.Row="1" DisplayDate="" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Now}" ></DatePicker>
         <Label Grid.Row="2" Content="To Date:"></Label>
-        <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Today}" ></DatePicker>
+        <DatePicker x:Name="EndDatePicker" Grid.Row="2" DisplayDate="" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Now}" ></DatePicker>
 
         <Label Grid.Row="3" Content="Supporter:"></Label>
         <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="1"></ComboBox>
@@ -37,8 +38,8 @@
         <Label Grid.Row="4" Content="Type:"></Label>
         <ComboBox x:Name="ComboBoxType" Grid.Row="4" Grid.Column="1"></ComboBox>
 
-        <Button Content="Search" Grid.Row="6" Click="Button_Click"></Button>
-        <DataGrid x:Name="GridViewSearch" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Row="7" Width="Auto"  VerticalAlignment="Top"/>
+        <Button Content="Search" Grid.Column="0" Grid.Row="6" Click="Button_Click"></Button>
+        <DataGrid x:Name="GridViewSearch" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="8" Width="Auto"  VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>
