@@ -11,7 +11,7 @@ namespace Control
     public class DBHandler
     {
         //Change this bool to change whether the create database is run or not on instantiation.
-        private bool _CreateDatabaseFromScript = false;
+        private bool _CreateDatabaseFromScript = true;
 
         private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -179,7 +179,7 @@ namespace Control
 
         public DataTable GetAllDocumentationsTable()
         {
-            string query = "SELECT * FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
+            string query = "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
 
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
@@ -190,6 +190,14 @@ namespace Control
                 dt.Load(cmd.ExecuteReader());
                 return dt;
             }
+        }
+
+        public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID)
+        {
+            DataTable dt = new DataTable();
+
+            MessageBox.Show(String.Format("{0}, {1}, {2}, {3}, {4}", keyword, startDate, endDate, supporterID, typeID));
+            return dt;
         }
     }
 }

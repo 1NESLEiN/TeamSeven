@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace DevelopmentProject
       private Handler _handler;
       private DataTable _typesTable;
       private DataTable _supportersTable;
+       private string keyword;
+       private DateTime startDate;
+       private DateTime endDate;
+       private int supporter;
+       private int type;
 
       public SearchDocumentationUserControl()
       {
@@ -38,7 +44,22 @@ namespace DevelopmentProject
           //GridViewSearch.DataContext = _handler.GetAllDocumentationsTable();
           GridViewSearch.AutoGenerateColumns = true;
           GridViewSearch.ItemsSource = new DataView(_handler.GetAllDocumentationsTable());
+          GetFilterOptions();
+          _handler.GetFilteredDocumentationsTable(keyword,startDate,endDate,supporter,type);
       }
+
+       public void GetFilterOptions()
+       {
+           keyword = KeywordTextBox.Text;
+           startDate = StartDatePicker.DisplayDate;
+           endDate = EndDatePicker.DisplayDate;
+           if (ComboBoxSupporter.SelectedValue != null) supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
+           if (ComboBoxType.SelectedValue != null) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
+          
+           
+           
+           
+       }
 
       private void PrepareDropBoxes()
       {

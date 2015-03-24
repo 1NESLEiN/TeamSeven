@@ -65,5 +65,10 @@ namespace Control
         {
             return _dbHandler.GetAllDocumentationsTable();
         }
+
+        public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID)
+        {
+            return _dbHandler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporterID, typeID);
+        }
     }
 }

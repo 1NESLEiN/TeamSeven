@@ -36,6 +36,7 @@ namespace DevelopmentProject
        }
        private void DocumentationSearch_OnClick(object sender, RoutedEventArgs e)
        {
+           UserControlPanel.Children.Clear();
           SearchDocumentationUserControl SearchDocumentation = new SearchDocumentationUserControl();
           UserControlPanel.Children.Add(SearchDocumentation);
        }
