@@ -28,9 +28,9 @@
         <TextBox x:Name="KeywordTextBox" Grid.Column="1"></TextBox>
 
         <Label Grid.Row="1" Content="From Date:"></Label>
-        <DatePicker x:Name="StartDatePicker" Grid.Row="1" DisplayDate="" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Now}" ></DatePicker>
+        <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="1" ></DatePicker>
         <Label Grid.Row="2" Content="To Date:"></Label>
-        <DatePicker x:Name="EndDatePicker" Grid.Row="2" DisplayDate="" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Now}" ></DatePicker>
+        <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="1" ></DatePicker>
 
         <Label Grid.Row="3" Content="Supporter:"></Label>
         <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="1"></ComboBox>
