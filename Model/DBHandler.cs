@@ -203,7 +203,8 @@ namespace Control
                 if (keyword != "")
                 {
                     counter++;
-                    query += "Headline LIKE '%" + keyword + "%'";
+
+                    query += "Headline LIKE @Keyword";
                 }
                if(!startDate.Equals(DateTime.Now.Date) || !endDate.Equals(DateTime.Now.Date))
                 {
@@ -229,6 +230,13 @@ namespace Control
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))
             {
                 sqlConn.Open();
+                // 2. define parameters used in command object
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@Keyword";
+                param.Value = "%"+keyword+"%";
+                // 3. add new parameter to command object
+                cmd.Parameters.Add(param);
+                
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
                 return dt;
