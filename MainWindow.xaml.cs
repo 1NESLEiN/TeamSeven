@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using DevelopmentProject.PeterGUI.Pages;
 
 namespace DevelopmentProject
 {
@@ -7,6 +9,12 @@ namespace DevelopmentProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Page[] _pages = new Page[] {new AddDocumentationPage(), new AddSupporterPage(), new SearchDocumentationPage() };
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
         //private void BtnAddSupporter_OnClick(object sender, RoutedEventArgs e)
         //{
         //    AddSupporterWindow addSupporterWindow = new AddSupporterWindow();
@@ -19,26 +27,19 @@ namespace DevelopmentProject
         //    addDocumentationWindow.Show();
         //}
 
-       private void SupporterNew_OnClick(object sender, RoutedEventArgs e)
-       {
+        private void AddDocumentation_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = _pages[0];
+        }
 
-          UserControlPanel.Children.Clear();
+        private void AddSupporter_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = _pages[1];
+        }
 
-          AddSupporterUserControl addSupporter = new AddSupporterUserControl();
-          UserControlPanel.Children.Add(addSupporter);
-       }
-       private void DocumentationNew_OnClick(object sender, RoutedEventArgs e)
-       {
-          UserControlPanel.Children.Clear();
-
-          AddDocumentationUserControl addDocumentation = new AddDocumentationUserControl();
-          UserControlPanel.Children.Add(addDocumentation);
-       }
-       private void DocumentationSearch_OnClick(object sender, RoutedEventArgs e)
-       {
-           UserControlPanel.Children.Clear();
-          SearchDocumentationUserControl SearchDocumentation = new SearchDocumentationUserControl();
-          UserControlPanel.Children.Add(SearchDocumentation);
-       }
+        private void SearchDocumentation_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = _pages[2];
+        }
     }
 }

@@ -1,0 +1,53 @@
+﻿<Page x:Class="DevelopmentProject.PeterGUI.Pages.SearchDocumentationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500"
+	Title="SearchDocumentationPage">
+
+    <Grid>
+        <GroupBox Header="Search Documentation" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Column="0" Grid.Row="0" Content="Search Keyword(s):"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="TextBoxKeyword"/>
+                
+                <Label Grid.Column="0" Grid.Row="1" Content="From Date:"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" x:Name="DatePickerFromDate" DisplayDate="" SelectedDate="{x:Static sys:DateTime.Now}"/>
+                
+                <Label Grid.Column="0" Grid.Row="2" Content="To Date:"/>
+                <DatePicker Grid.Column="1" Grid.Row="2" x:Name="DatePickerToDate" DisplayDate="" SelectedDate="{x:Static sys:DateTime.Now}"/>
+                
+                <Label Grid.Column="0" Grid.Row="3" Content="Supporter:"/>
+                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="ComboBoxSupporter"/>
+                
+                <Label Grid.Column="0" Grid.Row="4" Content="Type:"/>
+                <ComboBox Grid.Column="1" Grid.Row="4" x:Name="ComboBoxType"/>
+                
+                <Button Grid.Column="1" Grid.Row="6" Height="25" Width="75" Content="Search" HorizontalAlignment="Right" x:Name="ButtonSearch" Click="ButtonSearch_OnClick"/>
+                
+                <DataGrid Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Width="Auto" VerticalAlignment="Top" x:Name="DataGridSearch"/>
+            </Grid>
+            
+            
+        </GroupBox>
+    </Grid>
+</Page>

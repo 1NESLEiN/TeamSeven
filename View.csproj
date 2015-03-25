@@ -56,22 +56,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SearchDocumentationUserControl.xaml.cs">
+    <Compile Include="PeterGUI\Pages\AddDocumentationPage.xaml.cs">
+      <DependentUpon>AddDocumentationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PeterGUI\Pages\AddSupporterPage.xaml.cs">
+      <DependentUpon>AddSupporterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PeterGUI\Pages\SearchDocumentationPage.xaml.cs">
+      <DependentUpon>SearchDocumentationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThorGUI\SearchDocumentationUserControl.xaml.cs">
       <DependentUpon>SearchDocumentationUserControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddDocumentationUserControl.xaml">
+    <Page Include="PeterGUI\Pages\AddDocumentationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddDocumentationWindow.xaml">
+    <Page Include="PeterGUI\Pages\AddSupporterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddSupporterUserControl.xaml">
+    <Page Include="PeterGUI\Pages\SearchDocumentationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddSupporterWindow.xaml">
+    <Page Include="ThorGUI\AddDocumentationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThorGUI\AddDocumentationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThorGUI\AddSupporterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThorGUI\AddSupporterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,16 +100,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddDocumentationUserControl.xaml.cs">
+    <Compile Include="ThorGUI\AddDocumentationUserControl.xaml.cs">
       <DependentUpon>AddDocumentationUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddDocumentationWindow.xaml.cs">
+    <Compile Include="ThorGUI\AddDocumentationWindow.xaml.cs">
       <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddSupporterUserControl.xaml.cs">
+    <Compile Include="ThorGUI\AddSupporterUserControl.xaml.cs">
       <DependentUpon>AddSupporterUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddSupporterWindow.xaml.cs">
+    <Compile Include="ThorGUI\AddSupporterWindow.xaml.cs">
       <DependentUpon>AddSupporterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -99,7 +120,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SearchDocumentationUserControl.xaml">
+    <Page Include="ThorGUI\SearchDocumentationUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,6 +157,15 @@
       <Project>{1618eb50-bcf6-4033-b4a6-d065e59b8c5e}</Project>
       <Name>Control</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PeterGUI\mail_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PeterGUI\supporter_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PeterGUI\search_document.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
