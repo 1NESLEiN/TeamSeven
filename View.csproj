@@ -63,15 +63,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddDocumentationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AddSupporterUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddSupporterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,14 +74,8 @@
     <Compile Include="AddDocumentationUserControl.xaml.cs">
       <DependentUpon>AddDocumentationUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddDocumentationWindow.xaml.cs">
-      <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddSupporterUserControl.xaml.cs">
       <DependentUpon>AddSupporterUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddSupporterWindow.xaml.cs">
-      <DependentUpon>AddSupporterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

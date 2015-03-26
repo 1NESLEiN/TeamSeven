@@ -38,17 +38,35 @@ namespace DevelopmentProject
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
 
+            Search();
+        }
+
+        public void Search()
+        {
             GridViewSearch.AutoGenerateColumns = true;
             GetFilterOptions();
             GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
+            if (GridViewSearch.Columns.Count > 0)
+            {
+                GridViewSearch.Columns[0].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[1].Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[2].Width = new DataGridLength(3, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[3].Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[4].Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[5].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[6].Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[7].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                GridViewSearch.Columns[8].Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+            }
+            else
+            {
+                GridViewSearch.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //GridViewSearch.DataContext = _handler.GetAllDocumentationsTable();
-            GridViewSearch.AutoGenerateColumns = true;
-            GetFilterOptions();
-            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
+            Search();
         }
 
         public void GetFilterOptions()
