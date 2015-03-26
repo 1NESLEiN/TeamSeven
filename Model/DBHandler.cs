@@ -12,9 +12,9 @@ namespace Control
     public class DBHandler
     {
         //Change this bool to change whether the create database is run or not on instantiation.
-        private bool _CreateDatabaseFromScript = false;
+        private bool _CreateDatabaseFromScript = true;
 
-        private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
+        private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
 
         private readonly SqlConnection _con;
 
@@ -116,7 +116,7 @@ namespace Control
         }
         #endregion
 
-        #region Documentation methods
+            #region Documentation methods
         public bool AddDocumentation(Documentation documentation)
         {
             String query = @"INSERT INTO JobDocumentations (Headline, Description, Type, Supporter,DateCompleted,TimeSpent) VALUES (@Headline, @Description, @Type, @Supporter, @DateCompleted, @TimeSpent)";
