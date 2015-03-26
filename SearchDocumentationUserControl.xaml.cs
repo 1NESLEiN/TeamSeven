@@ -18,71 +18,91 @@ using Control;
 
 namespace DevelopmentProject
 {
-   /// <summary>
-   /// Interaction logic for SearchDocumentationUserControl.xaml
-   /// </summary>
-   public partial class SearchDocumentationUserControl : UserControl
-   {
-      private Handler _handler;
-      private DataTable _typesTable;
-      private DataTable _supportersTable;
-       private string keyword;
-       private DateTime startDate;
-       private DateTime endDate;
-       private int supporter;
-       private int type;
+    /// <summary>
+    /// Interaction logic for SearchDocumentationUserControl.xaml
+    /// </summary>
+    public partial class SearchDocumentationUserControl : UserControl
+    {
+        private Handler _handler;
+        private DataTable _typesTable;
+        private DataTable _supportersTable;
+        private string keyword;
+        private DateTime startDate;
+        private DateTime endDate;
+        private int supporter;
+        private int type;
 
-      public SearchDocumentationUserControl()
-      {
-         InitializeComponent();
-          _handler = Handler.GetInstance();
-         PrepareDropBoxes();
-      }
+        public SearchDocumentationUserControl()
+        {
+            InitializeComponent();
+            _handler = Handler.GetInstance();
+            PrepareDropBoxes();
 
-      private void Button_Click(object sender, RoutedEventArgs e)
-      {
-          //GridViewSearch.DataContext = _handler.GetAllDocumentationsTable();
-          GridViewSearch.AutoGenerateColumns = true;
-          GetFilterOptions();
-          GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
-         
-          
-      }
+            GridViewSearch.AutoGenerateColumns = true;
+            GetFilterOptions();
+            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
+            GridViewSearch.Columns[2].Width = 100;
+        }
 
-       public void GetFilterOptions()
-       {
-           
-           keyword = KeywordTextBox.Text;
-           if (StartDatePicker.SelectedDate != null) startDate = StartDatePicker.SelectedDate.Value.Date;
-           if (EndDatePicker.SelectedDate != null) endDate = EndDatePicker.SelectedDate.Value.Date;
-           if (ComboBoxSupporter.SelectedValue != null) supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
-           if (ComboBoxType.SelectedValue != null) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());          
-       }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //GridViewSearch.DataContext = _handler.GetAllDocumentationsTable();
+            GridViewSearch.AutoGenerateColumns = true;
+            GetFilterOptions();
+            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
+            GridViewSearch.Columns[2].Width = 100;
+        }
 
-      private void PrepareDropBoxes()
-      {
-          //Get data and populate ComboBoxType
-          _typesTable = _handler.GetTypesTable();
-          ComboBoxType.ItemsSource = _typesTable.DefaultView;
-          ComboBoxType.DisplayMemberPath = "Name";
-          ComboBoxType.SelectedValuePath = "ID";
+        public void GetFilterOptions()
+        {
 
-          //Get data Populate ComboBoxSupporter
-          _supportersTable = _handler.GetSupportersTable();
-          ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
-          ComboBoxSupporter.DisplayMemberPath = "Name";
-          ComboBoxSupporter.SelectedValuePath = "ID";
+            keyword = KeywordTextBox.Text;
+            if (StartDatePicker.SelectedDate != null) startDate = StartDatePicker.SelectedDate.Value.Date;
+            if (EndDatePicker.SelectedDate != null) endDate = EndDatePicker.SelectedDate.Value.Date;
+            if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0) supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
+            if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
+        }
 
-      }
+        private void PrepareDropBoxes()
+        {
+            //Get data and populate ComboBoxType
+            _typesTable = _handler.GetTypesTable();
 
-      private void ClearTextboxes()
-      {
-          KeywordTextBox.Clear();
+            DataRow typeRow = _typesTable.NewRow();
+            typeRow["ID"] = 0;
+            typeRow["Name"] = "Alle typer";
 
-          StartDatePicker.SelectedDate = null;
-          EndDatePicker.SelectedDate = null;
-          ComboBoxSupporter.SelectedValue = null;
-          ComboBoxType.SelectedValue = null;
-      }
-   }
+            _typesTable.Rows.InsertAt(typeRow, 0);
+
+            ComboBoxType.ItemsSource = _typesTable.DefaultView;
+            ComboBoxType.DisplayMemberPath = "Name";
+            ComboBoxType.SelectedValuePath = "ID";
+            ComboBoxType.SelectedValue = 0;
+
+            //Get data Populate ComboBoxSupporter
+            _supportersTable = _handler.GetSupportersTable();
+
+            DataRow supporterRow = _supportersTable.NewRow();
+            supporterRow["ID"] = 0;
+            supporterRow["Name"] = "Alle supportere";
+            supporterRow["Initials"] = "All";
+
+            _supportersTable.Rows.InsertAt(supporterRow, 0);
+
+            ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
+            ComboBoxSupporter.DisplayMemberPath = "Name";
+            ComboBoxSupporter.SelectedValuePath = "ID";
+            ComboBoxSupporter.SelectedValue = 0;
+        }
+
+        private void ClearTextboxes()
+        {
+            KeywordTextBox.Clear();
+
+            StartDatePicker.SelectedDate = null;
+            EndDatePicker.SelectedDate = null;
+            ComboBoxSupporter.SelectedValue = 0;
+            ComboBoxType.SelectedValue = 0;
+        }
+    }
 }
