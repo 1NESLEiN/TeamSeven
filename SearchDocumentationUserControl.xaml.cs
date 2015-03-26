@@ -41,7 +41,6 @@ namespace DevelopmentProject
             GridViewSearch.AutoGenerateColumns = true;
             GetFilterOptions();
             GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
-            GridViewSearch.Columns[2].Width = 100;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,7 +49,6 @@ namespace DevelopmentProject
             GridViewSearch.AutoGenerateColumns = true;
             GetFilterOptions();
             GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type));
-            GridViewSearch.Columns[2].Width = 100;
         }
 
         public void GetFilterOptions()
