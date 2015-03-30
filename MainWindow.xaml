@@ -3,25 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="AddDocumentation_Click" Margin="30,10,0,0">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom" Text="Add Documentation"/>
+                <Image Source="icons/mail_new.png"/>
+            </DockPanel>
+        </Button>
 
-        <DockPanel Height="25" VerticalAlignment="Top">
-            <Menu Grid.Row="0" DockPanel.Dock="Top">
-                <MenuItem Header="Documentation">
-                    <MenuItem Header="_New" Click="DocumentationNew_OnClick"/>
-                    <MenuItem Header="_Search" Click="DocumentationSearch_OnClick"/>
-                </MenuItem>
-                <MenuItem Header="Supporter">
-                    <MenuItem Header="_New" Click="SupporterNew_OnClick"/>
-                </MenuItem>
-            </Menu>
-        </DockPanel>
+        <Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="AddSupporter_Click" Margin="164,10,0,0">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom" Text="Add Supporter"/>
+                <Image Source="icons/supporter_new.png"/>
+            </DockPanel>
+        </Button>
 
-        <StackPanel Name="UserControlPanel" Grid.Row="1" Orientation="Vertical">
+        <Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="SearchDocumentation_Click" Margin="269,10,0,0">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom" Text="Search Documentation"/>
+                <Image Source="icons/search_document.png"/>
+            </DockPanel>
+        </Button>
 
-        </StackPanel>
+        <Frame x:Name="frame" Content="" HorizontalAlignment="Left" Height="Auto" Margin="30,115,0,0" VerticalAlignment="Top" Width="Auto" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
