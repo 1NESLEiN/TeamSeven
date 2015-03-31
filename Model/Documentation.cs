@@ -6,11 +6,12 @@ namespace Model
     {
         private string _headline;
         private string _description;
-        private DateTime _dateCompleted;
+        private DateTime? _dateCompleted;
         private int _timeSpent;
         private int _type;
         private int _supporter;
-        private int _documentationID;
+        private int _documentationId;
+        private int _status;
 
         #region Properties
 
@@ -19,14 +20,18 @@ namespace Model
             get { return _headline; }
             set { _headline = value; }
         }
-
+        public int Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
         public String Description
         {
             get { return _description; }
             set { _description = value; }
         }
 
-        public DateTime DateCompleted
+        public DateTime? DateCompleted
         {
             get { return _dateCompleted; }
             set { _dateCompleted = value; }
@@ -52,13 +57,13 @@ namespace Model
 
         public int DocumentationID
         {
-            get { return _documentationID; }
-            set { _documentationID = value; }
+            get { return _documentationId; }
+            set { _documentationId = value; }
         }
 
         #endregion
 
-        public Documentation(int type, String headline, String description, DateTime dateCompleted, int timeSpent, int supporter)
+        public Documentation(int type, String headline, String description, DateTime? dateCompleted, int timeSpent, int supporter, int status)
         {
             Type = type;
             Headline = headline;
@@ -66,6 +71,7 @@ namespace Model
             DateCompleted = dateCompleted;
             TimeSpent = timeSpent;
             Supporter = supporter;
+            Status = status;
         }
     }
 }

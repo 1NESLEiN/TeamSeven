@@ -25,7 +25,7 @@ namespace DevelopmentProject
         {
             try
             {
-                bool success = _handler.AddDocumentation(Convert.ToInt32(ComboBoxType.SelectedValue), TextBoxHeadline.Text, TextBoxDescription.Text, DatePickerDateCompleted.DisplayDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSupporter.SelectedValue));
+                bool success = _handler.AddDocumentation(Convert.ToInt32(ComboBoxType.SelectedValue), TextBoxHeadline.Text, TextBoxDescription.Text, DatePickerDateCompleted.DisplayDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSupporter.SelectedValue), 1);
                 if (success)
                 {
                     MessageBox.Show("Documentation added succesfully");

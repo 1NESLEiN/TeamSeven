@@ -14,7 +14,7 @@ namespace Control
         //Change this bool to change whether the create database is run or not on instantiation.
         private bool _CreateDatabaseFromScript = false;
 
-        private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30";
+        private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
 
         private readonly SqlConnection _con;
 
@@ -119,7 +119,7 @@ namespace Control
         #region Documentation methods
         public bool AddDocumentation(Documentation documentation)
         {
-            String query = @"INSERT INTO JobDocumentations (Headline, Description, Type, Supporter,DateCompleted,TimeSpent) VALUES (@Headline, @Description, @Type, @Supporter, @DateCompleted, @TimeSpent)";
+            String query = @"INSERT INTO JobDocumentations (Headline, Description, Type, Supporter, TimeSpent, Status) VALUES (@Headline, @Description, @Type, @Supporter, @TimeSpent, @Status)";
 
             try
             {
@@ -130,9 +130,56 @@ namespace Control
                     cmd.Parameters.Add(new SqlParameter("@Type", documentation.Type));
                     cmd.Parameters.Add(new SqlParameter("@Headline", documentation.Headline));
                     cmd.Parameters.Add(new SqlParameter("@Description", documentation.Description));
-                    cmd.Parameters.Add(new SqlParameter("@DateCompleted", documentation.DateCompleted));
+                    //cmd.Parameters.Add(new SqlParameter("@DateCompleted", documentation.DateCompleted));
                     cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
                     cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
+                    cmd.Parameters.Add(new SqlParameter("@Status", documentation.Status));
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                _con.Close();
+            }
+        }
+
+        public bool UpdateDocumentation(int id, int timeSpent, int status, DateTime? dateCompleted)
+        {
+            String query = "";
+
+            if (dateCompleted.HasValue && status != 0)
+            {
+                query = (string.Format("UPDATE JobDocumentations SET DateCompleted='{0}', TimeSpent={1}, Status={2} WHERE JobDocumentations.ID={3}", dateCompleted.Value.Date.ToString("MM/dd/yyyy"), timeSpent, status, id));
+            }
+            if (status == 0 && dateCompleted.HasValue)
+            {
+                query = (string.Format("UPDATE JobDocumentations SET DateCompleted='{0}', TimeSpent={1} WHERE JobDocumentations.ID={2}", dateCompleted.Value.Date.ToString("MM/dd/yyyy"), timeSpent, id));
+            }
+            if (status == 0 && !dateCompleted.HasValue)
+            {
+                query = (string.Format("UPDATE JobDocumentations SET TimeSpent={0} WHERE JobDocumentations.ID={1}", timeSpent, id));
+            }
+            if (status != 0 && !dateCompleted.HasValue)
+            {
+                query = (string.Format("UPDATE JobDocumentations SET TimeSpent={0}, Status={1} WHERE JobDocumentations.ID={2}", timeSpent, status, id));
+            }
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+
+                    if (dateCompleted != null) { cmd.Parameters.AddWithValue("DateCompleted", dateCompleted.Value.Date.ToString("MM/dd/yyyy")); }
+                    cmd.Parameters.AddWithValue("TimeSpent", timeSpent);
+                    if (status != 0) cmd.Parameters.AddWithValue("Status", status);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -162,6 +209,19 @@ namespace Control
                 return dt;
             }
         }
+        public DataTable GetStatesTable()
+        {
+            string query = "SELECT * FROM dbo.Statuses";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
         #endregion
 
         public DataTable GetSupportersTable()
@@ -180,7 +240,7 @@ namespace Control
 
         public DataTable GetAllDocumentationsTable()
         {
-            string query = "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
+            string query = "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateDue, TimeSpent, Supporters.Name AS SupporterName, Statuses.Name AS Status, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type JOIN dbo.States ON dbo.States.ID = dbo.JobDocumentations.Status";
 
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
@@ -193,31 +253,45 @@ namespace Control
             }
         }
 
-        public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID)
+        public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID, int StateID)
         {
-            string query =  "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type";
-            if (keyword != "" || !startDate.Equals(DateTime.Now.Date) || !endDate.Equals(DateTime.Now.Date) || supporterID != 0 || typeID != 0)
+            string query = "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Statuses.Name AS Status, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type JOIN dbo.Statuses ON dbo.Statuses.ID = dbo.JobDocumentations.Status";
+            if (keyword != "" || !startDate.Equals(DateTime.MinValue.Date) || !endDate.Equals(DateTime.MinValue.Date) || supporterID != 0 || typeID != 0 || StateID != 0)
             {
                 int counter = 0;
                 query += " WHERE ";
                 if (keyword != "")
                 {
                     counter++;
-
                     query += "Headline LIKE @Keyword";
                 }
-               if(!startDate.Equals(DateTime.Now.Date) || !endDate.Equals(DateTime.Now.Date))
+                if (endDate.Equals(DateTime.MinValue.Date))
+                {
+                    endDate = DateTime.MaxValue.Date;
+                }
+                if (startDate.Equals(DateTime.MinValue.Date))
+                {
+                    //For some reason SQL doesn't like that MinValue date is a very low number, makes an out of range error. So it is added up by 2000 years here.
+                    startDate = DateTime.MinValue.Date.AddYears(2000);
+                }
+                if (!startDate.Equals(DateTime.MinValue.Date) || !endDate.Equals(DateTime.MinValue.Date))
                 {
                     if (counter > 0) query += " AND ";
                     counter++;
 
-                    query += "DateCreated BETWEEN '" + startDate.ToString("MM/dd/yyyy") + "' AND '" + endDate.ToString("MM/dd/yyyy") + " '";
+                    query += "DateCreated BETWEEN '" + startDate.ToString("MM/dd/yyyy") + "' AND '" + endDate.ToString("MM/dd/yyyy") + "'";
                 }
                 if (supporterID != 0)
                 {
                     if (counter > 0) query += " AND ";
                     counter++;
                     query += "Supporters.ID = " + supporterID;
+                }
+                if (StateID != 0)
+                {
+                    if (counter > 0) query += " AND ";
+                    counter++;
+                    query += "Statuses.ID = " + StateID;
                 }
                 if (typeID != 0)
                 {
@@ -233,16 +307,16 @@ namespace Control
                 // 2. define parameters used in command object
                 SqlParameter param = new SqlParameter();
                 param.ParameterName = "@Keyword";
-                param.Value = "%"+keyword+"%";
+                param.Value = "%" + keyword + "%";
                 // 3. add new parameter to command object
                 cmd.Parameters.Add(param);
-                
+
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
                 return dt;
             }
-            
-            
+
+
         }
     }
 }
