@@ -29,21 +29,18 @@
                 <ComboBox Grid.Row="0" Grid.Column="1" x:Name="ComboBoxType"/>
                 
                 <Label Grid.Row="1" Grid.Column="0" Content="Headline:"/>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxkHeadline"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxHeadline"/>
                 
                 <Label Grid.Row="2" Grid.Column="0" Content="Description:"/>
                 <TextBox Grid.Row="2" Grid.Column="1" AcceptsReturn="True" IsUndoEnabled="True" x:Name="TextBoxDescription"/>
                 
-                <Label Grid.Row="3" Grid.Column="0" Content="Date Completed:"/>
-                <DatePicker Grid.Row="3" Grid.Column="1" x:Name="DatePickerDateCompleted"></DatePicker>
+                <Label Grid.Row="3" Grid.Column="0" Content="Currently time Spent:"/>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxTimeSpent"></TextBox>
                 
-                <Label Grid.Row="4" Grid.Column="0" Content="Time Spent:"/>
-                <TextBox Grid.Row="4" Grid.Column="1" x:Name="TextBoxTimeSpent"></TextBox>
-                
-                <Label Grid.Row="5" Grid.Column="0" Content="Supporter:"/>
-                <ComboBox Grid.Row="5" Grid.Column="1" x:Name="ComboBoxSupporter"></ComboBox>
-                
-                <Button Grid.Row="6" Grid.Column="1" Height="25" Width="130" Content="Add Documentation" HorizontalAlignment="Right" Click="AddDocumentation_Click"></Button>
+                <Label Grid.Row="4" Grid.Column="0" Content="Supporter:"/>
+                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="ComboBoxSupporter"></ComboBox>
+
+                <Button Grid.Row="6" Grid.Column="1" Height="25" Width="130" Content="Add Documentation" HorizontalAlignment="Right" Click="AddDocumentation_OnClick"></Button>
             </Grid>
         </GroupBox>
     </Grid>

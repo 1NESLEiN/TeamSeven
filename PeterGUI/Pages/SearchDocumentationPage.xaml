@@ -5,49 +5,84 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="500"
+      d:DesignHeight="500" d:DesignWidth="800"
 	Title="SearchDocumentationPage">
 
     <Grid>
-        <GroupBox Header="Search Documentation" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="Auto">
+        <GroupBox Header="Search Documentation" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="auto" Height="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+
+
+
+
+
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="Auto" />
+
                 </Grid.RowDefinitions>
-                
-                <Label Grid.Column="0" Grid.Row="0" Content="Search Keyword(s):"/>
-                <TextBox Grid.Column="1" Grid.Row="0" x:Name="TextBoxKeyword"/>
-                
-                <Label Grid.Column="0" Grid.Row="1" Content="From Date:"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" x:Name="DatePickerFromDate" DisplayDate="" SelectedDate="{x:Static sys:DateTime.Now}"/>
-                
-                <Label Grid.Column="0" Grid.Row="2" Content="To Date:"/>
-                <DatePicker Grid.Column="1" Grid.Row="2" x:Name="DatePickerToDate" DisplayDate="" SelectedDate="{x:Static sys:DateTime.Now}"/>
-                
-                <Label Grid.Column="0" Grid.Row="3" Content="Supporter:"/>
-                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="ComboBoxSupporter"/>
-                
-                <Label Grid.Column="0" Grid.Row="4" Content="Type:"/>
-                <ComboBox Grid.Column="1" Grid.Row="4" x:Name="ComboBoxType"/>
-                
-                <Button Grid.Column="1" Grid.Row="6" Height="25" Width="75" Content="Search" HorizontalAlignment="Right" x:Name="ButtonSearch" Click="ButtonSearch_OnClick"/>
-                
-                <DataGrid Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Width="Auto" VerticalAlignment="Top" x:Name="DataGridSearch"/>
+                <Label Grid.Row="1" Grid.Column="2" Content="Documentation ID: "></Label>
+                <Label Grid.Row="1" Grid.Column="4" Content="Time Spent: "></Label>
+                <Label Grid.Row="1" Grid.Column="6" Content="Status: "></Label>
+                <Label Grid.Row="1" Grid.Column="8" Content="Date completed: "></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Update Documentation: "></Label>
+                <!--<DataGrid Name="SelectedGrid" Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="6"></DataGrid>-->
+                <TextBox IsReadOnly="true" Background="Gainsboro" Name="TextBoxDocumentationId" Grid.Row="2" Grid.Column="2"></TextBox>
+                <TextBox Name="TextBoxTimeSpent" Grid.Row="2" Grid.Column="4"></TextBox>
+                <ComboBox Name="ComboBoxSelectedStatus" Grid.Row="2" Grid.Column="6"></ComboBox>
+                <DatePicker Name="DatePickerSelectedEndDate" Grid.Row="2" Grid.Column="8"></DatePicker>
+
+                <Button Content="Edit" Grid.Column="0" Grid.Row="3" Click="ButtonUpdate_Click"></Button>
+
+                <Label Grid.Row="6" Content="Search keyword(s):"></Label>
+                <TextBox x:Name="KeywordTextBox" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="15"></TextBox>
+
+                <Label Grid.Row="7" Content="From Date:"></Label>
+                <DatePicker x:Name="StartDatePicker" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="15" ></DatePicker>
+                <Label Grid.Row="8" Content="To Date:"></Label>
+                <DatePicker x:Name="EndDatePicker" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="15"></DatePicker>
+
+                <Label Grid.Row="9" Content="Supporter:"></Label>
+                <ComboBox x:Name="ComboBoxSupporter" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="15"></ComboBox>
+
+                <Label Grid.Row="10" Content="Type:"></Label>
+                <ComboBox x:Name="ComboBoxType" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="15"></ComboBox>
+
+                <Label Grid.Row="11" Content="Status:"></Label>
+                <ComboBox x:Name="ComboBoxState" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="15">
+                </ComboBox>
+
+                <Button Content="Search" Grid.Column="0" Grid.Row="13" Click="ButtonSearch_Click"></Button>
+                <DataGrid x:Name="GridViewSearch" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="14"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="8" SelectionChanged="GridViewSearch_SelectionChanged"/>
+
             </Grid>
-            
-            
+
+
         </GroupBox>
     </Grid>
 </Page>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Control;
 
 namespace DevelopmentProject.PeterGUI.Pages
 {
@@ -23,11 +24,34 @@ namespace DevelopmentProject.PeterGUI.Pages
         public AddSupporterPage()
         {
             InitializeComponent();
+            _handler = Handler.GetInstance();
         }
 
-        private void AddSupporter_Click(object sender, RoutedEventArgs e)
+        private readonly Handler _handler;
+
+        private void AddSupporter_OnClick(object sender, RoutedEventArgs e)
         {
-            //TODO: Implement event handler here.
+            try
+            {
+                if (TextBoxSupporterName.Text == String.Empty || TextBoxSupporterInitials.Text == String.Empty)
+                {
+                    MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    bool success = _handler.AddSupporter(TextBoxSupporterName.Text, TextBoxSupporterInitials.Text);
+                    if (success)
+                    {
+                        MessageBox.Show("Supporter added succesfully");
+                        TextBoxSupporterName.Clear();
+                        TextBoxSupporterInitials.Clear();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Der opstod en fejl: " + exception.Message, "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
