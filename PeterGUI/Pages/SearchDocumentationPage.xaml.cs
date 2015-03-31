@@ -75,6 +75,8 @@ namespace DevelopmentProject.PeterGUI.Pages
                 {
                     MessageBox.Show("Documentation added succesfully");
                     ClearTextboxes();
+
+                    Search();
                 }
             }
             catch (Exception ex)
@@ -85,6 +87,7 @@ namespace DevelopmentProject.PeterGUI.Pages
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
             Search();
+
         }
 
         public void GetFilterOptions()

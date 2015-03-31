@@ -9,8 +9,6 @@ namespace DevelopmentProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Page[] _pages = new Page[] {new AddDocumentationPage(), new AddSupporterPage(), new SearchDocumentationPage() };
-
         public MainWindow()
         {
             InitializeComponent();
@@ -26,20 +24,26 @@ namespace DevelopmentProject
         //    AddDocumentationWindow addDocumentationWindow = new AddDocumentationWindow();
         //    addDocumentationWindow.Show();
         //}
-
         private void AddDocumentation_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = _pages[0];
+            //frame.Content = _pages[0];
+
+            AddDocumentationPage addDocumentationPage = new AddDocumentationPage();
+            frame.Content = addDocumentationPage;
         }
 
         private void AddSupporter_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = _pages[1];
+            AddSupporterPage addSupporterPage = new AddSupporterPage();
+            frame.Content = addSupporterPage;
+            //frame.Content = _pages[1];
         }
 
         private void SearchDocumentation_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = _pages[2];
+            SearchDocumentationPage searchDocumentationPage = new SearchDocumentationPage();
+            frame.Content = searchDocumentationPage;
+            //frame.Content = _pages[2];
         }
     }
 }
