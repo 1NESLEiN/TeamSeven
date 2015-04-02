@@ -169,7 +169,48 @@ namespace Control
             }
         }
 
+        public bool UpdateDocumentation(int id, string headline, string description, int type, int supporter,
+            DateTime? datecompleted, int timespent, int status)
+        {
+            string query;
 
+
+            if (datecompleted.HasValue)
+            {
+                query = string.Format("UPDATE JobDocumentations SET Headline = '{0}', Description = '{1}', Type = {2}, Supporter = {3}, DateCompleted = '{4}', TimeSpent = {5}, Status = {6} WHERE ID = {7}", headline, description, type, supporter, datecompleted.Value.Date.ToString("MM/dd/yyyy"), timespent, status, id);
+            }
+            else
+            {
+                query = string.Format("UPDATE JobDocumentations SET Headline = '{0}', Description = '{1}', Type = {2}, Supporter = {3}, TimeSpent = {4}, Status = {5} WHERE ID = {6}", headline, description, type, supporter, timespent, status, id);
+            }
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+
+                    cmd.Parameters.AddWithValue("Headline", headline);
+                    cmd.Parameters.AddWithValue("Description", description);
+                    cmd.Parameters.AddWithValue("Type", type);
+                    cmd.Parameters.AddWithValue("Supporter", supporter);
+                    if (datecompleted != null) cmd.Parameters.AddWithValue("DateCompleted", datecompleted.Value.Date.ToString("MM/dd/yyyy"));
+                    cmd.Parameters.AddWithValue("TimeSpent", type);
+                    cmd.Parameters.AddWithValue("Status", status);
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                _con.Close();
+            }
+        }
         public bool UpdateDocumentation(int id, int timeSpent, int status, DateTime? dateCompleted)
         {
             String query = "";

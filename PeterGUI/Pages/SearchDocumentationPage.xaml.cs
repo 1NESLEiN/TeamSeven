@@ -157,12 +157,12 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxState.SelectedValuePath = "ID";
             ComboBoxState.SelectedValue = 0;
 
-            //Get data and populate ComboBoxSelectedStatus
+            ////Get data and populate ComboBoxSelectedStatus
 
-            ComboBoxSelectedStatus.ItemsSource = _statesTable.DefaultView;
-            ComboBoxSelectedStatus.DisplayMemberPath = "Name";
-            ComboBoxSelectedStatus.SelectedValuePath = "ID";
-            ComboBoxSelectedStatus.SelectedValue = 0;
+            //ComboBoxSelectedStatus.ItemsSource = _statesTable.DefaultView;
+            //ComboBoxSelectedStatus.DisplayMemberPath = "Name";
+            //ComboBoxSelectedStatus.SelectedValuePath = "ID";
+            //ComboBoxSelectedStatus.SelectedValue = 0;
         }
 
         private void ClearTextboxes()
@@ -176,15 +176,15 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxState.SelectedValue = 0;
         }
 
-        private void GridViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
-            if (rowview != null)
-            {
-                TextBoxTimeSpent.Text = rowview.Row.ItemArray[5].ToString();
-                TextBoxDocumentationId.Text = rowview.Row.ItemArray[0].ToString();
-                //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[8];
-            }
-        }
+        //private void GridViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
+        //    if (rowview != null)
+        //    {
+        //        TextBoxTimeSpent.Text = rowview.Row.ItemArray[5].ToString();
+        //        TextBoxDocumentationId.Text = rowview.Row.ItemArray[0].ToString();
+        //        //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[8];
+        //    }
+        //}
     }
 }

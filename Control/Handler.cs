@@ -57,6 +57,13 @@ namespace Control
         {
             return _dbHandler.UpdateDocumentation(id, timeSpent, state, dateCompleted);
         }
+
+        public bool UpdateDocumentation(int id, string headline, string description, int type, int supporter,
+            DateTime? dateCompleted, int timespent, int status)
+        {
+            return _dbHandler.UpdateDocumentation(id, headline, description, type, supporter, dateCompleted, timespent,
+                status);
+        }
         public DataTable GetTypesTable()
         {
             return _dbHandler.GetTypesTable();

@@ -53,17 +53,16 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             try
             {
-
-
-
-
-                MessageBox.Show("Docmentation was succesfully Updated.");
-                if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
+                bool success = _handler.UpdateDocumentation(_id, TextBoxHeadline.Text, TextBoxDescription.Text, Convert.ToInt32(ComboBoxType.SelectedValue), Convert.ToInt32(ComboBoxSupporter.SelectedValue), DatePickerCompleted.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxStatus.SelectedValue));
+                if (success)
+                {
+                    MessageBox.Show("Docmentation was succesfully Updated.");
+                    if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
+                }           
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 

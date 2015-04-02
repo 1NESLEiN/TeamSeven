@@ -43,21 +43,22 @@
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
                     <RowDefinition Height="Auto" />
 
                 </Grid.RowDefinitions>
-                <Label Grid.Row="1" Grid.Column="2" Content="Documentation ID: "></Label>
+                <!--<Label Grid.Row="1" Grid.Column="2" Content="Documentation ID: "></Label>
                 <Label Grid.Row="1" Grid.Column="4" Content="Time Spent: "></Label>
                 <Label Grid.Row="1" Grid.Column="6" Content="Status: "></Label>
                 <Label Grid.Row="1" Grid.Column="8" Content="Date completed: "></Label>
                 <Label Grid.Row="1" Grid.Column="0" Content="Update Documentation: "></Label>
-                <!--<DataGrid Name="SelectedGrid" Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="6"></DataGrid>-->
+                --><!--<DataGrid Name="SelectedGrid" Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="6"></DataGrid>--><!--
                 <TextBox IsReadOnly="true" Background="Gainsboro" Name="TextBoxDocumentationId" Grid.Row="2" Grid.Column="2"></TextBox>
                 <TextBox Name="TextBoxTimeSpent" Grid.Row="2" Grid.Column="4"></TextBox>
                 <ComboBox Name="ComboBoxSelectedStatus" Grid.Row="2" Grid.Column="6"></ComboBox>
-                <DatePicker Name="DatePickerSelectedEndDate" Grid.Row="2" Grid.Column="8"></DatePicker>
+                <DatePicker Name="DatePickerSelectedEndDate" Grid.Row="2" Grid.Column="8"></DatePicker>-->
 
-                <Button Content="Edit" Grid.Column="0" Grid.Row="3" Click="ButtonUpdate_Click"></Button>
+                <Button Content="Edit" Grid.Column="0" Height="25" Grid.Row="15" Click="ButtonUpdate_Click" VerticalAlignment="Top"></Button>
 
                 <Label Grid.Row="6" Content="Search keyword(s):"></Label>
                 <TextBox x:Name="KeywordTextBox" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="15"></TextBox>
@@ -78,7 +79,8 @@
                 </ComboBox>
 
                 <Button Content="Search" Grid.Column="0" Grid.Row="13" Click="ButtonSearch_Click"></Button>
-                <DataGrid x:Name="GridViewSearch" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="14"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="8" SelectionChanged="GridViewSearch_SelectionChanged"/>
+                <!--<DataGrid x:Name="GridViewSearch" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="14"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="8" SelectionChanged="GridViewSearch_SelectionChanged"/>-->
+                <DataGrid x:Name="GridViewSearch" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="15"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="8" />
 
             </Grid>
 
