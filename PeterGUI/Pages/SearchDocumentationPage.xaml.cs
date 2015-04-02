@@ -68,21 +68,32 @@ namespace DevelopmentProject.PeterGUI.Pages
         }
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                bool success = _handler.UpdateDocumentation(Convert.ToInt32(TextBoxDocumentationId.Text), DatePickerSelectedEndDate.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSelectedStatus.SelectedValue));
-                if (success)
-                {
-                    MessageBox.Show("Documentation updated succesfully");
-                    ClearTextboxes();
 
-                    Search();
-                }
-            }
-            catch (Exception ex)
+            DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
+
+            if (rowview != null)
             {
-                MessageBox.Show(ex.Message);
+                int selectedId = (int) rowview.Row.ItemArray[0];
+
+                if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId));
             }
+
+
+            //try
+            //{
+            //    bool success = _handler.UpdateDocumentation(Convert.ToInt32(TextBoxDocumentationId.Text), DatePickerSelectedEndDate.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSelectedStatus.SelectedValue));
+            //    if (success)
+            //    {
+            //        MessageBox.Show("Documentation updated succesfully");
+            //        ClearTextboxes();
+
+            //        Search();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {

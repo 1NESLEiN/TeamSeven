@@ -20,8 +20,10 @@ namespace DevelopmentProject.PeterGUI.Pages
     /// </summary>
     public partial class UpdateDocumentationPage : Page
     {
-        public UpdateDocumentationPage()
+        private int _id;
+        public UpdateDocumentationPage(int id)
         {
+            _id = id;
             InitializeComponent();
         }
 
