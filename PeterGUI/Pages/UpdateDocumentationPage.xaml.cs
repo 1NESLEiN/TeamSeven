@@ -29,22 +29,14 @@ namespace DevelopmentProject.PeterGUI.Pages
         private DataTable _statesTable;
         private DataTable _documentation;
 
-        private DateTime? _endDate;
-        private int _supporter;
-        private int _type;
-        private int _status;
-        private string _headline ;
-        private string _description;
-        private string _timespent;
-
         public UpdateDocumentationPage(int id)
         {
             _id = id;
             InitializeComponent();
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
-            GetFilterOptions();
             GetDocumentation();
+
             FillBoxesWithSelectedDocumentationValues();
         }
 
@@ -53,12 +45,21 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             try
             {
-                bool success = _handler.UpdateDocumentation(_id, TextBoxHeadline.Text, TextBoxDescription.Text, Convert.ToInt32(ComboBoxType.SelectedValue), Convert.ToInt32(ComboBoxSupporter.SelectedValue), DatePickerCompleted.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxStatus.SelectedValue));
-                if (success)
+                if (TextBoxHeadline.Text == String.Empty || TextBoxDescription.Text == String.Empty || TextBoxTimeSpent.Text == "0")
                 {
-                    MessageBox.Show("Docmentation was succesfully Updated.");
-                    if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
-                }           
+                    MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+
+
+                    bool success = _handler.UpdateDocumentation(_id, TextBoxHeadline.Text, TextBoxDescription.Text, Convert.ToInt32(ComboBoxType.SelectedValue), Convert.ToInt32(ComboBoxSupporter.SelectedValue), DatePickerCompleted.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxStatus.SelectedValue));
+                    if (success)
+                    {
+                        MessageBox.Show("Docmentation was succesfully Updated.");
+                        if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -79,16 +80,6 @@ namespace DevelopmentProject.PeterGUI.Pages
         private void GetDocumentation()
         {
             _documentation = _handler.GetDocumentation(_id);
-        }
-        public void GetFilterOptions()
-        {
-            if (TextBoxHeadline.Text != null) _headline = TextBoxDescription.Text;
-            if (TextBoxDescription.Text != null) _description = TextBoxDescription.Text;
-            if (TextBoxTimeSpent.Text != null) _timespent = TextBoxTimeSpent.Text;
-            if (DatePickerCompleted.SelectedDate != null) _endDate = DatePickerCompleted.SelectedDate.Value.Date;
-            if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0) _supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
-            if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0) _type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
-            if (ComboBoxStatus.SelectedValue != null || Convert.ToInt32(ComboBoxStatus.SelectedValue) > 0) _status = Int32.Parse(ComboBoxStatus.SelectedValue.ToString());
         }
         private void PrepareDropBoxes()
         {

@@ -22,7 +22,7 @@ namespace DevelopmentProject.PeterGUI.Pages
     /// </summary>
     public partial class AddDocumentationPage : Page
     {
-        private Handler _handler;
+        private readonly Handler _handler;
         private DataTable _typesTable;
         private DataTable _supportersTable;
         public AddDocumentationPage()
