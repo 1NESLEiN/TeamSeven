@@ -151,23 +151,23 @@ namespace Control
         }
 
 
-        //public DataTable GetDocumentation(int id)
-        //{
-        //    String query = @"SELECT * FROM JobDocumentations JOIN Supporters on Supporters.Id = JobDocumentations.Supporter JOIN Statuses on Statuses.ID = JobDocumentations.Status JOIN Types on Types.ID = JobDocumentations.Type WHERE JobDocumentations.ID = @id)";
+        public DataTable GetDocumentation(int id)
+        {
+            String query = "SELECT * FROM JobDocumentations WHERE JobDocumentations.ID = " + id;
 
-        //    using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
-        //    using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-        //    {
-        //        sqlConn.Open();
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
 
-        //        DataTable dt = new DataTable();
-        //        dt.Load(cmd.ExecuteReader());
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
 
-        //        _con.Close();
+                _con.Close();
 
-        //        return dt;
-        //    }
-        //}
+                return dt;
+            }
+        }
 
 
         public bool UpdateDocumentation(int id, int timeSpent, int status, DateTime? dateCompleted)

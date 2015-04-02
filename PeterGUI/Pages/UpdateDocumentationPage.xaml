@@ -4,12 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="500"
+      d:DesignHeight="500" d:DesignWidth="500"
 	Title="UpdateDocumentationPage">
 
     <Grid>
         <GroupBox Header="Update Documentation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="auto" Width="auto">
-            <Grid HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="390" Margin="0,0,-2,-5">
+            <Grid HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="400" Margin="0,0,-2,-5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
@@ -24,7 +24,7 @@
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="Auto"/>
                     
                 </Grid.RowDefinitions>
 
@@ -50,7 +50,7 @@
                 <DatePicker Name="DatePickerCompleted" Grid.Row="6" Grid.Column="1"></DatePicker>
 
                 <Button Name="Updatebutton" Grid.Row="8" Grid.Column="1" Height="25" Width="130" Content="Update Documentation" HorizontalAlignment="Right" ></Button>
-                <!--<Button Grid.Row="8" Grid.Column="1" Height="25" Width="130" Content="Update Documentation" HorizontalAlignment="Right"  Click="UpdateDocumentation_OnClick"></Button>-->
+
             </Grid>
         </GroupBox>
     </Grid>

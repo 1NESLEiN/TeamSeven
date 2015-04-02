@@ -22,16 +22,16 @@ namespace DevelopmentProject.PeterGUI.Pages
     /// </summary>
     public partial class SearchDocumentationPage : Page
     {
-        private Handler _handler;
+        private readonly Handler _handler;
         private DataTable _typesTable;
         private DataTable _supportersTable;
         private DataTable _statesTable;
-        private string keyword;
-        private DateTime startDate;
-        private DateTime endDate;
-        private int supporter;
-        private int type;
-        private int status;
+        private string _keyword;
+        private DateTime _startDate;
+        private DateTime _endDate;
+        private int _supporter;
+        private int _type;
+        private int _status;
 
         public SearchDocumentationPage()
         {
@@ -46,7 +46,7 @@ namespace DevelopmentProject.PeterGUI.Pages
         {
             GridViewSearch.AutoGenerateColumns = true;
             GetFilterOptions();
-            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporter, type, status));
+            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(_keyword, _startDate, _endDate, _supporter, _type, _status));
 
             if (GridViewSearch.Columns.Count > 0)
             {
@@ -104,12 +104,12 @@ namespace DevelopmentProject.PeterGUI.Pages
         public void GetFilterOptions()
         {
 
-            keyword = KeywordTextBox.Text;
-            if (StartDatePicker.SelectedDate != null) startDate = StartDatePicker.SelectedDate.Value.Date;
-            if (EndDatePicker.SelectedDate != null) endDate = EndDatePicker.SelectedDate.Value.Date;
-            if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0) supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
-            if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0) type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
-            if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0) status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
+            _keyword = KeywordTextBox.Text;
+            if (StartDatePicker.SelectedDate != null) _startDate = StartDatePicker.SelectedDate.Value.Date;
+            if (EndDatePicker.SelectedDate != null) _endDate = EndDatePicker.SelectedDate.Value.Date;
+            if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0) _supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
+            if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0) _type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
+            if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0) _status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
         }
 
         private void PrepareDropBoxes()
