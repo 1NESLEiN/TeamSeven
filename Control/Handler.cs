@@ -49,6 +49,10 @@ namespace Control
             Documentation documentation = new Documentation(type, headline, description, dateCompleted, timeSpent, supporter, state);
             return _dbHandler.AddDocumentation(documentation);
         }
+        //public DataTable GetDocumentation(int id)
+        //{
+        //    return _dbHandler.GetDocumentation(id);
+        //}
         public bool UpdateDocumentation(int id, DateTime? dateCompleted, int timeSpent, int state)
         {
             return _dbHandler.UpdateDocumentation(id, timeSpent, state, dateCompleted);

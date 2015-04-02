@@ -65,6 +65,9 @@
     <Compile Include="PeterGUI\Pages\SearchDocumentationPage.xaml.cs">
       <DependentUpon>SearchDocumentationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PeterGUI\Pages\UpdateDocumentationPage.xaml.cs">
+      <DependentUpon>UpdateDocumentationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThorGUI\SearchDocumentationUserControl.xaml.cs">
       <DependentUpon>SearchDocumentationUserControl.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PeterGUI\Pages\SearchDocumentationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PeterGUI\Pages\UpdateDocumentationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PeterGUI\search_document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PeterGUI\update_document.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

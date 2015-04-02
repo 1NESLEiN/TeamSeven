@@ -26,24 +26,24 @@ namespace DevelopmentProject
         //}
         private void AddDocumentation_Click(object sender, RoutedEventArgs e)
         {
-            //frame.Content = _pages[0];
+            //MainWondowFrame.Content = _pages[0];
 
             AddDocumentationPage addDocumentationPage = new AddDocumentationPage();
-            frame.Content = addDocumentationPage;
+            MainWondowFrame.Content = addDocumentationPage;
         }
 
         private void AddSupporter_Click(object sender, RoutedEventArgs e)
         {
             AddSupporterPage addSupporterPage = new AddSupporterPage();
-            frame.Content = addSupporterPage;
-            //frame.Content = _pages[1];
+            MainWondowFrame.Content = addSupporterPage;
+            //MainWondowFrame.Content = _pages[1];
         }
 
         private void SearchDocumentation_Click(object sender, RoutedEventArgs e)
         {
             SearchDocumentationPage searchDocumentationPage = new SearchDocumentationPage();
-            frame.Content = searchDocumentationPage;
-            //frame.Content = _pages[2];
+            MainWondowFrame.Content = searchDocumentationPage;
+            //MainWondowFrame.Content = _pages[2];
         }
     }
 }

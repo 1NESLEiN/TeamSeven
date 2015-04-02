@@ -23,7 +23,14 @@
                 <Image Source="PeterGUI/search_document.png"/>
             </DockPanel>
         </Button>
-        
-        <Frame x:Name="frame" Content="" HorizontalAlignment="Left" Height="Auto" Margin="30,115,0,0" VerticalAlignment="Top" Width="Auto" NavigationUIVisibility="Hidden"/>
+
+        <!--<Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Margin="417,10,0,0">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom" Text="Update Documentation"/>
+                <Image Source="PeterGUI/update_document.png"/>
+            </DockPanel>
+        </Button>-->
+
+        <Frame x:Name="MainWondowFrame" Content="" HorizontalAlignment="Left" Height="Auto" Margin="30,115,0,0" VerticalAlignment="Top" Width="Auto" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

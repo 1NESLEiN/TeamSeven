@@ -73,7 +73,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                 bool success = _handler.UpdateDocumentation(Convert.ToInt32(TextBoxDocumentationId.Text), DatePickerSelectedEndDate.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSelectedStatus.SelectedValue));
                 if (success)
                 {
-                    MessageBox.Show("Documentation added succesfully");
+                    MessageBox.Show("Documentation updated succesfully");
                     ClearTextboxes();
 
                     Search();
@@ -172,7 +172,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             {
                 TextBoxTimeSpent.Text = rowview.Row.ItemArray[5].ToString();
                 TextBoxDocumentationId.Text = rowview.Row.ItemArray[0].ToString();
-                //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[7];
+                //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[8];
             }
         }
     }
