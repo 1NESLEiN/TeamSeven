@@ -33,6 +33,10 @@ namespace DevelopmentProject.PeterGUI.Pages
         private int _supporter;
         private int _type;
         private int _status;
+        private string _headline ;
+        private string _description;
+        private string _timespent;
+
         public UpdateDocumentationPage(int id)
         {
             _id = id;
@@ -47,6 +51,20 @@ namespace DevelopmentProject.PeterGUI.Pages
         private void UpdateDocumentation_OnClick(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
+
+
+
+
+                MessageBox.Show("Docmentation was succesfully Updated.");
+                if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
         private void FillBoxesWithSelectedDocumentationValues()
@@ -65,6 +83,9 @@ namespace DevelopmentProject.PeterGUI.Pages
         }
         public void GetFilterOptions()
         {
+            if (TextBoxHeadline.Text != null) _headline = TextBoxDescription.Text;
+            if (TextBoxDescription.Text != null) _description = TextBoxDescription.Text;
+            if (TextBoxTimeSpent.Text != null) _timespent = TextBoxTimeSpent.Text;
             if (DatePickerCompleted.SelectedDate != null) _endDate = DatePickerCompleted.SelectedDate.Value.Date;
             if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0) _supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
             if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0) _type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
