@@ -61,21 +61,21 @@
                 
 
                 <Label Grid.Row="0" Content="Search keyword(s):"></Label>
-                <TextBox x:Name="KeywordTextBox" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="15"></TextBox>
+                <TextBox x:Name="KeywordTextBox" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="8"></TextBox>
 
                 <Label Grid.Row="1" Content="From Date:"></Label>
-                <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="15" ></DatePicker>
+                <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="8" ></DatePicker>
                 <Label Grid.Row="2" Content="To Date:"></Label>
-                <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="15"></DatePicker>
+                <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="8"></DatePicker>
 
                 <Label Grid.Row="3" Content="Supporter:"></Label>
-                <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="15"></ComboBox>
+                <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="8"></ComboBox>
 
                 <Label Grid.Row="4" Content="Type:"></Label>
-                <ComboBox x:Name="ComboBoxType" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="15"></ComboBox>
+                <ComboBox x:Name="ComboBoxType" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="8"></ComboBox>
 
                 <Label Grid.Row="5" Content="Status:"></Label>
-                <ComboBox x:Name="ComboBoxState" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="15">
+                <ComboBox x:Name="ComboBoxState" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="8">
                 </ComboBox>
 
                 <Button Content="Search" Grid.Column="0" Grid.Row="7" Click="ButtonSearch_Click"></Button>

@@ -19,7 +19,7 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
-            <RowDefinition />
+            <RowDefinition Height="25" />
             <RowDefinition Height="25" />
 
         </Grid.RowDefinitions>
@@ -39,7 +39,10 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Supporter:" />
         <ComboBox Grid.Row="4" Grid.Column="1" x:Name="ComboBoxSupporter"/>
 
-        <Button Grid.Row="6" Grid.Column="1" Height="25" Width="100" Content="Add" Click="AddDocumentation_OnClick" Margin="0,0,0,0" HorizontalAlignment="Left"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Date:" />
+        <DatePicker Name="DateCreateDatePicker" Grid.Row="5" Grid.Column="1"/>
+
+        <Button Grid.Row="7" Grid.Column="1" Height="25" Width="100" Content="Add" Click="AddDocumentation_OnClick" Margin="0,0,0,0" HorizontalAlignment="Left"/>
     </Grid>
 
 </UserControl>

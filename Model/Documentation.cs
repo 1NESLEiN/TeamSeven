@@ -7,6 +7,7 @@ namespace Model
         private string _headline;
         private string _description;
         private DateTime? _dateCompleted;
+        private DateTime _dateCreated;
         private int _timeSpent;
         private int _type;
         private int _supporter;
@@ -36,7 +37,11 @@ namespace Model
             get { return _dateCompleted; }
             set { _dateCompleted = value; }
         }
-
+        public DateTime DateCreated
+        {
+            get { return _dateCreated; }
+            set { _dateCreated = value; }
+        }
         public int TimeSpent
         {
             get { return _timeSpent; }
@@ -63,7 +68,7 @@ namespace Model
 
         #endregion
 
-        public Documentation(int type, String headline, String description, DateTime? dateCompleted, int timeSpent, int supporter, int status)
+        public Documentation(String headline, String description, int type, int supporter, DateTime? dateCompleted, int timeSpent, DateTime dateCreated, int status)
         {
             Type = type;
             Headline = headline;
@@ -72,6 +77,7 @@ namespace Model
             TimeSpent = timeSpent;
             Supporter = supporter;
             Status = status;
+            DateCreated = dateCreated;
         }
     }
 }

@@ -91,15 +91,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThorGUI\AddDocumentationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ThorGUI\AddSupporterUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ThorGUI\AddSupporterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,14 +102,8 @@
     <Compile Include="ThorGUI\AddDocumentationUserControl.xaml.cs">
       <DependentUpon>AddDocumentationUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThorGUI\AddDocumentationWindow.xaml.cs">
-      <DependentUpon>AddDocumentationWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ThorGUI\AddSupporterUserControl.xaml.cs">
       <DependentUpon>AddSupporterUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ThorGUI\AddSupporterWindow.xaml.cs">
-      <DependentUpon>AddSupporterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

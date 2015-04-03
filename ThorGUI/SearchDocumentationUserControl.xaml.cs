@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Control;
+using DevelopmentProject.PeterGUI.Pages;
 
 namespace DevelopmentProject
 {
@@ -69,19 +70,14 @@ namespace DevelopmentProject
         }
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                bool success = _handler.UpdateDocumentation(Convert.ToInt32(TextBoxDocumentationId.Text), DatePickerSelectedEndDate.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSelectedStatus.SelectedValue));
-                if (success)
-                {
-                    MessageBox.Show("Documentation added succesfully");
-                    ClearTextboxes();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
+
+            //if (rowview != null)
+            //{
+            //    int selectedId = (int)rowview.Row.ItemArray[0];
+
+            //    if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId));
+            //}
         }
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
@@ -144,12 +140,12 @@ namespace DevelopmentProject
             ComboBoxState.SelectedValuePath = "ID";
             ComboBoxState.SelectedValue = 0;
 
-            //Get data and populate ComboBoxSelectedStatus
+        //    //Get data and populate ComboBoxSelectedStatus
 
-            ComboBoxSelectedStatus.ItemsSource = _statesTable.DefaultView;
-            ComboBoxSelectedStatus.DisplayMemberPath = "Name";
-            ComboBoxSelectedStatus.SelectedValuePath = "ID";
-            ComboBoxSelectedStatus.SelectedValue = 0;
+        //    ComboBoxSelectedStatus.ItemsSource = _statesTable.DefaultView;
+        //    ComboBoxSelectedStatus.DisplayMemberPath = "Name";
+        //    ComboBoxSelectedStatus.SelectedValuePath = "ID";
+        //    ComboBoxSelectedStatus.SelectedValue = 0;
         }
 
         private void ClearTextboxes()
@@ -163,15 +159,15 @@ namespace DevelopmentProject
             ComboBoxState.SelectedValue = 0;
         }
 
-        private void GridViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
-            if (rowview != null)
-            {
-                TextBoxTimeSpent.Text = rowview.Row.ItemArray[5].ToString();
-                TextBoxDocumentationId.Text = rowview.Row.ItemArray[0].ToString();
-                //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[7];
-            }
-        }
+        //private void GridViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
+        //    if (rowview != null)
+        //    {
+        //        TextBoxTimeSpent.Text = rowview.Row.ItemArray[5].ToString();
+        //        TextBoxDocumentationId.Text = rowview.Row.ItemArray[0].ToString();
+        //        //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[7];
+        //    }
+        //}
     }
 }

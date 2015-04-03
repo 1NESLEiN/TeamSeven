@@ -37,7 +37,12 @@ namespace DevelopmentProject.PeterGUI.Pages
         {
             try
             {
-                bool success = _handler.AddDocumentation(Convert.ToInt32(ComboBoxType.SelectedValue), TextBoxHeadline.Text, TextBoxDescription.Text, null, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSupporter.SelectedValue), 1);
+                if (!DateCreateDatePicker.SelectedDate.HasValue)
+                {
+                    DateCreateDatePicker.SelectedDate = DateTime.Today.Date;
+                }
+
+                bool success = _handler.AddDocumentation(TextBoxHeadline.Text, TextBoxDescription.Text, Convert.ToInt32(ComboBoxType.SelectedValue), Convert.ToInt32(ComboBoxSupporter.SelectedValue), null, Convert.ToInt32(TextBoxTimeSpent.Text), DateCreateDatePicker.SelectedDate.Value.Date, 1);
                 if (success)
                 {
                     MessageBox.Show("Documentation added succesfully");

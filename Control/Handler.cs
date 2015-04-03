@@ -44,19 +44,19 @@ namespace Control
         #endregion
 
         #region Documentation methods
-        public bool AddDocumentation(int type, String headline, String description, DateTime? dateCompleted, int timeSpent, int supporter, int state)
+        public bool AddDocumentation(String headline, String description, int type, int supporter, DateTime? dateCompleted, int timeSpent, DateTime dateCreated, int status)
         {
-            Documentation documentation = new Documentation(type, headline, description, dateCompleted, timeSpent, supporter, state);
+            Documentation documentation = new Documentation(headline, description, type, supporter, dateCompleted, timeSpent, dateCreated, status);
             return _dbHandler.AddDocumentation(documentation);
         }
         public DataTable GetDocumentation(int id)
         {
             return _dbHandler.GetDocumentation(id);
         }
-        public bool UpdateDocumentation(int id, DateTime? dateCompleted, int timeSpent, int state)
-        {
-            return _dbHandler.UpdateDocumentation(id, timeSpent, state, dateCompleted);
-        }
+        //public bool UpdateDocumentation(int id, DateTime? dateCompleted, int timeSpent, int state)
+        //{
+        //    return _dbHandler.UpdateDocumentation(id, timeSpent, state, dateCompleted);
+        //}
 
         public bool UpdateDocumentation(int id, string headline, string description, int type, int supporter,
             DateTime? dateCompleted, int timespent, int status)
