@@ -40,6 +40,10 @@ namespace DevelopmentProject.PeterGUI.Pages
             FillBoxesWithSelectedDocumentationValues();
         }
 
+        private void Back_OnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
+        }
         private void UpdateDocumentation_OnClick(object sender, RoutedEventArgs e)
         {
 
