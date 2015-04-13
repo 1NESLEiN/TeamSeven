@@ -20,14 +20,31 @@
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
-                
+
                 <Label Grid.Column="0" Grid.Row="0" Content="Name:"/>
                 <TextBox Grid.Column="1" Grid.Row="0" x:Name="TextBoxSupporterName"/>
-                
+
                 <Label Grid.Column="0" Grid.Row="1" Content="Initials:"/>
                 <TextBox Grid.Column="1" Grid.Row="1" x:Name="TextBoxSupporterInitials"/>
 
                 <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Add Supporter" Click="AddSupporter_OnClick"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Remove Supporter" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Height="125" Width="400">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Remove" Click="RemoveSupporter_OnClick"/>
+                <ComboBox x:Name="ComboBoxSupporter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
             </Grid>
         </GroupBox>
     </Grid>
