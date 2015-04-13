@@ -344,6 +344,19 @@ namespace Control
 
         public DataTable GetSupportersTable()
         {
+            string query = "SELECT * FROM dbo.Supporters";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
+        public DataTable GetSupportersWorkingTable()
+        {
             string query = "SELECT * FROM dbo.Supporters WHERE Position = 1";
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))

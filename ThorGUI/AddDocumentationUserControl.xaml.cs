@@ -69,7 +69,7 @@ namespace DevelopmentProject
             ComboBoxType.DisplayMemberPath = "Name";
             ComboBoxType.SelectedValuePath = "ID";
 
-            //Get data Populate ComboBoxSupporter
+            //Get data Populate ComboBoxSupporterDelete
             _supportersTable = _handler.GetSupportersTable();
             ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
             ComboBoxSupporter.DisplayMemberPath = "Name";

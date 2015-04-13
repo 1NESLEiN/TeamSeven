@@ -53,7 +53,7 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Remove" Click="RemoveSupporter_OnClick"/>
-                <ComboBox x:Name="ComboBoxSupporter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
+                <ComboBox x:Name="ComboBoxSupporterDelete" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
             </Grid>
         </GroupBox>
 
@@ -71,7 +71,7 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Resign" Click="ResignSupporter_OnClick"/>
-                <ComboBox x:Name="ComboBox2Supporter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
+                <ComboBox x:Name="ComboBoxSupporterResign" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
             </Grid>
         </GroupBox>
 

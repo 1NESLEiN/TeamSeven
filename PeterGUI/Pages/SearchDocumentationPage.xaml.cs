@@ -128,7 +128,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxType.SelectedValuePath = "ID";
             ComboBoxType.SelectedValue = 0;
 
-            //Get data Populate ComboBoxSupporter
+            //Get data Populate ComboBoxSupporterDelete
             _supportersTable = _handler.GetSupportersTable();
 
             DataRow supporterRow = _supportersTable.NewRow();

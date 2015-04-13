@@ -11,6 +11,7 @@ namespace DevelopmentProject.PeterGUI.Pages
     /// </summary>
     public partial class AddSupporterPage : Page
     {
+        private DataTable _supportersWorkingTable;
         private DataTable _supportersTable;
         private DataTable _accessTable;
 
@@ -53,8 +54,9 @@ namespace DevelopmentProject.PeterGUI.Pages
 
         public void PopulateCombo()
         {
-            //Get data Populate both ComboBoxSupporter boxes
+            //Get data Populate both ComboBoxSupporterDelete and ComboBoxSupporterResign boxes
             _supportersTable = _handler.GetSupportersTable();
+            _supportersWorkingTable = _handler.GetSupportersWorkingTable();
 
             //DataRow supporterRow = _supportersTable.NewRow();
             //supporterRow["ID"] = 0;
@@ -63,15 +65,15 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             //_supportersTable.Rows.InsertAt(supporterRow, 0);
 
-            ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
-            ComboBoxSupporter.DisplayMemberPath = "Name";
-            ComboBoxSupporter.SelectedValuePath = "ID";
-            ComboBoxSupporter.SelectedValue = 0;
+            ComboBoxSupporterDelete.ItemsSource = _supportersTable.DefaultView;
+            ComboBoxSupporterDelete.DisplayMemberPath = "Name";
+            ComboBoxSupporterDelete.SelectedValuePath = "ID";
+            ComboBoxSupporterDelete.SelectedValue = 0;
 
-            ComboBox2Supporter.ItemsSource = _supportersTable.DefaultView;
-            ComboBox2Supporter.DisplayMemberPath = "Name";
-            ComboBox2Supporter.SelectedValuePath = "ID";
-            ComboBox2Supporter.SelectedValue = 0;
+            ComboBoxSupporterResign.ItemsSource = _supportersWorkingTable.DefaultView;
+            ComboBoxSupporterResign.DisplayMemberPath = "Name";
+            ComboBoxSupporterResign.SelectedValuePath = "ID";
+            ComboBoxSupporterResign.SelectedValue = 0;
 
             //Get data Populate ComboBoxAccess
             _accessTable = _handler.GetUserAccessTable();
@@ -90,11 +92,11 @@ namespace DevelopmentProject.PeterGUI.Pages
 
         private void RemoveSupporter_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ComboBoxSupporter.SelectedValue != null)
+            if (ComboBoxSupporterDelete.SelectedValue != null)
             {
-                int supporterId = Convert.ToInt32(ComboBoxSupporter.SelectedValue);
+                int supporterId = Convert.ToInt32(ComboBoxSupporterDelete.SelectedValue);
 
-                var result = MessageBox.Show("Are you certain you wish to remove " + ComboBoxSupporter.Text, "Confirm",
+                var result = MessageBox.Show("Are you certain you wish to remove " + ComboBoxSupporterDelete.Text, "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
@@ -107,11 +109,11 @@ namespace DevelopmentProject.PeterGUI.Pages
 
         private void ResignSupporter_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ComboBox2Supporter.SelectedValue != null)
+            if (ComboBoxSupporterResign.SelectedValue != null)
             {
-                int supporterId = Convert.ToInt32(ComboBox2Supporter.SelectedValue);
+                int supporterId = Convert.ToInt32(ComboBoxSupporterResign.SelectedValue);
 
-                var result = MessageBox.Show("Are you certain you wish to resign " + ComboBox2Supporter.Text, "Confirm",
+                var result = MessageBox.Show("Are you certain you wish to resign " + ComboBoxSupporterResign.Text, "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)

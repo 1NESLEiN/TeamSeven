@@ -10,6 +10,7 @@ DROP TABLE dbo.Types
 DROP TABLE dbo.Supporters
 DROP TABLE dbo.Statuses
 DROP TABLE dbo.UserAccesses
+DROP TABLE dbo.Positions
 GO
 CREATE TABLE [dbo].[JobDocumentations](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
@@ -163,7 +164,7 @@ GO
 INSERT INTO dbo.Positions (Name) VALUES ('Working')
 INSERT INTO dbo.Positions (Name) VALUES ('Resigned')
 GO
-INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Martin Kiersgaard', 'MJO', 'Martin', 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Martin Kiersgaard', 'MJO', 'Martin', 1, 1)
 INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Thor Pedersen', 'TP', 'Thor', 2, 1)
 INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Hans Christian', 'HC', 'Hans', 2, 1)
 INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Peter Nielsen', 'PN', 'Peter', 2, 1)

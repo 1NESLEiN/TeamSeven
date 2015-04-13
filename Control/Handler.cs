@@ -82,6 +82,10 @@ namespace Control
         {
             return _dbHandler.GetSupportersTable();
         }
+        public DataTable GetSupportersWorkingTable()
+        {
+            return _dbHandler.GetSupportersWorkingTable();
+        }
         public DataTable GetUserAccessTable()
         {
             return _dbHandler.GetUserAccessTable();

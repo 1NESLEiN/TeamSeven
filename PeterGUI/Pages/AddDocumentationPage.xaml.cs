@@ -72,8 +72,8 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxType.DisplayMemberPath = "Name";
             ComboBoxType.SelectedValuePath = "ID";
 
-            //Get data Populate ComboBoxSupporter
-            _supportersTable = _handler.GetSupportersTable();
+            //Get data Populate ComboBoxSupporterDelete
+            _supportersTable = _handler.GetSupportersWorkingTable();
             ComboBoxSupporter.ItemsSource = _supportersTable.DefaultView;
             ComboBoxSupporter.DisplayMemberPath = "Name";
             ComboBoxSupporter.SelectedValuePath = "ID";
