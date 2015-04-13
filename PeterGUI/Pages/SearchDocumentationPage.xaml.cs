@@ -135,6 +135,8 @@ namespace DevelopmentProject.PeterGUI.Pages
             supporterRow["ID"] = 0;
             supporterRow["Name"] = "Alle supportere";
             supporterRow["Initials"] = "All";
+            supporterRow["Pass"] = "All";
+            supporterRow["UserAccess"] = 1;
 
             _supportersTable.Rows.InsertAt(supporterRow, 0);
 

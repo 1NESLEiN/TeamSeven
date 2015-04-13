@@ -9,6 +9,7 @@ DROP TABLE dbo.JobDocumentations
 DROP TABLE dbo.Types
 DROP TABLE dbo.Supporters
 DROP TABLE dbo.Statuses
+DROP TABLE dbo.UserAccesses
 GO
 CREATE TABLE [dbo].[JobDocumentations](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
@@ -39,6 +40,8 @@ CREATE TABLE [dbo].[Supporters](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](max) NOT NULL,
 	[Initials] [varchar](5) NOT NULL,
+	[Pass] [varchar](max) NOT NULL,
+	[UserAccess] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -47,7 +50,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[States]    Script Date: 22-03-2015 19:59:10 ******/
+/****** Object:  Table [dbo].[Statuses]    Script Date: 22-03-2015 19:59:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -55,6 +58,24 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Statuses](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](max) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UserAccesses]    Script Date: 22-03-2015 19:59:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[UserAccesses](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](max) NOT NULL,
 PRIMARY KEY CLUSTERED 
@@ -98,16 +119,23 @@ ALTER TABLE [dbo].[JobDocumentations]  WITH CHECK ADD  CONSTRAINT [FK_JobDocumen
 REFERENCES [dbo].[Statuses] ([ID])
 GO
 ALTER TABLE [dbo].[JobDocumentations] CHECK CONSTRAINT [FK_JobDocumentations_Statuses]
-
+GO
+ALTER TABLE [dbo].[Supporters]  WITH CHECK ADD  CONSTRAINT [FK_Supporters_UserAccesses] FOREIGN KEY([UserAccess])
+REFERENCES [dbo].[UserAccesses] ([ID])
+GO
+ALTER TABLE [dbo].[Supporters] CHECK CONSTRAINT [FK_Supporters_UserAccesses]
 GO
 INSERT INTO dbo.Types (Name) VALUES ('Hardware')
 INSERT INTO dbo.Types (Name) VALUES ('Software')
 INSERT INTO dbo.Types (Name) VALUES ('Other')
 GO
-INSERT INTO dbo.Supporters (Name, Initials) VALUES ('Martin Kiersgaard', 'MJO')
-INSERT INTO dbo.Supporters (Name, Initials) VALUES ('Thor Pedersen', 'TP')
-INSERT INTO dbo.Supporters (Name, Initials) VALUES ('Hans Christian', 'HC')
-INSERT INTO dbo.Supporters (Name, Initials) VALUES ('Peter Nielsen', 'PN')
+INSERT INTO dbo.UserAccesses (Name) VALUES ('Admin')
+INSERT INTO dbo.UserAccesses (Name) VALUES ('Supporter')
+GO
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Martin Kiersgaard', 'MJO', 'Martin', 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Thor Pedersen', 'TP', 'Thor', 2)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Hans Christian', 'HC', 'Hans', 2)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Peter Nielsen', 'PN', 'Peter', 2)
 GO
 INSERT INTO dbo.Statuses (Name) VALUES ('Ny Opgave')
 INSERT INTO dbo.Statuses (Name) VALUES ('Delvis færdig')

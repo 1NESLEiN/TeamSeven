@@ -87,8 +87,8 @@ namespace Control
         public bool AddSupporter(Supporter supporter)
         {
             String query = @"
-            INSERT INTO dbo.Supporters (Name, Initials)
-            VALUES (@Name, @Initials)
+            INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess)
+            VALUES (@Name, @Initials, @Pass, @UserAccess)
             ";
 
             try
@@ -99,6 +99,8 @@ namespace Control
 
                     cmd.Parameters.Add(new SqlParameter("@Name", supporter.Name));
                     cmd.Parameters.Add(new SqlParameter("@Initials", supporter.Initials));
+                    cmd.Parameters.Add(new SqlParameter("@Pass", supporter.Pass));
+                    cmd.Parameters.Add(new SqlParameter("@UserAccess", supporter.AccessId));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -114,6 +116,35 @@ namespace Control
                 _con.Close();
             }
         }
+
+
+        public bool DeleteSupporter(int id)
+        {
+            String query = @"
+            DELETE FROM dbo.Supporters WHERE ID = " + id;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                _con.Close();
+            }
+        }
+
+
         #endregion
 
         #region Documentation methods
@@ -287,6 +318,19 @@ namespace Control
         public DataTable GetSupportersTable()
         {
             string query = "SELECT * FROM dbo.Supporters";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
+        public DataTable GetUserAccessTable()
+        {
+            string query = "SELECT * FROM dbo.UserAccesses";
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))

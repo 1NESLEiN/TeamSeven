@@ -12,7 +12,8 @@ namespace DevelopmentProject.PeterGUI.Pages
     public partial class AddSupporterPage : Page
     {
         private DataTable _supportersTable;
-        
+        private DataTable _accessTable;
+
         public AddSupporterPage()
         {
             InitializeComponent();
@@ -26,18 +27,21 @@ namespace DevelopmentProject.PeterGUI.Pages
         {
             try
             {
-                if (TextBoxSupporterName.Text == String.Empty || TextBoxSupporterInitials.Text == String.Empty)
+                if (TextBoxSupporterName.Text == String.Empty || TextBoxSupporterInitials.Text == String.Empty || TextBoxPassword.Text == String.Empty || ComboBoxAccess.SelectedValue == null)
                 {
                     MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 else
                 {
-                    bool success = _handler.AddSupporter(TextBoxSupporterName.Text, TextBoxSupporterInitials.Text);
+
+                    bool success = _handler.AddSupporter(TextBoxSupporterName.Text, TextBoxSupporterInitials.Text, TextBoxPassword.Text, Convert.ToInt32(ComboBoxAccess.SelectedValue));
                     if (success)
                     {
                         MessageBox.Show("Supporter added succesfully");
                         TextBoxSupporterName.Clear();
                         TextBoxSupporterInitials.Clear();
+                        TextBoxPassword.Clear();
+                        PopulateCombo();
                     }
                 }
             }
@@ -63,21 +67,35 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxSupporter.DisplayMemberPath = "Name";
             ComboBoxSupporter.SelectedValuePath = "ID";
             ComboBoxSupporter.SelectedValue = 0;
+
+            //Get data Populate ComboBoxAccess
+            _accessTable = _handler.GetUserAccessTable();
+
+            //DataRow supporterRow = _supportersTable.NewRow();
+            //supporterRow["ID"] = 0;
+            //supporterRow["Name"] = "";
+            //supporterRow["Initials"] = "";
+
+            //_supportersTable.Rows.InsertAt(supporterRow, 0);
+
+            ComboBoxAccess.ItemsSource = _accessTable.DefaultView;
+            ComboBoxAccess.DisplayMemberPath = "Name";
+            ComboBoxAccess.SelectedValuePath = "ID";
         }
 
         private void RemoveSupporter_OnClick(object sender, RoutedEventArgs e)
         {
             if (ComboBoxSupporter.SelectedValue != null)
             {
-                int sup = (int) ComboBoxSupporter.SelectedValue;
+                int supporterId = Convert.ToInt32(ComboBoxSupporter.SelectedValue);
 
                 var result = MessageBox.Show("Are you certain you wish to remove " + ComboBoxSupporter.Text, "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    //Fucking delete employee
-                    Console.WriteLine(sup+"");
+                    _handler.DeleteSupporter(supporterId);
+                    PopulateCombo();
                 }
             }
         }

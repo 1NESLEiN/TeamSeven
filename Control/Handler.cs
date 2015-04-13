@@ -36,10 +36,14 @@ namespace Control
         #endregion
 
         #region Supporter methods
-        public bool AddSupporter(String name, String initials)
+        public bool AddSupporter(String name, String initials, string pass, int access)
         {
-            Supporter supporter = new Supporter(initials, name);
+            Supporter supporter = new Supporter(initials, name, pass, access);
             return _dbHandler.AddSupporter(supporter);
+        }
+        public bool DeleteSupporter(int id)
+        {
+            return _dbHandler.DeleteSupporter(id);
         }
         #endregion
 
@@ -73,6 +77,10 @@ namespace Control
         public DataTable GetSupportersTable()
         {
             return _dbHandler.GetSupportersTable();
+        }
+        public DataTable GetUserAccessTable()
+        {
+            return _dbHandler.GetUserAccessTable();
         }
         public DataTable GetStatesTable()
         {

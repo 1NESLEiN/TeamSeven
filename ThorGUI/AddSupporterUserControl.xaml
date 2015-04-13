@@ -4,15 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
-        <Grid>
-            <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <Label Content="Initials:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtBoxName" HorizontalAlignment="Left" Height="23" Margin="85,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-            <TextBox x:Name="TxtBoxInitials" HorizontalAlignment="Left" Height="23" Margin="85,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-            <Button x:Name="BtnAddSupporter" Content="Add Supporter" HorizontalAlignment="Left" Margin="200,72,0,0" VerticalAlignment="Top" Click="AddSupporter"/>
+        <GroupBox Header="New Supporter" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="auto" Width="400">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
 
-        </Grid>
+                <Label Grid.Column="0" Grid.Row="0" Content="Name:"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="TextBoxSupporterName"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Initials:"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="TextBoxSupporterInitials"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Content="Access:"></Label>
+                <ComboBox Name="ComboBoxAccess" Grid.Column="1" Grid.Row="3"></ComboBox>
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Password:"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="TextBoxPassword"/>
+
+                <Button Grid.Column="1" Grid.Row="5" Height="25" Width="100" HorizontalAlignment="Right" Content="Add Supporter" Click="AddSupporter_OnClick"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>

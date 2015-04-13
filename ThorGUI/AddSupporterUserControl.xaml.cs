@@ -29,29 +29,29 @@ namespace DevelopmentProject
 
       private readonly Handler _handler;
 
-      private void AddSupporter(object sender, RoutedEventArgs e)
+      private void AddSupporter_OnClick(object sender, RoutedEventArgs e)
       {
-         try
-         {
-            if (TxtBoxName.Text == String.Empty || TxtBoxInitials.Text == String.Empty)
-            {
-               MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-               bool success = _handler.AddSupporter(TxtBoxName.Text, TxtBoxInitials.Text);
-               if (success)
-               {
-                  MessageBox.Show("Supporter added succesfully");
-                  TxtBoxName.Clear();
-                  TxtBoxInitials.Clear();
-               }
-            }
-         }
-         catch (Exception exception)
-         {
-            MessageBox.Show("Der opstod en fejl: " + exception.Message, "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
-         }
+         //try
+         //{
+         //   if (TxtBoxName.Text == String.Empty || TxtBoxInitials.Text == String.Empty)
+         //   {
+         //      MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+         //   }
+         //   else
+         //   {
+         //      bool success = _handler.AddSupporter(TxtBoxName.Text, TxtBoxInitials.Text, txtBoxPassword.Text, ComboboxAccess.SelectedIndex);
+         //      if (success)
+         //      {
+         //         MessageBox.Show("Supporter added succesfully");
+         //         TxtBoxName.Clear();
+         //         TxtBoxInitials.Clear();
+         //      }
+         //   }
+         //}
+         //catch (Exception exception)
+         //{
+         //   MessageBox.Show("Der opstod en fejl: " + exception.Message, "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
+         //}
       }
    }
 }
