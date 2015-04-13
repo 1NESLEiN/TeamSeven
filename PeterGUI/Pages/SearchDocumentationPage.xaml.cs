@@ -137,6 +137,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             supporterRow["Initials"] = "All";
             supporterRow["Pass"] = "All";
             supporterRow["UserAccess"] = 1;
+            supporterRow["Position"] = 1;
 
             _supportersTable.Rows.InsertAt(supporterRow, 0);
 

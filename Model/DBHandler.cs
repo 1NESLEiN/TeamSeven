@@ -87,8 +87,8 @@ namespace Control
         public bool AddSupporter(Supporter supporter)
         {
             String query = @"
-            INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess)
-            VALUES (@Name, @Initials, @Pass, @UserAccess)
+            INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position)
+            VALUES (@Name, @Initials, @Pass, @UserAccess, @Position)
             ";
 
             try
@@ -101,6 +101,7 @@ namespace Control
                     cmd.Parameters.Add(new SqlParameter("@Initials", supporter.Initials));
                     cmd.Parameters.Add(new SqlParameter("@Pass", supporter.Pass));
                     cmd.Parameters.Add(new SqlParameter("@UserAccess", supporter.AccessId));
+                    cmd.Parameters.Add(new SqlParameter("@Position", supporter.PositionId));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -128,6 +129,32 @@ namespace Control
                 using (SqlCommand cmd = new SqlCommand(query, _con))
                 {
                     _con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                _con.Close();
+            }
+        }
+        public bool ResignSupporter(int id)
+        {
+            String query =
+            string.Format("UPDATE dbo.Supporters SET Position = 2 WHERE ID = {0}", id);
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+                    cmd.Parameters.AddWithValue("Position", 2);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -317,7 +344,7 @@ namespace Control
 
         public DataTable GetSupportersTable()
         {
-            string query = "SELECT * FROM dbo.Supporters";
+            string query = "SELECT * FROM dbo.Supporters WHERE Position = 1";
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))

@@ -42,6 +42,7 @@ CREATE TABLE [dbo].[Supporters](
 	[Initials] [varchar](5) NOT NULL,
 	[Pass] [varchar](max) NOT NULL,
 	[UserAccess] [int] NOT NULL,
+	[Position] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -68,6 +69,28 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
+
+
+/****** Object:  Table [dbo].[Positions]    Script Date: 22-03-2015 19:59:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Positions](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](max) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+
 /****** Object:  Table [dbo].[UserAccesses]    Script Date: 22-03-2015 19:59:10 ******/
 SET ANSI_NULLS ON
 GO
@@ -125,6 +148,11 @@ REFERENCES [dbo].[UserAccesses] ([ID])
 GO
 ALTER TABLE [dbo].[Supporters] CHECK CONSTRAINT [FK_Supporters_UserAccesses]
 GO
+ALTER TABLE [dbo].[Supporters]  WITH CHECK ADD  CONSTRAINT [FK_Supporters_Positions] FOREIGN KEY([Position])
+REFERENCES [dbo].[Positions] ([ID])
+GO
+ALTER TABLE [dbo].[Supporters] CHECK CONSTRAINT [FK_Supporters_Positions]
+GO
 INSERT INTO dbo.Types (Name) VALUES ('Hardware')
 INSERT INTO dbo.Types (Name) VALUES ('Software')
 INSERT INTO dbo.Types (Name) VALUES ('Other')
@@ -132,10 +160,14 @@ GO
 INSERT INTO dbo.UserAccesses (Name) VALUES ('Admin')
 INSERT INTO dbo.UserAccesses (Name) VALUES ('Supporter')
 GO
-INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Martin Kiersgaard', 'MJO', 'Martin', 1)
-INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Thor Pedersen', 'TP', 'Thor', 2)
-INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Hans Christian', 'HC', 'Hans', 2)
-INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess) VALUES ('Peter Nielsen', 'PN', 'Peter', 2)
+INSERT INTO dbo.Positions (Name) VALUES ('Working')
+INSERT INTO dbo.Positions (Name) VALUES ('Resigned')
+GO
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Martin Kiersgaard', 'MJO', 'Martin', 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Thor Pedersen', 'TP', 'Thor', 2, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Hans Christian', 'HC', 'Hans', 2, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Peter Nielsen', 'PN', 'Peter', 2, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Former Worker', 'FW', 'Former', 2, 2)
 GO
 INSERT INTO dbo.Statuses (Name) VALUES ('Ny Opgave')
 INSERT INTO dbo.Statuses (Name) VALUES ('Delvis færdig')

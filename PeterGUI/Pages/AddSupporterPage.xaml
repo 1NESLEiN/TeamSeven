@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="350" d:DesignWidth="500"
+      d:DesignHeight="500" d:DesignWidth="500"
 	Title="AddSupporterPage">
 
     <Grid>
@@ -56,5 +56,24 @@
                 <ComboBox x:Name="ComboBoxSupporter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
             </Grid>
         </GroupBox>
+
+        <GroupBox Header="Resign Supporter" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Height="125" Width="400">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Resign" Click="ResignSupporter_OnClick"/>
+                <ComboBox x:Name="ComboBox2Supporter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
+            </Grid>
+        </GroupBox>
+
     </Grid>
 </Page>

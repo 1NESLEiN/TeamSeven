@@ -21,6 +21,10 @@ namespace Model
         /// </summary>
         private string _pass;
         /// <summary>
+        /// Backing field for the Position property
+        /// </summary>
+        private int _positionId;
+        /// <summary>
         /// Backing field for the AccessId property
         /// </summary>
         private int _accessId;
@@ -33,6 +37,14 @@ namespace Model
         {
             get { return _pass; }
             set { _pass = value; }
+        }
+        /// <summary>
+        /// Property to get and set the Position ID
+        /// </summary>
+        public int PositionId
+        {
+            get { return _positionId; }
+            set { _positionId = value; }
         }
         /// <summary>
         /// Property to get and set the Access ID
@@ -79,12 +91,14 @@ namespace Model
         /// <param name="name">Specifies what the name is for the supporter to be added</param>
         /// <param name="pass">Specifies what the password is for the supporter to be added</param>
         /// <param name="accessid">Specifies what the access id is for the supporter to be added</param>
-        public Supporter(String initials, String name, string pass, int accessid)
+        /// <param name="positionid">Specifies what the position id is for the supporter to be added</param>
+        public Supporter(String initials, String name, string pass, int accessid, int positionid)
         {
             Initials = initials;
             Name = name;
             Pass = pass;
             AccessId = accessid;
+            PositionId = positionid;
         }
     }
 }

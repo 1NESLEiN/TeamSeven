@@ -34,7 +34,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                 else
                 {
 
-                    bool success = _handler.AddSupporter(TextBoxSupporterName.Text, TextBoxSupporterInitials.Text, TextBoxPassword.Text, Convert.ToInt32(ComboBoxAccess.SelectedValue));
+                    bool success = _handler.AddSupporter(TextBoxSupporterName.Text, TextBoxSupporterInitials.Text, TextBoxPassword.Text, Convert.ToInt32(ComboBoxAccess.SelectedValue), 1);
                     if (success)
                     {
                         MessageBox.Show("Supporter added succesfully");
@@ -53,7 +53,7 @@ namespace DevelopmentProject.PeterGUI.Pages
 
         public void PopulateCombo()
         {
-            //Get data Populate ComboBoxSupporter
+            //Get data Populate both ComboBoxSupporter boxes
             _supportersTable = _handler.GetSupportersTable();
 
             //DataRow supporterRow = _supportersTable.NewRow();
@@ -67,6 +67,11 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxSupporter.DisplayMemberPath = "Name";
             ComboBoxSupporter.SelectedValuePath = "ID";
             ComboBoxSupporter.SelectedValue = 0;
+
+            ComboBox2Supporter.ItemsSource = _supportersTable.DefaultView;
+            ComboBox2Supporter.DisplayMemberPath = "Name";
+            ComboBox2Supporter.SelectedValuePath = "ID";
+            ComboBox2Supporter.SelectedValue = 0;
 
             //Get data Populate ComboBoxAccess
             _accessTable = _handler.GetUserAccessTable();
@@ -95,6 +100,23 @@ namespace DevelopmentProject.PeterGUI.Pages
                 if (result == MessageBoxResult.Yes)
                 {
                     _handler.DeleteSupporter(supporterId);
+                    PopulateCombo();
+                }
+            }
+        }
+
+        private void ResignSupporter_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ComboBox2Supporter.SelectedValue != null)
+            {
+                int supporterId = Convert.ToInt32(ComboBox2Supporter.SelectedValue);
+
+                var result = MessageBox.Show("Are you certain you wish to resign " + ComboBox2Supporter.Text, "Confirm",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    _handler.ResignSupporter(supporterId);
                     PopulateCombo();
                 }
             }
