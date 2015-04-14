@@ -62,11 +62,11 @@ namespace DevelopmentProject
             MainWondowFrame.Content = login;
 
             var contentVisibility = DataContext as ContentVisibility;
-            var vis = contentVisibility != null && contentVisibility.BorderVisible;
+            var vis = contentVisibility != null && contentVisibility.LoginVisibility;
 
             var visibility = DataContext as ContentVisibility;
             if (visibility != null)
-                visibility.BorderVisible = !vis;
+                visibility.LoginVisibility = !vis;
         }
     }
 }

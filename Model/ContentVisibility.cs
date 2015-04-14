@@ -9,22 +9,36 @@ namespace Model
 {
     public class ContentVisibility : INotifyPropertyChanged
     {
-        private bool _borderVisible;
+        private bool _loginVisibility;
+        private bool _userVisibility;
 
-        public bool BorderVisible
+        public bool LoginVisibility
         {
             get
             {
-                return _borderVisible;
+                return _loginVisibility;
             }
 
             set
             {
-                _borderVisible = value;
-                NotifyPropertyChanged("BorderVisible");
+                _loginVisibility = value;
+                NotifyPropertyChanged("LoginVisibility");
             }
         }
 
+        public bool UserVisibility
+        {
+            get
+            {
+                return _userVisibility;
+            }
+
+            set
+            {
+                _userVisibility = value;
+                NotifyPropertyChanged("UserVisibility");
+            }
+        }
         private void NotifyPropertyChanged(string info)
         {
             if (PropertyChanged != null)

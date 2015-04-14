@@ -50,11 +50,11 @@ namespace DevelopmentProject.PeterGUI.Pages
                     if (_login.Rows.Count != 0)
                     {
                         var contentVisibility = DataContext as ContentVisibility;
-                        var vis = contentVisibility != null && contentVisibility.BorderVisible;
+                        var vis = contentVisibility != null && contentVisibility.LoginVisibility;
 
                         var visibility = DataContext as ContentVisibility;
                         if (visibility != null)
-                            visibility.BorderVisible = !vis;
+                            visibility.LoginVisibility = !vis;
 
                         if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
                     }
