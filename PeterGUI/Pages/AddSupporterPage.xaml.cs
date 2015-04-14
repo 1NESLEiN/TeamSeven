@@ -112,6 +112,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                 {
                     _handler.DeleteSupporter(supporterId);
                     PopulateCombo();
+                    MessageBox.Show("Supporter was successfully removed");
                 }
             }
         }
@@ -129,6 +130,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                 {
                     _handler.ResignSupporter(supporterId);
                     PopulateCombo();
+                    MessageBox.Show("Supporter was successfully resigned");
                 }
             }
         }
@@ -147,6 +149,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                 {
                     _handler.AssignSupporter(supporterId, accessId);
                     PopulateCombo();
+                    MessageBox.Show("Supporter was successfully assigned");
                 }
             }
         }

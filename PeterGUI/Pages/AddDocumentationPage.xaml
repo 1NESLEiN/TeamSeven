@@ -37,7 +37,7 @@
                 <TextBox Grid.Row="2" Grid.Column="1" AcceptsReturn="True" IsUndoEnabled="True" x:Name="TextBoxDescription"/>
                 
                 <Label Grid.Row="3" Grid.Column="0" Content="Currently time Spent:"/>
-                <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxTimeSpent"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="0" x:Name="TextBoxTimeSpent"></TextBox>
                 
                 <Label Grid.Row="4" Grid.Column="0" Content="Supporter:"/>
                 <ComboBox Grid.Row="4" Grid.Column="1" x:Name="ComboBoxSupporter"></ComboBox>
