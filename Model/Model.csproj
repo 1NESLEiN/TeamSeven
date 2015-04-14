@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentVisibility.cs" />
     <Compile Include="DBHandler.cs" />
     <Compile Include="Documentation.cs" />
     <Compile Include="Supporter.cs" />

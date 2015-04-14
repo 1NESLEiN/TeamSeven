@@ -1,29 +1,38 @@
 ﻿<Window x:Class="DevelopmentProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:model="clr-namespace:Model;assembly=Model"
         Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </Window.Resources>
     <Grid>
-        <Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="AddDocumentation_Click" Margin="30,10,0,0">
-            <DockPanel LastChildFill="True">
+        <Button Visibility="{Binding Path=BorderVisible, Converter={StaticResource BoolToVisConverter} }" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="AddDocumentation_Click" Margin="30,10,0,0">
+            <DockPanel  LastChildFill="True">
                 <TextBlock DockPanel.Dock="Bottom" Text="Add Documentation"/>
                 <Image Source="PeterGUI/mail_new.png"/>
             </DockPanel>
         </Button>
-        
-        <Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="75" Width="Auto" Click="AddSupporter_Click" Margin="0,10,30,0">
+        <Button Visibility="{Binding Path=BorderVisible, Converter={StaticResource BoolToVisConverter} }" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="75" Width="Auto" Click="AddSupporter_Click" Margin="0,10,30,0">
             <DockPanel LastChildFill="True">
                 <TextBlock DockPanel.Dock="Bottom" Text="Manage Supporters"/>
                 <Image Source="PeterGUI/supporter_new.png"/>
             </DockPanel>
         </Button>
-        
-        <Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="SearchDocumentation_Click" Margin="160,10,0,0">
+
+        <Button Visibility="{Binding Path=BorderVisible, Converter={StaticResource BoolToVisConverter} }" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="SearchDocumentation_Click" Margin="160,10,0,0">
             <DockPanel LastChildFill="True">
                 <TextBlock DockPanel.Dock="Bottom" Text="Search Documentation"/>
                 <Image Source="PeterGUI/search_document.png"/>
             </DockPanel>
         </Button>
 
+        <Button Visibility="{Binding Path=BorderVisible, Converter={StaticResource BoolToVisConverter} }" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="right" Height="75" Width="Auto" Click="Logout_OnClick" Margin="0,10,150,0">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom" Text="Logout"/>
+                <Image Source="PeterGUI/logout.png"/>
+            </DockPanel>
+        </Button>
         <!--<Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Margin="417,10,0,0">
             <DockPanel LastChildFill="True">
                 <TextBlock DockPanel.Dock="Bottom" Text="Update Documentation"/>

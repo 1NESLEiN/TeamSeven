@@ -63,6 +63,9 @@
     <Compile Include="PeterGUI\Pages\AddSupporterPage.xaml.cs">
       <DependentUpon>AddSupporterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PeterGUI\Pages\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PeterGUI\Pages\SearchDocumentationPage.xaml.cs">
       <DependentUpon>SearchDocumentationPage.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PeterGUI\Pages\AddSupporterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PeterGUI\Pages\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +158,10 @@
       <Project>{1618eb50-bcf6-4033-b4a6-d065e59b8c5e}</Project>
       <Name>Control</Name>
     </ProjectReference>
+    <ProjectReference Include="Model\Model.csproj">
+      <Project>{6FC658F5-1778-4313-B099-AB64D225ED30}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PeterGUI\mail_new.png" />
@@ -163,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PeterGUI\update_document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PeterGUI\logout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

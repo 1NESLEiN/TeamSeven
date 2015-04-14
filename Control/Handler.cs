@@ -6,7 +6,7 @@ namespace Control
 {
     public class Handler
     {
-        private DBHandler _dbHandler;
+        private readonly DBHandler _dbHandler;
 
         #region Singleton-methods
 
@@ -82,6 +82,12 @@ namespace Control
         }
         #endregion
 
+        #region Login methods
+        public DataTable Login(string username, string pass)
+        {
+            return _dbHandler.Login(username, pass);
+        }
+        #endregion
         public DataTable GetSupportersTable()
         {
             return _dbHandler.GetSupportersTable();

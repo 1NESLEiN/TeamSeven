@@ -118,7 +118,6 @@ namespace Control
             }
         }
 
-
         public bool DeleteSupporter(int id)
         {
             String query1 = @"
@@ -207,6 +206,24 @@ namespace Control
             }
         }
 
+
+        #endregion
+
+        #region Login methods
+
+        public DataTable Login(string username, string pass)
+        {
+            string query = string.Format("SELECT * FROM Supporters WHERE Name = '{0}' AND Pass = '{1}'", username, pass);
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
 
         #endregion
 
