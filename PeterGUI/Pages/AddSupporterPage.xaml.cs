@@ -75,6 +75,11 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxSupporterResign.SelectedValuePath = "ID";
             ComboBoxSupporterResign.SelectedValue = 0;
 
+            ComboBoxSupporterAssign.ItemsSource = _supportersWorkingTable.DefaultView;
+            ComboBoxSupporterAssign.DisplayMemberPath = "Name";
+            ComboBoxSupporterAssign.SelectedValuePath = "ID";
+            ComboBoxSupporterAssign.SelectedValue = 0;
+
             //Get data Populate ComboBoxAccess
             _accessTable = _handler.GetUserAccessTable();
 
@@ -88,6 +93,10 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxAccess.ItemsSource = _accessTable.DefaultView;
             ComboBoxAccess.DisplayMemberPath = "Name";
             ComboBoxAccess.SelectedValuePath = "ID";
+
+            ComboBoxUserAccessAssign.ItemsSource = _accessTable.DefaultView;
+            ComboBoxUserAccessAssign.DisplayMemberPath = "Name";
+            ComboBoxUserAccessAssign.SelectedValuePath = "ID";
         }
 
         private void RemoveSupporter_OnClick(object sender, RoutedEventArgs e)
@@ -96,7 +105,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             {
                 int supporterId = Convert.ToInt32(ComboBoxSupporterDelete.SelectedValue);
 
-                var result = MessageBox.Show("Are you certain you wish to remove " + ComboBoxSupporterDelete.Text, "Confirm",
+                var result = MessageBox.Show("Are you certain you wish to remove " + ComboBoxSupporterDelete.Text + " and all of the documentations affiliated?", "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
@@ -119,6 +128,24 @@ namespace DevelopmentProject.PeterGUI.Pages
                 if (result == MessageBoxResult.Yes)
                 {
                     _handler.ResignSupporter(supporterId);
+                    PopulateCombo();
+                }
+            }
+        }
+
+        private void AssignSupporter_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ComboBoxSupporterAssign.SelectedValue != null || ComboBoxUserAccessAssign.SelectedValue != null)
+            {
+                int supporterId = Convert.ToInt32(ComboBoxSupporterAssign.SelectedValue);
+                int accessId = Convert.ToInt32(ComboBoxUserAccessAssign.SelectedValue);
+
+                var result = MessageBox.Show("Are you certain you wish to assign " + ComboBoxSupporterAssign.Text + " The status of " + ComboBoxUserAccessAssign.Text, "Confirm",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    _handler.AssignSupporter(supporterId, accessId);
                     PopulateCombo();
                 }
             }

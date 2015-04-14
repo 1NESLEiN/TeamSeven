@@ -49,6 +49,10 @@ namespace Control
         {
             return _dbHandler.ResignSupporter(id);
         }
+        public bool AssignSupporter(int id, int accessid)
+        {
+            return _dbHandler.AssignSupporter(id, accessid);
+        }
         #endregion
 
         #region Documentation methods

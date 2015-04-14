@@ -121,12 +121,22 @@ namespace Control
 
         public bool DeleteSupporter(int id)
         {
-            String query = @"
+            String query1 = @"
+            DELETE FROM dbo.jobDocumentations WHERE Supporter = " + id;
+            String query2 = @"
             DELETE FROM dbo.Supporters WHERE ID = " + id;
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query, _con))
+                using (SqlCommand cmd = new SqlCommand(query1, _con))
+                {
+                    _con.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    _con.Close();
+                }
+                using (SqlCommand cmd = new SqlCommand(query2, _con))
                 {
                     _con.Open();
 
@@ -148,6 +158,32 @@ namespace Control
         {
             String query =
             string.Format("UPDATE dbo.Supporters SET Position = 2 WHERE ID = {0}", id);
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    _con.Open();
+                    cmd.Parameters.AddWithValue("Position", 2);
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                _con.Close();
+            }
+        }
+        public bool AssignSupporter(int id, int accessid)
+        {
+            String query =
+            string.Format("UPDATE dbo.Supporters SET UserAccess = {0} WHERE ID = {1}", accessid, id);
 
             try
             {

@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
+      d:DesignHeight="500" d:DesignWidth="900"
 	Title="AddSupporterPage">
 
     <Grid>
-        <GroupBox Header="New Supporter" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="auto" Width="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="New Supporter" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="auto" Width="400">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -21,7 +25,7 @@
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Name:"/>
@@ -36,10 +40,45 @@
                 <Label Grid.Column="0" Grid.Row="3" Content="Access:"></Label>
                 <ComboBox Name="ComboBoxAccess" Grid.Column="1" Grid.Row="3"></ComboBox>
 
-                <Button Grid.Column="1" Grid.Row="5" Height="25" Width="100" HorizontalAlignment="Right" Content="Add Supporter" Click="AddSupporter_OnClick"/>
+                <Button Grid.Column="1" Grid.Row="5" Height="25" Width="125" HorizontalAlignment="Right" Content="Add Supporter" Click="AddSupporter_OnClick"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Remove Supporter" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Height="125" Width="400">
+        <GroupBox Header="Remove Supporter" Grid.Column="0" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Height="125" Width="400">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <Label Name="RemoveSupporter" Content="Supporter:" Grid.Column="0" Grid.Row="0"></Label>
+                <ComboBox x:Name="ComboBoxSupporterDelete" Grid.Column="1" Grid.Row="0"/>
+                <Button Grid.Column="1" Grid.Row="2" Height="25" Width="125" HorizontalAlignment="Right" Content="Remove Supporter" Click="RemoveSupporter_OnClick"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Resign Supporter" Grid.Column="0" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Height="125" Width="400">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                
+                <Label Name="ResignSupporter" Content="Supporter:" Grid.Column="0" Grid.Row="0"></Label>
+                <ComboBox x:Name="ComboBoxSupporterResign" Grid.Column="1" Grid.Row="0" />
+                <Button Grid.Column="1" Grid.Row="2" Height="25" Width="125" HorizontalAlignment="Right" Content="Resign Supporter" Click="ResignSupporter_OnClick"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Assign existing Supporter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="125" Width="400">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -52,28 +91,14 @@
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Remove" Click="RemoveSupporter_OnClick"/>
-                <ComboBox x:Name="ComboBoxSupporterDelete" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
+                <Label Name="AssignSupporterName" Content="Supporter:" Grid.Column="0" Grid.Row="0"></Label>               
+                <ComboBox x:Name="ComboBoxSupporterAssign" Grid.Column="1" Grid.Row="0"/>
+
+                <Label Name="AssignSupporter" Content="UserAccess:" Grid.Column="0" Grid.Row="1"></Label>
+                <ComboBox x:Name="ComboBoxUserAccessAssign" Grid.Column="1" Grid.Row="1"/>
+
+                <Button Grid.Column="1" Grid.Row="3" Width="125" HorizontalAlignment="Right" Content="Assign" Click="AssignSupporter_OnClick"/>
             </Grid>
         </GroupBox>
-
-        <GroupBox Header="Resign Supporter" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Height="125" Width="400">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="25"/>
-                </Grid.RowDefinitions>
-
-                <Button Grid.Column="1" Grid.Row="3" Height="25" Width="100" HorizontalAlignment="Right" Content="Resign" Click="ResignSupporter_OnClick"/>
-                <ComboBox x:Name="ComboBoxSupporterResign" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="368" Grid.RowSpan="2"/>
-            </Grid>
-        </GroupBox>
-
     </Grid>
 </Page>
