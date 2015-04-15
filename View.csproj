@@ -69,6 +69,9 @@
     <Compile Include="PeterGUI\Pages\SearchDocumentationPage.xaml.cs">
       <DependentUpon>SearchDocumentationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PeterGUI\Pages\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PeterGUI\Pages\UpdateDocumentationPage.xaml.cs">
       <DependentUpon>UpdateDocumentationPage.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PeterGUI\Pages\SearchDocumentationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PeterGUI\Pages\Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Control;
+using Model;
 
 namespace DevelopmentProject.PeterGUI.Pages
 {
@@ -26,17 +27,21 @@ namespace DevelopmentProject.PeterGUI.Pages
         private readonly Handler _handler;
         private DataTable _typesTable;
         private DataTable _supportersTable;
-        //private DataTable _supportersWorkingTable;
         private DataTable _statesTable;
         private DataTable _documentation;
 
-        public UpdateDocumentationPage(int id)
+        public ContentVisibility ContentVisibility { get; set; }
+
+        public UpdateDocumentationPage(int id, ContentVisibility contentVisibility)
         {
             _id = id;
             InitializeComponent();
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
             GetDocumentation();
+
+
+            DataContext = contentVisibility;
 
             FillBoxesWithSelectedDocumentationValues();
         }
@@ -56,8 +61,6 @@ namespace DevelopmentProject.PeterGUI.Pages
                 }
                 else
                 {
-
-
                     bool success = _handler.UpdateDocumentation(_id, TextBoxHeadline.Text, TextBoxDescription.Text, Convert.ToInt32(ComboBoxType.SelectedValue), Convert.ToInt32(ComboBoxSupporter.SelectedValue), DatePickerCompleted.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxStatus.SelectedValue));
                     if (success)
                     {

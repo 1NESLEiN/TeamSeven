@@ -49,11 +49,16 @@ namespace DevelopmentProject.PeterGUI.Pages
                     if (_login.Rows.Count != 0)
                     {
 
-                        int accessid = _login.Rows[0].Field<int>(0);
+                        var accessid = _login.Rows[0].Field<int>(4);
 
-                        if (accessid == 2)
+                        if (accessid == 1)
                         {
-                            
+                                var contentVisibility2 = DataContext as ContentVisibility;
+                                var vis2 = contentVisibility2 != null && contentVisibility2.UserVisibility;
+
+                                var visibility2 = DataContext as ContentVisibility;
+                                if (visibility2 != null && visibility2.UserVisibility != true)
+                                    visibility2.UserVisibility = !vis2;
                         }
 
                         var contentVisibility = DataContext as ContentVisibility;
@@ -63,7 +68,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                         if (visibility != null)
                             visibility.LoginVisibility = !vis;
 
-                        if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage());
+                        if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage(contentVisibility));
                     }
                     else
                     {

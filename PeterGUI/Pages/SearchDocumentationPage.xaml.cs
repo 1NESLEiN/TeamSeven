@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Control;
+using Model;
 
 namespace DevelopmentProject.PeterGUI.Pages
 {
@@ -33,6 +34,17 @@ namespace DevelopmentProject.PeterGUI.Pages
         private int _type;
         private int _status;
 
+        public ContentVisibility ContentVisibility { get; set; }
+        public SearchDocumentationPage(ContentVisibility contentVisibility)
+        {
+            InitializeComponent();
+            _handler = Handler.GetInstance();
+            PrepareDropBoxes();
+
+            ContentVisibility = contentVisibility;
+
+            Search();
+        }
         public SearchDocumentationPage()
         {
             InitializeComponent();
@@ -75,41 +87,26 @@ namespace DevelopmentProject.PeterGUI.Pages
             {
                 int selectedId = (int) rowview.Row.ItemArray[0];
 
-                if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId));
+                if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId, ContentVisibility));
             }
-
-
-            //try
-            //{
-            //    bool success = _handler.UpdateDocumentation(Convert.ToInt32(TextBoxDocumentationId.Text), DatePickerSelectedEndDate.SelectedDate, Convert.ToInt32(TextBoxTimeSpent.Text), Convert.ToInt32(ComboBoxSelectedStatus.SelectedValue));
-            //    if (success)
-            //    {
-            //        MessageBox.Show("Documentation updated succesfully");
-            //        ClearTextboxes();
-
-            //        Search();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
             Search();
-
         }
-
         public void GetFilterOptions()
         {
 
             _keyword = KeywordTextBox.Text;
             if (StartDatePicker.SelectedDate != null) _startDate = StartDatePicker.SelectedDate.Value.Date;
             if (EndDatePicker.SelectedDate != null) _endDate = EndDatePicker.SelectedDate.Value.Date;
-            if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0) _supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
-            if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0) _type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
-            if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0) _status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
+            if (ComboBoxSupporter.SelectedValue != null || Convert.ToInt32(ComboBoxSupporter.SelectedValue) > 0)
+                if (ComboBoxSupporter.SelectedValue != null)
+                    _supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
+            if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0)
+                if (ComboBoxType.SelectedValue != null) _type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
+            if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0)
+                if (ComboBoxState.SelectedValue != null) _status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
         }
 
         private void PrepareDropBoxes()
@@ -160,34 +157,6 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxState.SelectedValuePath = "ID";
             ComboBoxState.SelectedValue = 0;
 
-            ////Get data and populate ComboBoxSelectedStatus
-
-            //ComboBoxSelectedStatus.ItemsSource = _statesTable.DefaultView;
-            //ComboBoxSelectedStatus.DisplayMemberPath = "Name";
-            //ComboBoxSelectedStatus.SelectedValuePath = "ID";
-            //ComboBoxSelectedStatus.SelectedValue = 0;
         }
-
-        private void ClearTextboxes()
-        {
-            KeywordTextBox.Clear();
-
-            StartDatePicker.SelectedDate = null;
-            EndDatePicker.SelectedDate = null;
-            ComboBoxSupporter.SelectedValue = 0;
-            ComboBoxType.SelectedValue = 0;
-            ComboBoxState.SelectedValue = 0;
-        }
-
-        //private void GridViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
-        //    if (rowview != null)
-        //    {
-        //        TextBoxTimeSpent.Text = rowview.Row.ItemArray[5].ToString();
-        //        TextBoxDocumentationId.Text = rowview.Row.ItemArray[0].ToString();
-        //        //ComboBoxSelectedStatus.SelectedValue = rowview.Row.ItemArray[8];
-        //    }
-        //}
     }
 }

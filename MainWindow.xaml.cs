@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq.Expressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using DevelopmentProject.PeterGUI.Pages;
@@ -19,6 +20,8 @@ namespace DevelopmentProject
 
             ContentVisibility = new ContentVisibility();
             NavigationDockPanel.DataContext = ContentVisibility;
+            ManageSupportersButton.DataContext = ContentVisibility;
+
 
             Login login = new Login(ContentVisibility);
             MainWondowFrame.Content = login;
@@ -35,7 +38,7 @@ namespace DevelopmentProject
         }
         private void SearchDocumentation_Click(object sender, RoutedEventArgs e)
         {
-            SearchDocumentationPage searchDocumentationPage = new SearchDocumentationPage();
+            SearchDocumentationPage searchDocumentationPage = new SearchDocumentationPage(ContentVisibility);
             MainWondowFrame.Content = searchDocumentationPage;
         }
         private void Logout_OnClick(object sender, RoutedEventArgs e)
@@ -43,12 +46,20 @@ namespace DevelopmentProject
             Login login = new Login(ContentVisibility);
             MainWondowFrame.Content = login;
 
+
             var contentVisibility = NavigationDockPanel.DataContext as ContentVisibility;
             var vis = contentVisibility != null && contentVisibility.LoginVisibility;
 
             var visibility = NavigationDockPanel.DataContext as ContentVisibility;
             if (visibility != null)
                 visibility.LoginVisibility = !vis;
+
+            var contentVisibility2 = ManageSupportersButton.DataContext as ContentVisibility;
+            var vis2 = contentVisibility2 != null && contentVisibility2.UserVisibility;
+
+            var visibility2 = ManageSupportersButton.DataContext as ContentVisibility;
+            if (visibility2.UserVisibility)
+                visibility2.UserVisibility = !vis2;
         }
     }
 }
