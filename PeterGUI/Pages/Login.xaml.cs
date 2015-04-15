@@ -25,7 +25,6 @@ namespace DevelopmentProject.PeterGUI.Pages
     {
         private readonly Handler _handler;
         private DataTable _login;
-        public ContentVisibility ContentVisibility { get; set; }
 
         public Login(ContentVisibility contentVisibility)
         {
@@ -49,6 +48,14 @@ namespace DevelopmentProject.PeterGUI.Pages
 
                     if (_login.Rows.Count != 0)
                     {
+
+                        int accessid = _login.Rows[0].Field<int>(0);
+
+                        if (accessid == 2)
+                        {
+                            
+                        }
+
                         var contentVisibility = DataContext as ContentVisibility;
                         var vis = contentVisibility != null && contentVisibility.LoginVisibility;
 
