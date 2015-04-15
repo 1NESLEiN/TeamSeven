@@ -25,7 +25,6 @@ namespace DevelopmentProject.PeterGUI.Pages
     {
         private readonly Handler _handler;
         private DataTable _login;
-
         public Login(ContentVisibility contentVisibility)
         {
             InitializeComponent();
@@ -33,7 +32,6 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             DataContext = contentVisibility;
         }
-
         private void Login_OnClick(object sender, RoutedEventArgs e)
         {
             if (TextBoxSupporterName.Text == "" || TextBoxSupporterPass.Text == "")
@@ -48,7 +46,6 @@ namespace DevelopmentProject.PeterGUI.Pages
 
                     if (_login.Rows.Count != 0)
                     {
-
                         var accessid = _login.Rows[0].Field<int>(4);
 
                         if (accessid == 1)

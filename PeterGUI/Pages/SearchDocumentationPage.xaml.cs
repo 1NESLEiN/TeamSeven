@@ -85,7 +85,7 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             if (rowview != null)
             {
-                int selectedId = (int) rowview.Row.ItemArray[0];
+                int selectedId = (int)rowview.Row.ItemArray[0];
 
                 if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId, ContentVisibility));
             }
@@ -96,7 +96,6 @@ namespace DevelopmentProject.PeterGUI.Pages
         }
         public void GetFilterOptions()
         {
-
             _keyword = KeywordTextBox.Text;
             if (StartDatePicker.SelectedDate != null) _startDate = StartDatePicker.SelectedDate.Value.Date;
             if (EndDatePicker.SelectedDate != null) _endDate = EndDatePicker.SelectedDate.Value.Date;

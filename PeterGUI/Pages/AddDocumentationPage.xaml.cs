@@ -54,7 +54,6 @@ namespace DevelopmentProject.PeterGUI.Pages
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void ClearTextboxes()
         {
             TextBoxHeadline.Clear();
@@ -63,7 +62,6 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxSupporter.SelectedValue = null;
             ComboBoxType.SelectedValue = null;
         }
-
         private void PrepareDropBoxes()
         {
             //Get data and populate ComboBoxType

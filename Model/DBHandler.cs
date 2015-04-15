@@ -213,7 +213,7 @@ namespace Control
 
         public DataTable Login(string username, string pass)
         {
-            string query = string.Format("SELECT * FROM Supporters WHERE Name = '{0}' AND Pass = '{1}'", username, pass);
+            string query = string.Format("SELECT * FROM Supporters WHERE Name = '{0}' AND Pass = '{1}' AND Position = 1", username, pass);
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))
@@ -450,10 +450,10 @@ namespace Control
             }
         }
 
-        public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterID, int typeID, int StateID)
+        public DataTable GetFilteredDocumentationsTable(string keyword, DateTime startDate, DateTime endDate, int supporterId, int typeId, int stateId)
         {
             string query = "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateCompleted, TimeSpent, Supporters.Name AS SupporterName, Statuses.Name AS Status, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type JOIN dbo.Statuses ON dbo.Statuses.ID = dbo.JobDocumentations.Status";
-            if (keyword != "" || !startDate.Equals(DateTime.MinValue.Date) || !endDate.Equals(DateTime.MinValue.Date) || supporterID != 0 || typeID != 0 || StateID != 0)
+            if (keyword != "" || !startDate.Equals(DateTime.MinValue.Date) || !endDate.Equals(DateTime.MinValue.Date) || supporterId != 0 || typeId != 0 || stateId != 0)
             {
                 int counter = 0;
                 query += " WHERE ";
@@ -478,23 +478,23 @@ namespace Control
 
                     query += "DateCreated BETWEEN '" + startDate.ToString("MM/dd/yyyy") + "' AND '" + endDate.ToString("MM/dd/yyyy") + "'";
                 }
-                if (supporterID != 0)
+                if (supporterId != 0)
                 {
                     if (counter > 0) query += " AND ";
                     counter++;
-                    query += "Supporters.ID = " + supporterID;
+                    query += "Supporters.ID = " + supporterId;
                 }
-                if (StateID != 0)
+                if (stateId != 0)
                 {
                     if (counter > 0) query += " AND ";
                     counter++;
-                    query += "Statuses.ID = " + StateID;
+                    query += "Statuses.ID = " + stateId;
                 }
-                if (typeID != 0)
+                if (typeId != 0)
                 {
                     if (counter > 0) query += " AND ";
                     counter++;
-                    query += "Types.ID = " + typeID;
+                    query += "Types.ID = " + typeId;
                 }
             }
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))

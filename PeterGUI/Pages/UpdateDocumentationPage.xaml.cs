@@ -52,7 +52,6 @@ namespace DevelopmentProject.PeterGUI.Pages
         }
         private void UpdateDocumentation_OnClick(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 if (TextBoxHeadline.Text == String.Empty || TextBoxDescription.Text == String.Empty || TextBoxTimeSpent.Text == "0")
@@ -74,7 +73,6 @@ namespace DevelopmentProject.PeterGUI.Pages
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void FillBoxesWithSelectedDocumentationValues()
         {
             TextBoxHeadline.Text = _documentation.Rows[0].ItemArray[1].ToString();

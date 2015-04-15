@@ -54,16 +54,9 @@ namespace DevelopmentProject.PeterGUI.Pages
 
         public void PopulateCombo()
         {
-            //Get data Populate both ComboBoxSupporterDelete and ComboBoxSupporterResign boxes
+            //Get data Populate both ComboBoxSupporterDelete, ComboBoxSupporterResign and ComboboxAssign boxes
             _supportersTable = _handler.GetSupportersTable();
             _supportersWorkingTable = _handler.GetSupportersWorkingTable();
-
-            //DataRow supporterRow = _supportersTable.NewRow();
-            //supporterRow["ID"] = 0;
-            //supporterRow["Name"] = "";
-            //supporterRow["Initials"] = "";
-
-            //_supportersTable.Rows.InsertAt(supporterRow, 0);
 
             ComboBoxSupporterDelete.ItemsSource = _supportersTable.DefaultView;
             ComboBoxSupporterDelete.DisplayMemberPath = "Name";
@@ -80,15 +73,8 @@ namespace DevelopmentProject.PeterGUI.Pages
             ComboBoxSupporterAssign.SelectedValuePath = "ID";
             ComboBoxSupporterAssign.SelectedValue = 0;
 
-            //Get data Populate ComboBoxAccess
+            //Get data Populate ComboBoxAccess And combobox UserAccess boxes
             _accessTable = _handler.GetUserAccessTable();
-
-            //DataRow supporterRow = _supportersTable.NewRow();
-            //supporterRow["ID"] = 0;
-            //supporterRow["Name"] = "";
-            //supporterRow["Initials"] = "";
-
-            //_supportersTable.Rows.InsertAt(supporterRow, 0);
 
             ComboBoxAccess.ItemsSource = _accessTable.DefaultView;
             ComboBoxAccess.DisplayMemberPath = "Name";
