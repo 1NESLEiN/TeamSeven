@@ -118,6 +118,20 @@ namespace Control
             }
         }
 
+        public DataTable LookForAdmin()
+        {
+            String query = @"
+            SELECT * FROM dbo.Supporters WHERE UserAccess = 1";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
        public DataTable GetSupporter(int id)
        {
           String query = @"
@@ -170,7 +184,7 @@ namespace Control
         public bool ResignSupporter(int id)
         {
             String query =
-            string.Format("UPDATE dbo.Supporters SET Position = 2 WHERE ID = {0}", id);
+            string.Format("UPDATE dbo.Supporters SET Position = 2, UserAccess = 2 WHERE ID = {0}", id);
 
             try
             {
@@ -178,6 +192,7 @@ namespace Control
                 {
                     _con.Open();
                     cmd.Parameters.AddWithValue("Position", 2);
+                    cmd.Parameters.AddWithValue("UserAccess", 2);
 
                     cmd.ExecuteNonQuery();
                 }

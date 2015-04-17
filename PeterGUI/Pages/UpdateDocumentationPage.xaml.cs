@@ -28,7 +28,6 @@ namespace DevelopmentProject.PeterGUI.Pages
       private readonly Handler _handler;
       private DataTable _typesTable;
       private DataTable _supportersTable;
-      private DataTable _supportersWorkingTable;
       private DataTable _statesTable;
       private DataTable _documentation;
       private DataTable _getSupporter;

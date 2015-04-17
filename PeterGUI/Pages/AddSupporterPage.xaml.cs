@@ -94,12 +94,20 @@ namespace DevelopmentProject.PeterGUI.Pages
                 var result = MessageBox.Show("Are you certain you wish to remove " + ComboBoxSupporterDelete.Text + " and all of the documentations affiliated?", "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.Yes)
+                if (_handler.LookForAdmin().Rows.Count == 1)
                 {
-                    _handler.DeleteSupporter(supporterId);
-                    PopulateCombo();
-                    MessageBox.Show("Supporter was successfully removed");
+                    MessageBox.Show("There is only 1 admin left. Deletion cannot take place.");
                 }
+                else
+                {
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        _handler.DeleteSupporter(supporterId);
+                        PopulateCombo();
+                        MessageBox.Show("Supporter was successfully removed");
+                    }
+                }
+
             }
         }
 
@@ -112,12 +120,20 @@ namespace DevelopmentProject.PeterGUI.Pages
                 var result = MessageBox.Show("Are you certain you wish to resign " + ComboBoxSupporterResign.Text, "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.Yes)
+                if (_handler.LookForAdmin().Rows.Count == 1)
                 {
-                    _handler.ResignSupporter(supporterId);
-                    PopulateCombo();
-                    MessageBox.Show("Supporter was successfully resigned");
+                    MessageBox.Show("There is only 1 admin left. Resignation cannot take place.");
                 }
+                else
+                {
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        _handler.ResignSupporter(supporterId);
+                        PopulateCombo();
+                        MessageBox.Show("Supporter was successfully resigned");
+                    }
+                }
+
             }
         }
 
@@ -131,12 +147,20 @@ namespace DevelopmentProject.PeterGUI.Pages
                 var result = MessageBox.Show("Are you certain you wish to assign " + ComboBoxSupporterAssign.Text + " The status of " + ComboBoxUserAccessAssign.Text, "Confirm",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.Yes)
+                if (_handler.LookForAdmin().Rows.Count == 1 && accessId == 2)
                 {
-                    _handler.AssignSupporter(supporterId, accessId);
-                    PopulateCombo();
-                    MessageBox.Show("Supporter was successfully assigned");
+                    MessageBox.Show("There is only 1 admin left. The assignation cannot take place.");
                 }
+                else
+                {
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        _handler.AssignSupporter(supporterId, accessId);
+                        PopulateCombo();
+                        MessageBox.Show("Supporter was successfully assigned");
+                    }
+                }
+
             }
         }
     }
