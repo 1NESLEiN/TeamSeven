@@ -60,7 +60,7 @@ namespace DevelopmentProject.PeterGUI.Pages
          try
          {
 
-            if (TextBoxHeadline.Text == String.Empty || TextBoxDescription.Text == String.Empty || TextBoxTimeSpent.Text == "0")
+            if (TextBoxHeadline.Text == String.Empty || TextBoxDescription.Text == String.Empty)
             {
                MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                if (_contentVisibility.UserVisibility == false)
@@ -109,25 +109,33 @@ namespace DevelopmentProject.PeterGUI.Pages
 
          //Get data Populate ComboBoxSupporter
          _supportersTable = _handler.GetSupportersWorkingTable();
-         //if (_documentation.Rows[0].ItemArray[4] == null)
+          var supporterid = _documentation.Rows[0].ItemArray[4];
          //{
          //   MessageBox.Show("dav");
          //}
          //if (ComboBoxSupporter == null)
          //{
-         DataRow datarow = _supportersTable.NewRow();
-         _getSupporterId = (int)_documentation.Rows[0].ItemArray[4];
-         _getSupporter = _handler.GetSupporter(_getSupporterId);
+          DataRow[] result = _supportersTable.Select("ID = " + supporterid );
+          if (result.Length == 0)
+          {
+              DataRow datarow = _supportersTable.NewRow();
+              _getSupporterId = (int)_documentation.Rows[0].ItemArray[4];
+              _getSupporter = _handler.GetSupporter(_getSupporterId);
 
 
-         datarow["ID"] = _getSupporter.Rows[0].ItemArray[0];
-         datarow["Name"] = _getSupporter.Rows[0].ItemArray[1];
-         datarow["Initials"] = _getSupporter.Rows[0].ItemArray[2];
-         datarow["Pass"] = _getSupporter.Rows[0].ItemArray[3];
-         datarow["UserAccess"] = _getSupporter.Rows[0].ItemArray[4];
-         datarow["Position"] = _getSupporter.Rows[0].ItemArray[5];
+              datarow["ID"] = _getSupporter.Rows[0].ItemArray[0];
+              datarow["Name"] = _getSupporter.Rows[0].ItemArray[1];
+              datarow["Initials"] = _getSupporter.Rows[0].ItemArray[2];
+              datarow["Pass"] = _getSupporter.Rows[0].ItemArray[3];
+              datarow["UserAccess"] = _getSupporter.Rows[0].ItemArray[4];
+              datarow["Position"] = _getSupporter.Rows[0].ItemArray[5];
 
-         _supportersTable.Rows.Add(datarow);
+              _supportersTable.Rows.Add(datarow);
+          }
+
+
+
+
 
          //}
 
