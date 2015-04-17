@@ -33,6 +33,7 @@ namespace DevelopmentProject.PeterGUI.Pages
         private int _supporter;
         private int _type;
         private int _status;
+       private ContentVisibility _contentVisibility;
 
         public ContentVisibility ContentVisibility { get; set; }
         public SearchDocumentationPage(ContentVisibility contentVisibility)
@@ -41,7 +42,8 @@ namespace DevelopmentProject.PeterGUI.Pages
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
 
-            ContentVisibility = contentVisibility;
+           ContentVisibility = contentVisibility;
+           _contentVisibility = contentVisibility;
 
             Search();
         }
@@ -50,6 +52,8 @@ namespace DevelopmentProject.PeterGUI.Pages
             InitializeComponent();
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
+
+           ContentVisibility = _contentVisibility;
 
             Search();
         }
@@ -85,9 +89,18 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             if (rowview != null)
             {
-                int selectedId = (int)rowview.Row.ItemArray[0];
+               int selectedId = (int)rowview.Row.ItemArray[0];
+               string statusname = rowview.Row.ItemArray[7].ToString();
 
-                if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId, ContentVisibility));
+               if (_contentVisibility.UserVisibility == false && statusname == "Færdig")
+               {
+                  MessageBox.Show("Du har ikke adgang til at rette I en dokumentation der er sat til færdig");
+               }
+               else
+               {
+                  if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId, ContentVisibility));
+               }
+
             }
         }
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)

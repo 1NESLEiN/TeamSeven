@@ -118,6 +118,20 @@ namespace Control
             }
         }
 
+       public DataTable GetSupporter(int id)
+       {
+          String query = @"
+            SELECT * FROM dbo.Supporters WHERE ID = " + id;
+
+          using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+          using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+          {
+             sqlConn.Open();
+             DataTable dt = new DataTable();
+             dt.Load(cmd.ExecuteReader());
+             return dt;
+          }
+       }
         public bool DeleteSupporter(int id)
         {
             String query1 = @"

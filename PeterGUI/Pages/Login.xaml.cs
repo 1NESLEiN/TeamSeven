@@ -34,7 +34,7 @@ namespace DevelopmentProject.PeterGUI.Pages
         }
         private void Login_OnClick(object sender, RoutedEventArgs e)
         {
-            if (TextBoxSupporterName.Text == "" || TextBoxSupporterPass.Text == "")
+            if (TextBoxSupporterName.Text == "" || TextBoxSupporterPass.Password == "")
             {
                 MessageBox.Show("You need to type both your username and password");
             }
@@ -42,7 +42,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             {
                 try
                 {
-                    _login = _handler.Login(TextBoxSupporterName.Text, TextBoxSupporterPass.Text);
+                    _login = _handler.Login(TextBoxSupporterName.Text, TextBoxSupporterPass.Password);
 
                     if (_login.Rows.Count != 0)
                     {

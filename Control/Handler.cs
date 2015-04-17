@@ -41,6 +41,11 @@ namespace Control
             Supporter supporter = new Supporter(initials, name, pass, accessid, positionid);
             return _dbHandler.AddSupporter(supporter);
         }
+
+       public DataTable GetSupporter(int id)
+       {
+          return _dbHandler.GetSupporter(id);
+       }
         public bool DeleteSupporter(int id)
         {
             return _dbHandler.DeleteSupporter(id);
