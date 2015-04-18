@@ -9,9 +9,22 @@ namespace Model
 {
     public class ContentVisibility : INotifyPropertyChanged
     {
+        #region Backing fields
+        /// <summary>
+        /// Backing field for the Login Visibility property
+        /// </summary>     
         private bool _loginVisibility;
+        /// <summary>
+        /// Backing field for the User Visibility property
+        /// </summary>
         private bool _userVisibility;
+        #endregion
 
+        #region properties
+        
+        /// <summary>
+        /// Property to get and set the Login Visibility
+        /// </summary>
         public bool LoginVisibility
         {
             get
@@ -25,7 +38,9 @@ namespace Model
                 NotifyPropertyChanged("LoginVisibility");
             }
         }
-
+        /// <summary>
+        /// Property to get and set the User Visibility
+        /// </summary>
         public bool UserVisibility
         {
             get
@@ -39,6 +54,11 @@ namespace Model
                 NotifyPropertyChanged("UserVisibility");
             }
         }
+        #endregion
+
+        /// <summary>
+        /// Notify xaml visibility that visibility properties have changed
+        /// </summary>
         private void NotifyPropertyChanged(string info)
         {
             if (PropertyChanged != null)
@@ -46,7 +66,9 @@ namespace Model
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
+        /// <summary>
+        /// Event Handler for Property Changed
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

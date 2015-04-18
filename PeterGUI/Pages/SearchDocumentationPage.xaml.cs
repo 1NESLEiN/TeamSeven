@@ -33,7 +33,7 @@ namespace DevelopmentProject.PeterGUI.Pages
         private int _supporter;
         private int _type;
         private int _status;
-       private ContentVisibility _contentVisibility;
+        private readonly ContentVisibility _contentVisibility;
 
         public ContentVisibility ContentVisibility { get; set; }
         public SearchDocumentationPage(ContentVisibility contentVisibility)
@@ -41,10 +41,8 @@ namespace DevelopmentProject.PeterGUI.Pages
             InitializeComponent();
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
-
-           ContentVisibility = contentVisibility;
-           _contentVisibility = contentVisibility;
-
+            ContentVisibility = contentVisibility;
+            _contentVisibility = contentVisibility;
             Search();
         }
         public SearchDocumentationPage()
@@ -52,18 +50,19 @@ namespace DevelopmentProject.PeterGUI.Pages
             InitializeComponent();
             _handler = Handler.GetInstance();
             PrepareDropBoxes();
-
-           ContentVisibility = _contentVisibility;
-
+            ContentVisibility = _contentVisibility;
             Search();
         }
-
+        /// <summary>
+        /// Search method to populate gridview
+        /// </summary>
         public void Search()
         {
             GridViewSearch.AutoGenerateColumns = true;
             GetFilterOptions();
             GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(_keyword, _startDate, _endDate, _supporter, _type, _status));
 
+            //sets column widths to gridview
             if (GridViewSearch.Columns.Count > 0)
             {
                 GridViewSearch.Columns[0].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -82,31 +81,40 @@ namespace DevelopmentProject.PeterGUI.Pages
                 GridViewSearch.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
         }
+        /// <summary>
+        /// Update method to open UpdateDocumentationPage with a selected row
+        /// </summary>
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-
-            DataRowView rowview = GridViewSearch.SelectedItem as DataRowView;
+            //Selects rowview from gridview
+            var rowview = GridViewSearch.SelectedItem as DataRowView;
 
             if (rowview != null)
             {
-               int selectedId = (int)rowview.Row.ItemArray[0];
-               string statusname = rowview.Row.ItemArray[7].ToString();
+                int selectedId = (int)rowview.Row.ItemArray[0];
+                string statusname = rowview.Row.ItemArray[7].ToString();
 
-               if (_contentVisibility.UserVisibility == false && statusname == "Færdig")
-               {
-                  MessageBox.Show("Du har ikke adgang til at rette I en dokumentation der er sat til færdig");
-               }
-               else
-               {
-                  if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId, ContentVisibility));
-               }
-
+                //Restricts access for supports to documentations that are marked as completed
+                if (_contentVisibility.UserVisibility == false && statusname == "Færdig")
+                {
+                    MessageBox.Show("Du har ikke adgang til at rette I en dokumentation der er sat til færdig");
+                }
+                else
+                {
+                    if (NavigationService != null) NavigationService.Navigate(new UpdateDocumentationPage(selectedId, ContentVisibility));
+                }
             }
         }
+        /// <summary>
+        /// Button click to initiate search method
+        /// </summary>
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
             Search();
         }
+        /// <summary>
+        /// Filter method for search options, sets selected fields to private variables
+        /// </summary>
         public void GetFilterOptions()
         {
             _keyword = KeywordTextBox.Text;
@@ -120,12 +128,15 @@ namespace DevelopmentProject.PeterGUI.Pages
             if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0)
                 if (ComboBoxState.SelectedValue != null) _status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
         }
-
+        /// <summary>
+        /// Populate comboboxes method
+        /// </summary>
         private void PrepareDropBoxes()
         {
             //Get data and populate ComboBoxType
             _typesTable = _handler.GetTypesTable();
 
+            //Inserts an extra row with an all parameter
             DataRow typeRow = _typesTable.NewRow();
             typeRow["ID"] = 0;
             typeRow["Name"] = "Alle typer";
@@ -140,6 +151,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             //Get data Populate ComboBoxSupporterDelete
             _supportersTable = _handler.GetSupportersTable();
 
+            //Inserts an extra row with an all parameter
             DataRow supporterRow = _supportersTable.NewRow();
             supporterRow["ID"] = 0;
             supporterRow["Name"] = "Alle supportere";
@@ -158,6 +170,7 @@ namespace DevelopmentProject.PeterGUI.Pages
             //Get data and populate ComboBoxStatus
             _statesTable = _handler.GetStatesTable();
 
+            //Inserts an extra row with an all parameter
             DataRow statesRow = _statesTable.NewRow();
             statesRow["ID"] = 0;
             statesRow["Name"] = "Alle Statuser";

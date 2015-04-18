@@ -61,6 +61,14 @@ namespace Control
         {
             return _dbHandler.AssignSupporter(id, accessid);
         }
+        public DataTable GetSupportersTable()
+        {
+            return _dbHandler.GetSupportersTable();
+        }
+        public DataTable GetSupportersWorkingTable()
+        {
+            return _dbHandler.GetSupportersWorkingTable();
+        }
         #endregion
 
         #region Documentation methods
@@ -84,35 +92,6 @@ namespace Control
             return _dbHandler.UpdateDocumentation(id, headline, description, type, supporter, dateCompleted, timespent,
                 status);
         }
-        public DataTable GetTypesTable()
-        {
-            return _dbHandler.GetTypesTable();
-        }
-        #endregion
-
-        #region Login methods
-        public DataTable Login(string username, string pass)
-        {
-            return _dbHandler.Login(username, pass);
-        }
-        #endregion
-        public DataTable GetSupportersTable()
-        {
-            return _dbHandler.GetSupportersTable();
-        }
-        public DataTable GetSupportersWorkingTable()
-        {
-            return _dbHandler.GetSupportersWorkingTable();
-        }
-        public DataTable GetUserAccessTable()
-        {
-            return _dbHandler.GetUserAccessTable();
-        }
-        public DataTable GetStatesTable()
-        {
-            return _dbHandler.GetStatesTable();
-        }
-
         public DataTable GetAllDocumentationsTable()
         {
             return _dbHandler.GetAllDocumentationsTable();
@@ -122,5 +101,36 @@ namespace Control
         {
             return _dbHandler.GetFilteredDocumentationsTable(keyword, startDate, endDate, supporterID, typeID, StatusID);
         }
+
+        #endregion
+
+        #region Login methods
+        public DataTable Login(string username, string pass)
+        {
+            return _dbHandler.Login(username, pass);
+        }
+        #endregion
+
+        #region UserAccess methods
+        public DataTable GetUserAccessTable()
+        {
+            return _dbHandler.GetUserAccessTable();
+        }
+        #endregion
+
+        #region States methods
+        public DataTable GetStatesTable()
+        {
+            return _dbHandler.GetStatesTable();
+        }
+        #endregion
+
+        #region Types methods
+        public DataTable GetTypesTable()
+        {
+            return _dbHandler.GetTypesTable();
+        }
+        #endregion
+
     }
 }

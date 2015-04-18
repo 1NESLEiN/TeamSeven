@@ -234,8 +234,32 @@ namespace Control
                 _con.Close();
             }
         }
+        public DataTable GetSupportersTable()
+        {
+            string query = "SELECT * FROM dbo.Supporters";
 
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
+        public DataTable GetSupportersWorkingTable()
+        {
+            string query = "SELECT * FROM dbo.Supporters WHERE Position = 1";
 
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
         #endregion
 
         #region Login methods
@@ -395,75 +419,6 @@ namespace Control
                 _con.Close();
             }
         }
-
-        public DataTable GetTypesTable()
-        {
-            string query = "SELECT * FROM dbo.Types";
-
-            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-            {
-                sqlConn.Open();
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                return dt;
-            }
-        }
-        public DataTable GetStatesTable()
-        {
-            string query = "SELECT * FROM dbo.Statuses";
-
-            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-            {
-                sqlConn.Open();
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                return dt;
-            }
-        }
-        #endregion
-
-        public DataTable GetSupportersTable()
-        {
-            string query = "SELECT * FROM dbo.Supporters";
-
-            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-            {
-                sqlConn.Open();
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                return dt;
-            }
-        }
-        public DataTable GetSupportersWorkingTable()
-        {
-            string query = "SELECT * FROM dbo.Supporters WHERE Position = 1";
-
-            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-            {
-                sqlConn.Open();
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                return dt;
-            }
-        }
-        public DataTable GetUserAccessTable()
-        {
-            string query = "SELECT * FROM dbo.UserAccesses";
-
-            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
-            {
-                sqlConn.Open();
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                return dt;
-            }
-        }
-
         public DataTable GetAllDocumentationsTable()
         {
             string query = "SELECT JobDocumentations.ID, Headline, Description, DateCreated, DateDue, TimeSpent, Supporters.Name AS SupporterName, Statuses.Name AS Status, Initials, Types.Name AS TypeName FROM dbo.JobDocumentations JOIN dbo.Supporters ON dbo.Supporters.ID = dbo.JobDocumentations.Supporter JOIN dbo.Types ON dbo.Types.ID = dbo.JobDocumentations.Type JOIN dbo.States ON dbo.States.ID = dbo.JobDocumentations.Status";
@@ -541,8 +496,50 @@ namespace Control
                 dt.Load(cmd.ExecuteReader());
                 return dt;
             }
-
-
         }
+
+        public DataTable GetTypesTable()
+        {
+            string query = "SELECT * FROM dbo.Types";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
+        public DataTable GetStatesTable()
+        {
+            string query = "SELECT * FROM dbo.Statuses";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }
+        #endregion
+
+        #region UserAccess methods
+        public DataTable GetUserAccessTable()
+        {
+            string query = "SELECT * FROM dbo.UserAccesses";
+
+            using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(query, sqlConn))
+            {
+                sqlConn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+        }  
+        #endregion
     }
 }

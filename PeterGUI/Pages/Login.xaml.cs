@@ -32,6 +32,9 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             DataContext = contentVisibility;
         }
+        /// <summary>
+        /// Login method for users
+        /// </summary>
         private void Login_OnClick(object sender, RoutedEventArgs e)
         {
             if (TextBoxSupporterName.Text == "" || TextBoxSupporterPass.Password == "")
@@ -42,12 +45,16 @@ namespace DevelopmentProject.PeterGUI.Pages
             {
                 try
                 {
+                    //Checks if the login method from the handler can succeed with the parameters
                     _login = _handler.Login(TextBoxSupporterName.Text, TextBoxSupporterPass.Password);
 
+                    //Checks the amount of rows returned
                     if (_login.Rows.Count != 0)
                     {
+                        //Gets the access id from the returned row
                         var accessid = _login.Rows[0].Field<int>(4);
 
+                        //reveals admin components if user is admin
                         if (accessid == 1)
                         {
                                 var contentVisibility2 = DataContext as ContentVisibility;
@@ -57,7 +64,7 @@ namespace DevelopmentProject.PeterGUI.Pages
                                 if (visibility2 != null && visibility2.UserVisibility != true)
                                     visibility2.UserVisibility = !vis2;
                         }
-
+                        //reveals login components
                         var contentVisibility = DataContext as ContentVisibility;
                         var vis = contentVisibility != null && contentVisibility.LoginVisibility;
 
@@ -65,13 +72,13 @@ namespace DevelopmentProject.PeterGUI.Pages
                         if (visibility != null)
                             visibility.LoginVisibility = !vis;
 
+                        //Navigates to searchDocumentationPage
                         if (NavigationService != null) NavigationService.Navigate(new SearchDocumentationPage(contentVisibility));
                     }
                     else
                     {
                         MessageBox.Show("Your Username or Password were incorrect");
                     }
-
                 }
                 catch (Exception ex)
                 {

@@ -4,6 +4,7 @@ namespace Model
 {
     public class Supporter
     {
+        #region Backing fields
         /// <summary>
         /// Backing field for the Name property
         /// </summary>
@@ -28,6 +29,8 @@ namespace Model
         /// Backing field for the AccessId property
         /// </summary>
         private int _accessId;
+
+        #endregion
 
         #region Properties
         /// <summary>

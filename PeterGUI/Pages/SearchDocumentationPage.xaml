@@ -21,11 +21,6 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="Auto"/>
-
-
-
-
-
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -38,35 +33,15 @@
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
-                    <!--<RowDefinition Height="25" />-->
-                    <!--<RowDefinition Height="25" />
-                    <RowDefinition Height="25" />
-                    <RowDefinition Height="25" />
-                    <RowDefinition Height="25" />
-                    <RowDefinition Height="25" />-->
                     <RowDefinition Height="Auto" />
-
                 </Grid.RowDefinitions>
-                <!--<Label Grid.Row="1" Grid.Column="2" Content="Documentation ID: "></Label>
-                <Label Grid.Row="1" Grid.Column="4" Content="Time Spent: "></Label>
-                <Label Grid.Row="1" Grid.Column="6" Content="Status: "></Label>
-                <Label Grid.Row="1" Grid.Column="8" Content="Date completed: "></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="Update Documentation: "></Label>
-                -->
-                <!--<DataGrid Name="SelectedGrid" Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1"  Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="6"></DataGrid>-->
-                <!--
-                <TextBox IsReadOnly="true" Background="Gainsboro" Name="TextBoxDocumentationId" Grid.Row="2" Grid.Column="2"></TextBox>
-                <TextBox Name="TextBoxTimeSpent" Grid.Row="2" Grid.Column="4"></TextBox>
-                <ComboBox Name="ComboBoxSelectedStatus" Grid.Row="2" Grid.Column="6"></ComboBox>
-                <DatePicker Name="DatePickerSelectedEndDate" Grid.Row="2" Grid.Column="8"></DatePicker>-->
-
-
 
                 <Label Grid.Row="0" Content="Search keyword(s):"></Label>
                 <TextBox x:Name="KeywordTextBox" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="8"></TextBox>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="From Date:"></Label>
                 <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="8" ></DatePicker>
+                
                 <Label Grid.Row="2" Grid.Column="0" Content="To Date:"></Label>
                 <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="8"></DatePicker>
 
