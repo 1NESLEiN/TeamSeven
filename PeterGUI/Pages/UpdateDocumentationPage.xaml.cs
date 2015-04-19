@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Control;
 using Model;
 
@@ -32,8 +21,6 @@ namespace DevelopmentProject.PeterGUI.Pages
         private DataTable _documentation;
         private DataTable _getSupporter;
         private readonly ContentVisibility _contentVisibility;
-
-        public ContentVisibility ContentVisibility { get; set; }
         /// <summary>
         /// Constructor for the UpdateDocumentationPage class
         /// </summary>

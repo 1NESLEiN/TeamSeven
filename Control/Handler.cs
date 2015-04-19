@@ -6,7 +6,7 @@ namespace Control
 {
     public class Handler
     {
-        private readonly DBHandler _dbHandler;
+        private readonly DbHandler _dbHandler;
 
         #region Singleton-methods
 
@@ -30,7 +30,7 @@ namespace Control
 
         private Handler()
         {
-            _dbHandler = DBHandler.GetInstance();
+            _dbHandler = DbHandler.GetInstance();
         }
 
         #endregion

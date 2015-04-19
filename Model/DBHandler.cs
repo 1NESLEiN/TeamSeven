@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
 using System.Windows.Forms;
-using Model;
 
-namespace Control
+namespace Model
 {
-    public class DBHandler
+    public class DbHandler
     {
         //Change this bool to change whether the create database is run or not on instantiation.
-        private bool _CreateDatabaseFromScript = false;
+        //private bool _CreateDatabaseFromScript = false;
 
         private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
 
@@ -24,65 +20,67 @@ namespace Control
         /// <summary>
         /// Used to check whether the DBHandler class has been instantiated or to instantiate it and return the dbhandler instance.
         /// </summary>
-        private static DBHandler _dbhandler;
+        private static DbHandler _dbhandler;
 
         /// <summary>
         /// Method to get the single instance of the dbhandler class
         /// </summary>
         /// <returns>The instance of the single dbhandler class</returns>
-        public static DBHandler GetInstance()
+        public static DbHandler GetInstance()
         {
             if (_dbhandler == null)
             {
-                _dbhandler = new DBHandler();
+                _dbhandler = new DbHandler();
             }
             return _dbhandler;
         }
         /// <summary>
         /// Method create a database. No longer needed?
         /// </summary>
-        private DBHandler()
+        private DbHandler()
         {
             _con = new SqlConnection(ConnectionString);
-            if (_CreateDatabaseFromScript)
-            {
-                BuildDatabase();
-            }
+            //if (_CreateDatabaseFromScript)
+            //{
+            //    BuildDatabase();
+            //}
         }
 
         #endregion
 
+        #region build database
         /// <summary>
         /// Method to build a database. No longer needed?
         /// </summary>
-        private void BuildDatabase()
-        {
-            FileInfo fileInfo = new FileInfo(@".\createDatabase.sql");
-            string scriptText = fileInfo.OpenText().ReadToEnd();
+        //private void BuildDatabase()
+        //{
+        //    FileInfo fileInfo = new FileInfo(@".\createDatabase.sql");
+        //    string scriptText = fileInfo.OpenText().ReadToEnd();
 
-            //split the script on "GO" commands
-            string[] splitter = { "\r\nGO\r\n" };
-            string[] commandTexts = scriptText.Split(splitter,
-              StringSplitOptions.RemoveEmptyEntries);
-            foreach (string commandText in commandTexts)
-            {
-                try
-                {
-                    using (SqlCommand cmd = new SqlCommand(commandText, _con))
-                    {
-                        _con.Open();
+        //    //split the script on "GO" commands
+        //    string[] splitter = { "\r\nGO\r\n" };
+        //    string[] commandTexts = scriptText.Split(splitter,
+        //      StringSplitOptions.RemoveEmptyEntries);
+        //    foreach (string commandText in commandTexts)
+        //    {
+        //        try
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand(commandText, _con))
+        //            {
+        //                _con.Open();
 
-                        cmd.ExecuteNonQuery();
+        //                cmd.ExecuteNonQuery();
 
-                        _con.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
+        //                _con.Close();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //    }
+        //}
+        #endregion
 
         #region Supporter methods
 
