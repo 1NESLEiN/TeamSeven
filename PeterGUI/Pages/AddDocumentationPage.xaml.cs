@@ -25,6 +25,9 @@ namespace DevelopmentProject.PeterGUI.Pages
         private readonly Handler _handler;
         private DataTable _typesTable;
         private DataTable _supportersTable;
+        /// <summary>
+        /// Constructor for the AddDocumentationPage class
+        /// </summary>
         public AddDocumentationPage()
         {
             InitializeComponent();

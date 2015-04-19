@@ -25,6 +25,10 @@ namespace DevelopmentProject.PeterGUI.Pages
     {
         private readonly Handler _handler;
         private DataTable _login;
+        /// <summary>
+        /// Constructor for the LoginPage class
+        /// </summary>
+        /// <param name="contentVisibility">Sets the contentvisibility for loginPage</param>
         public Login(ContentVisibility contentVisibility)
         {
             InitializeComponent();

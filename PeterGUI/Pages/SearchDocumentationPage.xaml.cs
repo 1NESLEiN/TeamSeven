@@ -32,10 +32,14 @@ namespace DevelopmentProject.PeterGUI.Pages
         private DateTime _endDate;
         private int _supporter;
         private int _type;
-        private int _status;
+        private string _status;
         private readonly ContentVisibility _contentVisibility;
 
         public ContentVisibility ContentVisibility { get; set; }
+        /// <summary>
+        /// Constructor for the SearchDocumentationPage class
+        /// </summary>
+        /// <param name="contentVisibility">Sets the contentvisibility for SearchDocumentationPage</param>
         public SearchDocumentationPage(ContentVisibility contentVisibility)
         {
             InitializeComponent();
@@ -58,9 +62,67 @@ namespace DevelopmentProject.PeterGUI.Pages
         /// </summary>
         public void Search()
         {
+            //Ensures validation if no checkbox is checked
+            if (CheckBoxAll.IsChecked == false && CheckBoxNew.IsChecked == false && CheckBoxPartly.IsChecked == false && CheckBoxComplete.IsChecked == false)
+            {
+                MessageBox.Show("You need to select a status");
+            }
+            else
+            {
+                //If checkbox all is checked then the other checkboxes should be rendered irrelevant
+                if (CheckBoxAll.IsChecked == true)
+                {
+                    CheckBoxNew.IsChecked = false;
+                    CheckBoxPartly.IsChecked = false;
+                    CheckBoxComplete.IsChecked = false;
+
+                    _status = 0.ToString();
+                }
+                //Adds a number for each checkbox checked to a string, that is ultimately turned into an integer
+                else
+                {
+                    int counter = 0;
+                    if (CheckBoxNew.IsChecked == true)
+                    {
+                        if (counter == 0)
+                        {
+                            _status = 1.ToString();
+                            counter = 1;
+                        }
+                        else
+                        {
+                            _status += 1;
+                        }
+                    }
+                    if (CheckBoxPartly.IsChecked == true)
+                    {
+                        if (counter == 0)
+                        {
+                            _status = 2.ToString();
+                            counter = 1;
+                        }
+                        else
+                        {
+                            _status += 2;
+                        }
+                    }
+                    if (CheckBoxComplete.IsChecked == true)
+                    {
+                        if (counter == 0)
+                        {
+                            _status = 3.ToString();
+                        }
+                        else
+                        {
+                            _status += 3;
+                        }
+                    }
+                }
+            }
+
             GridViewSearch.AutoGenerateColumns = true;
             GetFilterOptions();
-            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(_keyword, _startDate, _endDate, _supporter, _type, _status));
+            GridViewSearch.ItemsSource = new DataView(_handler.GetFilteredDocumentationsTable(_keyword, _startDate, _endDate, _supporter, _type, Convert.ToInt32(_status)));
 
             //sets column widths to gridview
             if (GridViewSearch.Columns.Count > 0)
@@ -125,8 +187,8 @@ namespace DevelopmentProject.PeterGUI.Pages
                     _supporter = Int32.Parse(ComboBoxSupporter.SelectedValue.ToString());
             if (ComboBoxType.SelectedValue != null || Convert.ToInt32(ComboBoxType.SelectedValue) > 0)
                 if (ComboBoxType.SelectedValue != null) _type = Int32.Parse(ComboBoxType.SelectedValue.ToString());
-            if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0)
-                if (ComboBoxState.SelectedValue != null) _status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
+            //if (ComboBoxState.SelectedValue != null || Convert.ToInt32(ComboBoxState.SelectedValue) > 0)
+            //    if (ComboBoxState.SelectedValue != null) _status = Int32.Parse(ComboBoxState.SelectedValue.ToString());
         }
         /// <summary>
         /// Populate comboboxes method
@@ -177,10 +239,10 @@ namespace DevelopmentProject.PeterGUI.Pages
 
             _statesTable.Rows.InsertAt(statesRow, 0);
 
-            ComboBoxState.ItemsSource = _statesTable.DefaultView;
-            ComboBoxState.DisplayMemberPath = "Name";
-            ComboBoxState.SelectedValuePath = "ID";
-            ComboBoxState.SelectedValue = 0;
+            //ComboBoxState.ItemsSource = _statesTable.DefaultView;
+            //ComboBoxState.DisplayMemberPath = "Name";
+            //ComboBoxState.SelectedValuePath = "ID";
+            //ComboBoxState.SelectedValue = 0;
 
         }
     }

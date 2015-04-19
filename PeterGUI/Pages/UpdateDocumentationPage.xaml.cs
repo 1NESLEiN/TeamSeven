@@ -34,11 +34,15 @@ namespace DevelopmentProject.PeterGUI.Pages
         private readonly ContentVisibility _contentVisibility;
 
         public ContentVisibility ContentVisibility { get; set; }
-
+        /// <summary>
+        /// Constructor for the UpdateDocumentationPage class
+        /// </summary>
+        /// <param name="id">Sets the documentation id for the selected documentation</param>
+        /// <param name="contentVisibility">Sets the contentvisibility for UpdateDocumentationPage</param>
         public UpdateDocumentationPage(int id, ContentVisibility contentVisibility)
         {
             _id = id;
-            this._contentVisibility = contentVisibility;
+            _contentVisibility = contentVisibility;
             InitializeComponent();
             _handler = Handler.GetInstance();
             GetDocumentation();
@@ -62,7 +66,6 @@ namespace DevelopmentProject.PeterGUI.Pages
             {
                 if (TextBoxHeadline.Text == String.Empty || TextBoxDescription.Text == String.Empty)
                 {
-                    //confirms user validation
                     MessageBox.Show("Udfyld alle felter", "Udfyld felter", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 else

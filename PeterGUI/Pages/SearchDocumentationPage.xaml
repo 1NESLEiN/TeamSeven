@@ -15,12 +15,6 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -37,23 +31,31 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Content="Search keyword(s):"></Label>
-                <TextBox x:Name="KeywordTextBox" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="8"></TextBox>
+                <TextBox x:Name="KeywordTextBox" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"></TextBox>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="From Date:"></Label>
-                <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="8" ></DatePicker>
+                <DatePicker x:Name="StartDatePicker" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" ></DatePicker>
                 
                 <Label Grid.Row="2" Grid.Column="0" Content="To Date:"></Label>
-                <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="8"></DatePicker>
+                <DatePicker x:Name="EndDatePicker" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"></DatePicker>
 
                 <Label Grid.Row="3" Grid.Column="0" Content="Supporter:"></Label>
-                <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="8"></ComboBox>
+                <ComboBox x:Name="ComboBoxSupporter" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"></ComboBox>
 
                 <Label Grid.Row="4" Grid.Column="0" Content="Type:"></Label>
-                <ComboBox x:Name="ComboBoxType" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="8"></ComboBox>
+                <ComboBox x:Name="ComboBoxType" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"></ComboBox>
 
                 <Label Grid.Row="5" Grid.Column="0" Content="Status:"></Label>
-                <ComboBox x:Name="ComboBoxState" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="8">
-                </ComboBox>
+                <!--<ComboBox x:Name="ComboBoxState" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="8">
+                </ComboBox>-->
+                <Label Grid.Row="5" Grid.Column="2" Content="All:"></Label>
+                <CheckBox Name="CheckBoxAll" Grid.Row="5" Margin="30,0,0,0" Grid.Column="2" VerticalAlignment="Center" IsChecked="True"></CheckBox>
+                <Label Grid.Row="5" Margin="60,0,0,0" Grid.Column="2" Content="New:"></Label>
+                <CheckBox Name="CheckBoxNew" Grid.Row="5" Margin="100,0,0,0" Grid.Column="2" VerticalAlignment="Center"></CheckBox>
+                <Label Grid.Row="5" Margin="130,0,0,0" Grid.Column="2" Content="Partly:"></Label>
+                <CheckBox Grid.Row="5" Name="CheckBoxPartly" Margin="180,0,0,0" Grid.Column="2" VerticalAlignment="Center"></CheckBox>
+                <Label Grid.Row="5" Margin="210,0,0,0" Grid.Column="2" Content="Complete:"></Label>
+                <CheckBox Grid.Row="5" Name="CheckBoxComplete" Margin="280,0,0,0" Grid.Column="2" VerticalAlignment="Center"></CheckBox>
 
                 <Button Content="Search" Grid.Column="0" Grid.Row="7" Click="ButtonSearch_Click"></Button>
                 <Button Content="Edit" Grid.Column="0"  Height="25" Grid.Row="9" Click="ButtonUpdate_Click" VerticalAlignment="Top"></Button>

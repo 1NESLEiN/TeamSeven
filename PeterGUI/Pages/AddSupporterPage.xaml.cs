@@ -14,7 +14,9 @@ namespace DevelopmentProject.PeterGUI.Pages
         private DataTable _supportersWorkingTable;
         private DataTable _supportersTable;
         private DataTable _accessTable;
-
+        /// <summary>
+        /// Constructor for the AddSupporterPage class
+        /// </summary>
         public AddSupporterPage()
         {
             InitializeComponent();
