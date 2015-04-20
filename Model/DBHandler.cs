@@ -11,18 +11,18 @@ namespace Model
        /// <summary>
        /// Connection string
        /// </summary>
-        private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
+        public string ConnectionString { get; protected set; }
+
         /// <summary>
         /// sql connection object
         /// </summary>
-        private readonly SqlConnection _con;
+        public SqlConnection Con { get; protected set; }
 
         #region Singleton methods
-
         /// <summary>
         /// Used to check whether the DBHandler class has been instantiated or to instantiate it and return the dbhandler instance.
         /// </summary>
-        private static DbHandler _dbhandler;
+        protected static DbHandler _dbhandler;
 
         /// <summary>
         /// Method to get the single instance of the dbhandler class
@@ -36,16 +36,15 @@ namespace Model
             }
             return _dbhandler;
         }
+
         /// <summary>
         /// Method create a database. No longer needed?
         /// </summary>
-        private DbHandler()
+        protected DbHandler()
         {
-            _con = new SqlConnection(ConnectionString);
-            //if (_CreateDatabaseFromScript)
-            //{
-            //    BuildDatabase();
-            //}
+            ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
+            Con = new SqlConnection(ConnectionString);
+
         }
 
         #endregion
@@ -65,9 +64,9 @@ namespace Model
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query, _con))
+                using (SqlCommand cmd = new SqlCommand(query, Con))
                 {
-                    _con.Open();
+                    Con.Open();
 
                     cmd.Parameters.Add(new SqlParameter("@Name", supporter.Name));
                     cmd.Parameters.Add(new SqlParameter("@Initials", supporter.Initials));
@@ -86,9 +85,10 @@ namespace Model
             }
             finally
             {
-                _con.Close();
+                Con.Close();
             }
         }
+
         /// <summary>
         /// Method to check for remaining admins
         /// </summary>
@@ -107,6 +107,7 @@ namespace Model
                 return dt;
             }
         }
+
         /// <summary>
         /// Method to get a supporter with a specific id
         /// </summary>
@@ -126,6 +127,7 @@ namespace Model
                 return dt;
             }
         }
+
         /// <summary>
         /// Method to delete a supporter with a specific id
         /// </summary>
@@ -139,17 +141,17 @@ namespace Model
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query1, _con))
+                using (SqlCommand cmd = new SqlCommand(query1, Con))
                 {
-                    _con.Open();
+                    Con.Open();
 
                     cmd.ExecuteNonQuery();
 
-                    _con.Close();
+                    Con.Close();
                 }
-                using (SqlCommand cmd = new SqlCommand(query2, _con))
+                using (SqlCommand cmd = new SqlCommand(query2, Con))
                 {
-                    _con.Open();
+                    Con.Open();
 
                     cmd.ExecuteNonQuery();
                 }
@@ -162,9 +164,10 @@ namespace Model
             }
             finally
             {
-                _con.Close();
+                Con.Close();
             }
         }
+
         /// <summary>
         /// Method to resign a supporter with a specific username and pass
         /// </summary>
@@ -176,9 +179,9 @@ namespace Model
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query, _con))
+                using (SqlCommand cmd = new SqlCommand(query, Con))
                 {
-                    _con.Open();
+                    Con.Open();
                     cmd.Parameters.AddWithValue("Position", 2);
                     cmd.Parameters.AddWithValue("UserAccess", 2);
 
@@ -193,9 +196,10 @@ namespace Model
             }
             finally
             {
-                _con.Close();
+                Con.Close();
             }
         }
+
         /// <summary>
         /// Method to assign a supporter with a specific username and pass an access id
         /// </summary>
@@ -209,9 +213,9 @@ namespace Model
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query, _con))
+                using (SqlCommand cmd = new SqlCommand(query, Con))
                 {
-                    _con.Open();
+                    Con.Open();
                     cmd.Parameters.AddWithValue("Position", 2);
 
                     cmd.ExecuteNonQuery();
@@ -225,9 +229,10 @@ namespace Model
             }
             finally
             {
-                _con.Close();
+                Con.Close();
             }
         }
+
         /// <summary>
         /// Method to get all supporters
         /// </summary>
@@ -245,6 +250,7 @@ namespace Model
                 return dt;
             }
         }
+
         /// <summary>
         /// Method to get all working supporters
         /// </summary>
@@ -298,9 +304,9 @@ namespace Model
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query, _con))
+                using (SqlCommand cmd = new SqlCommand(query, Con))
                 {
-                    _con.Open();
+                    Con.Open();
 
                     cmd.Parameters.Add(new SqlParameter("@Type", documentation.Type));
                     cmd.Parameters.Add(new SqlParameter("@Headline", documentation.Headline));
@@ -321,9 +327,10 @@ namespace Model
             }
             finally
             {
-                _con.Close();
+                Con.Close();
             }
         }
+
         /// <summary>
         /// Method to get a documentation with a specific id
         /// </summary>
@@ -341,11 +348,12 @@ namespace Model
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
 
-                _con.Close();
+                Con.Close();
 
                 return dt;
             }
         }
+
         /// <summary>
         /// Method to update a documentation with a specific id
         /// </summary>
@@ -373,9 +381,9 @@ namespace Model
             }
             try
             {
-                using (SqlCommand cmd = new SqlCommand(query, _con))
+                using (SqlCommand cmd = new SqlCommand(query, Con))
                 {
-                    _con.Open();
+                    Con.Open();
 
                     cmd.Parameters.AddWithValue("Headline", headline);
                     cmd.Parameters.AddWithValue("Description", description);
@@ -396,9 +404,10 @@ namespace Model
             }
             finally
             {
-                _con.Close();
+                Con.Close();
             }
         }
+
         ///// <summary>
         ///// Method to update a documentation with a specific id
         ///// </summary>
@@ -428,9 +437,9 @@ namespace Model
         //    }
         //    try
         //    {
-        //        using (SqlCommand cmd = new SqlCommand(query, _con))
+        //        using (SqlCommand cmd = new SqlCommand(query, Con))
         //        {
-        //            _con.Open();
+        //            Con.Open();
 
         //            if (dateCompleted != null) { cmd.Parameters.AddWithValue("DateCompleted", dateCompleted.Value.Date.ToString("MM/dd/yyyy")); }
         //            cmd.Parameters.AddWithValue("TimeSpent", timeSpent);
@@ -447,9 +456,10 @@ namespace Model
         //    }
         //    finally
         //    {
-        //        _con.Close();
+        //        Con.Close();
         //    }
         //}
+
         /// <summary>
         /// Method to get a documentation with a specific id
         /// </summary>
@@ -468,6 +478,7 @@ namespace Model
                 return dt;
             }
         }
+
         /// <summary>
         /// Method to get a documentation with a specific id
         /// </summary>
@@ -574,7 +585,7 @@ namespace Model
         }
         #endregion
 
-        #region states methods
+        #region States methods
         /// <summary>
         /// Method to get all states
         /// </summary>
