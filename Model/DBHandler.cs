@@ -11,7 +11,7 @@ namespace Model
        /// <summary>
        /// Connection string
        /// </summary>
-        private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
+        private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Team7;Integrated Security=True;Connect Timeout=30";
         /// <summary>
         /// sql connection object
         /// </summary>
