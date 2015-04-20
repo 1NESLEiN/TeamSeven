@@ -153,3 +153,23 @@ ALTER TABLE [dbo].[Supporters]  WITH CHECK ADD  CONSTRAINT [FK_Supporters_Positi
 REFERENCES [dbo].[Positions] ([ID])
 GO
 ALTER TABLE [dbo].[Supporters] CHECK CONSTRAINT [FK_Supporters_Positions]
+GO
+INSERT INTO dbo.Types (Name) VALUES ('Hardware')
+INSERT INTO dbo.Types (Name) VALUES ('Software')
+INSERT INTO dbo.Types (Name) VALUES ('Other')
+GO
+INSERT INTO dbo.UserAccesses (Name) VALUES ('Admin')
+INSERT INTO dbo.UserAccesses (Name) VALUES ('Supporter')
+GO
+INSERT INTO dbo.Positions (Name) VALUES ('Working')
+INSERT INTO dbo.Positions (Name) VALUES ('Resigned')
+GO
+INSERT INTO dbo.Statuses (Name) VALUES ('Ny Opgave')
+INSERT INTO dbo.Statuses (Name) VALUES ('Delvis færdig')
+INSERT INTO dbo.Statuses (Name) VALUES ('Færdig')
+GO
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Martin Kiersgaard', 'MJO', 'Martin', 1, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Thor Pedersen', 'TP', 'Thor', 2, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Hans Christian', 'HC', 'Hans', 2, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Peter Nielsen', 'PN', 'Peter', 2, 1)
+INSERT INTO dbo.Supporters (Name, Initials, Pass, UserAccess, Position) VALUES ('Former Worker', 'FW', 'Former', 2, 2)

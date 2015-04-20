@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace Model
 {
@@ -140,6 +141,45 @@ namespace Model
             Supporter = supporter;
             Status = status;
             DateCreated = dateCreated;
+        }
+
+        public Documentation(DataRow tableRowData)
+        {
+            DocumentationID = (int) tableRowData["ID"];
+            Type = (int)tableRowData["Type"];
+            Headline = (string) tableRowData["Headline"];
+            Description = (string) tableRowData["Description"];
+
+            if (tableRowData["DateCompleted"] != "")
+            {
+            DateCompleted = (DateTime)tableRowData["DateCompleted"];
+            }
+            TimeSpent = (int)tableRowData["TimeSpent"];
+            Supporter = (int) tableRowData["Supporter"];
+            Status = (int) tableRowData["Status"];
+            DateCreated = (DateTime) tableRowData["DateCreated"];
+        }
+
+        public bool Equals(Documentation obj)
+        {
+            if (obj.GetType() == this.GetType())
+            {
+                if (
+                    this.Type == obj.Type &&
+                    this.Headline == obj.Headline &&
+                    this.Description == obj.Description &&
+                    this.DateCompleted == obj.DateCompleted &&
+                    this.TimeSpent == obj.TimeSpent &&
+                    this.Supporter == obj.Supporter &&
+                    this.Status == obj.Status &&
+                    this.DateCreated == obj.DateCreated)
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
         }
     }
 }
