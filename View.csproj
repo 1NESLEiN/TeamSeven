@@ -72,9 +72,6 @@
     <Compile Include="PeterGUI\Pages\UpdateDocumentationPage.xaml.cs">
       <DependentUpon>UpdateDocumentationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThorGUI\SearchDocumentationUserControl.xaml.cs">
-      <DependentUpon>SearchDocumentationUserControl.xaml</DependentUpon>
-    </Compile>
     <Page Include="PeterGUI\Pages\AddDocumentationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,24 +92,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThorGUI\AddDocumentationUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ThorGUI\AddSupporterUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ThorGUI\AddDocumentationUserControl.xaml.cs">
-      <DependentUpon>AddDocumentationUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ThorGUI\AddSupporterUserControl.xaml.cs">
-      <DependentUpon>AddSupporterUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -121,10 +104,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ThorGUI\SearchDocumentationUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

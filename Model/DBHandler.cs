@@ -8,11 +8,13 @@ namespace Model
 {
     public class DbHandler
     {
-        //Change this bool to change whether the create database is run or not on instantiation.
-        //private bool _CreateDatabaseFromScript = false;
-
+       /// <summary>
+       /// Connection string
+       /// </summary>
         private const string ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
-
+        /// <summary>
+        /// sql connection object
+        /// </summary>
         private readonly SqlConnection _con;
 
         #region Singleton methods
@@ -46,40 +48,6 @@ namespace Model
             //}
         }
 
-        #endregion
-
-        #region build database
-        /// <summary>
-        /// Method to build a database. No longer needed?
-        /// </summary>
-        //private void BuildDatabase()
-        //{
-        //    FileInfo fileInfo = new FileInfo(@".\createDatabase.sql");
-        //    string scriptText = fileInfo.OpenText().ReadToEnd();
-
-        //    //split the script on "GO" commands
-        //    string[] splitter = { "\r\nGO\r\n" };
-        //    string[] commandTexts = scriptText.Split(splitter,
-        //      StringSplitOptions.RemoveEmptyEntries);
-        //    foreach (string commandText in commandTexts)
-        //    {
-        //        try
-        //        {
-        //            using (SqlCommand cmd = new SqlCommand(commandText, _con))
-        //            {
-        //                _con.Open();
-
-        //                cmd.ExecuteNonQuery();
-
-        //                _con.Close();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message);
-        //        }
-        //    }
-        //}
         #endregion
 
         #region Supporter methods
