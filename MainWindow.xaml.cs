@@ -1,7 +1,4 @@
-﻿using System.Linq.Expressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using System.Windows;
 using DevelopmentProject.PeterGUI.Pages;
 using Model;
 
@@ -12,8 +9,13 @@ namespace DevelopmentProject
     /// </summary>
     public partial class MainWindow : Window
     {
+       /// <summary>
+       /// Content visibility property from Contentvisibility class
+       /// </summary>
         public ContentVisibility ContentVisibility { get; set; }
-
+        /// <summary>
+        /// Mainwindow constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
