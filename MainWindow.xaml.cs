@@ -26,6 +26,7 @@ namespace DevelopmentProject
 
             Login login = new Login(ContentVisibility);
             MainWondowFrame.Content = login;
+            Title = "Login";
         }
         /// <summary>
         /// Open AddDocumentationPage method
@@ -34,6 +35,7 @@ namespace DevelopmentProject
         {
             AddDocumentationPage addDocumentationPage = new AddDocumentationPage();
             MainWondowFrame.Content = addDocumentationPage;
+            Title = "Add Documentation";
         }
         /// <summary>
         /// Open AddSupporterPage method
@@ -42,6 +44,7 @@ namespace DevelopmentProject
         {
             AddSupporterPage addSupporterPage = new AddSupporterPage();
             MainWondowFrame.Content = addSupporterPage;
+            Title = "Manage Supporters";
         }
         /// <summary>
         /// Open SearchDocumentationPage method
@@ -50,6 +53,7 @@ namespace DevelopmentProject
         {
             SearchDocumentationPage searchDocumentationPage = new SearchDocumentationPage(ContentVisibility);
             MainWondowFrame.Content = searchDocumentationPage;
+            Title = "Search Documentation";
         }
         /// <summary>
         /// logout method
@@ -59,6 +63,7 @@ namespace DevelopmentProject
             //Opens up login page
             Login login = new Login(ContentVisibility);
             MainWondowFrame.Content = login;
+            Title = "Login";
 
             //resets the login visibility property
             var contentVisibility = NavigationDockPanel.DataContext as ContentVisibility;
@@ -73,7 +78,7 @@ namespace DevelopmentProject
             var vis2 = contentVisibility2 != null && contentVisibility2.UserVisibility;
 
             var visibility2 = ManageSupportersButton.DataContext as ContentVisibility;
-            if (visibility2.UserVisibility)
+            if (visibility2 != null && visibility2.UserVisibility)
                 visibility2.UserVisibility = !vis2;
         }
     }
