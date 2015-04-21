@@ -8,9 +8,9 @@ namespace Model
 {
     public class DbHandler
     {
-       /// <summary>
-       /// Connection string
-       /// </summary>
+        /// <summary>
+        /// Connection string
+        /// </summary>
         public string ConnectionString { get; protected set; }
 
         /// <summary>
@@ -44,7 +44,6 @@ namespace Model
         {
             ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=Database;Integrated Security=True;Connect Timeout=30";
             Con = new SqlConnection(ConnectionString);
-
         }
 
         #endregion
