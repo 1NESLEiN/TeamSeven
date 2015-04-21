@@ -279,7 +279,7 @@ namespace Model
         /// <returns>A datatable with the supporter of the id</returns>
         public DataTable Login(string username, string pass)
         {
-            string query = string.Format("SELECT * FROM Supporters WHERE Name = '{0}' AND Pass = '{1}' AND Position = 1", username, pass);
+            string query = string.Format("SELECT * FROM Supporters WHERE Name = '{0}' OR Initials = '{0}' AND Pass = '{1}' AND Position = 1", username, pass);
 
             using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
             using (SqlCommand cmd = new SqlCommand(query, sqlConn))
@@ -290,7 +290,6 @@ namespace Model
                 return dt;
             }
         }
-
         #endregion
 
         #region Documentation methods
