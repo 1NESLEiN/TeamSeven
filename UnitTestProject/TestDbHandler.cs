@@ -15,7 +15,7 @@ namespace UnitTestProject
     {
         private static TestDbHandler _testDbHandler;
 
-        public TestDbHandler()
+        private TestDbHandler()
         {
             ConnectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Database=TestDatabase;Integrated Security=True;Connect Timeout=30";
             Con = new SqlConnection(ConnectionString);
