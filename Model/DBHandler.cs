@@ -298,7 +298,7 @@ namespace Model
         /// <param name="documentation">the documentation object</param>
         public bool AddDocumentation(Documentation documentation)
         {
-            String query = @"INSERT INTO JobDocumentations (Headline, Description, Type, Supporter, TimeSpent, DateCreated, Status) VALUES (@Headline, @Description, @Type, @Supporter, @TimeSpent, @DateCreated, @Status)";
+            String query = @"INSERT INTO JobDocumentations (Headline, Description, DateCompleted, Type, Supporter, TimeSpent, DateCreated, Status) VALUES (@Headline, @Description, @DateCompleted, @Type, @Supporter, @TimeSpent, @DateCreated, @Status)";
 
             try
             {
@@ -309,6 +309,14 @@ namespace Model
                     cmd.Parameters.Add(new SqlParameter("@Type", documentation.Type));
                     cmd.Parameters.Add(new SqlParameter("@Headline", documentation.Headline));
                     cmd.Parameters.Add(new SqlParameter("@Description", documentation.Description));
+                    if (documentation.DateCompleted != null)
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@DateCompleted", documentation.DateCompleted));
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@DateCompleted", DBNull.Value));
+                    }
                     cmd.Parameters.Add(new SqlParameter("@TimeSpent", documentation.TimeSpent));
                     cmd.Parameters.Add(new SqlParameter("@DateCreated", documentation.DateCreated));
                     cmd.Parameters.Add(new SqlParameter("@Supporter", documentation.Supporter));
