@@ -414,58 +414,6 @@ namespace Model
             }
         }
 
-        ///// <summary>
-        ///// Method to update a documentation with a specific id
-        ///// </summary>
-        ///// <param name="id">specifies the id used in the documentation to be updated</param>
-        ///// <param name="timeSpent">specifies the time spent used in the documentation to be update</param>
-        ///// <param name="status">specifies the status id in the documentation to be update</param>
-        ///// <param name="dateCompleted">specifies the date completed used in the documentation to be update</param>
-        //public bool UpdateDocumentation(int id, int timeSpent, int status, DateTime? dateCompleted)
-        //{
-        //    String query = "";
-
-        //    if (dateCompleted.HasValue && status != 0)
-        //    {
-        //        query = (string.Format("UPDATE JobDocumentations SET DateCompleted='{0}', TimeSpent={1}, Status={2} WHERE JobDocumentations.ID={3}", dateCompleted.Value.Date.ToString("MM/dd/yyyy"), timeSpent, status, id));
-        //    }
-        //    if (status == 0 && dateCompleted.HasValue)
-        //    {
-        //        query = (string.Format("UPDATE JobDocumentations SET DateCompleted='{0}', TimeSpent={1} WHERE JobDocumentations.ID={2}", dateCompleted.Value.Date.ToString("MM/dd/yyyy"), timeSpent, id));
-        //    }
-        //    if (status == 0 && !dateCompleted.HasValue)
-        //    {
-        //        query = (string.Format("UPDATE JobDocumentations SET TimeSpent={0} WHERE JobDocumentations.ID={1}", timeSpent, id));
-        //    }
-        //    if (status != 0 && !dateCompleted.HasValue)
-        //    {
-        //        query = (string.Format("UPDATE JobDocumentations SET TimeSpent={0}, Status={1} WHERE JobDocumentations.ID={2}", timeSpent, status, id));
-        //    }
-        //    try
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand(query, Con))
-        //        {
-        //            Con.Open();
-
-        //            if (dateCompleted != null) { cmd.Parameters.AddWithValue("DateCompleted", dateCompleted.Value.Date.ToString("MM/dd/yyyy")); }
-        //            cmd.Parameters.AddWithValue("TimeSpent", timeSpent);
-        //            if (status != 0) cmd.Parameters.AddWithValue("Status", status);
-
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //        return false;
-        //    }
-        //    finally
-        //    {
-        //        Con.Close();
-        //    }
-        //}
-
         /// <summary>
         /// Method to get a documentation with a specific id
         /// </summary>
