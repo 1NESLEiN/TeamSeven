@@ -7,33 +7,37 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </Window.Resources>
     <Grid>
-        <DockPanel Name="NavigationDockPanel" Visibility="{Binding Path=LoginVisibility, Converter={StaticResource BoolToVisConverter} }" Height="100" Width="1192" VerticalAlignment="Top">
-        <Button  Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="AddDocumentation_Click" Margin="30,10,0,0">
-            <DockPanel  LastChildFill="True">
-                <TextBlock DockPanel.Dock="Bottom" Text="Add Documentation"/>
-                <Image Source="PeterGUI/mail_new.png"/>
-            </DockPanel>
-        </Button>
-            <Button Name="ManageSupportersButton" Visibility="{Binding Path=UserVisibility, Converter={StaticResource BoolToVisConverter} }" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="75" Width="Auto" Click="AddSupporter_Click" Margin="0,10,30,0" DockPanel.Dock="Right">
-            <DockPanel LastChildFill="True" HorizontalAlignment="Right">
-                <TextBlock DockPanel.Dock="Bottom" Text="Manage Supporters"/>
-                <Image Source="PeterGUI/supporter_new.png" HorizontalAlignment="Center"/>
-            </DockPanel>
-        </Button>
-
-        <Button Background="Transparent" BorderThickness="0" Height="75" Width="Auto" Click="SearchDocumentation_Click" Margin="25,10,0,0" VerticalAlignment="Top">
-            <DockPanel LastChildFill="True" HorizontalAlignment="Right">
-                <TextBlock DockPanel.Dock="Bottom" Text="Search Documentation"/>
-                <Image Source="PeterGUI/search_document.png" HorizontalAlignment="Center"/>
-            </DockPanel>
-        </Button>
-
-        <Button Background="Transparent" BorderThickness="0" Height="75" Width="Auto" Click="Logout_OnClick" Margin="0,10,20,0" DockPanel.Dock="Right" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <DockPanel LastChildFill="True">
-                <TextBlock DockPanel.Dock="Bottom" Text="Logout"/>
-                <Image Source="PeterGUI/logout.png" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            </DockPanel>
-        </Button>
+        <DockPanel Name="NavigationDockPanel" Visibility="{Binding Path=LoginVisibility, Converter={StaticResource BoolToVisConverter} }" Height="100" VerticalAlignment="Top">
+        <StackPanel Orientation="Horizontal">
+                <Button  Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Click="AddDocumentation_Click" Margin="30,10,0,0">
+                    <DockPanel  LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Bottom" Text="Add Documentation"/>
+                        <Image Source="PeterGUI/mail_new.png"/>
+                    </DockPanel>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Height="75" Width="Auto" Click="SearchDocumentation_Click" Margin="25,10,0,0" VerticalAlignment="Top">
+                    <DockPanel LastChildFill="True" HorizontalAlignment="Right">
+                        <TextBlock DockPanel.Dock="Bottom" Text="Search Documentation"/>
+                        <Image Source="PeterGUI/search_document.png" HorizontalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right" >
+                <Button Name="ManageSupportersButton" Visibility="{Binding Path=UserVisibility, Converter={StaticResource BoolToVisConverter} }" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="75" Width="Auto" Click="AddSupporter_Click" Margin="0,10,30,0" DockPanel.Dock="Right">
+                    <DockPanel LastChildFill="True" HorizontalAlignment="Right">
+                        <TextBlock DockPanel.Dock="Bottom" Text="Manage Supporters"/>
+                        <Image Source="PeterGUI/supporter_new.png" HorizontalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Height="75" Width="Auto" Click="Logout_OnClick" Margin="0,10,20,0" DockPanel.Dock="Right" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <DockPanel LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Bottom" Text="Logout"/>
+                        <Image Source="PeterGUI/logout.png" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+            
         <!--<Button Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="75" Width="Auto" Margin="417,10,0,0">
             <DockPanel LastChildFill="True">
                 <TextBlock DockPanel.Dock="Bottom" Text="Update Documentation"/>
