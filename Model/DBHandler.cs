@@ -481,7 +481,7 @@ namespace Model
                 {
                     int[] resultsInts = stateId.ToString().ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
 
-                    if (counter > 0) query += " AND ";
+                    if (counter > 0) query += " AND (";
                     counter++;
 
                     int counter2 = 0;
@@ -494,6 +494,7 @@ namespace Model
                             query += " OR ";
                         }
                     }
+                    query += ") ";
                 }
                 if (typeId != 0)
                 {
